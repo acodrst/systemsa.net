@@ -1,0 +1,50 @@
+body{
+  padding:5px;
+  hyphens: auto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+a {
+  text-decoration: none;
+}
+#level{
+  display:inline-block;
+  font-size:18px;
+}
+#l{
+  display:none;
+}
+#map{
+  width:100dvw;
+  height:calc( 100dvh - 41px );
+  display:block;
+  overflow: auto;
+}
+#key td{
+  border: 2px solid;
+  padding:7px;
+}
+#key table{
+  border: 2px solid;
+  border-collapse: collapse;
+}
+#key{
+  font-size:20px;
+  padding:10px;
+  display:none;
+}
+#heading {
+  border-right: 1px solid;
+  height:41px;
+  display:inline-block;
+  padding-top:0px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#heading svg{
+  height: 40px;
+  min-height:40px;
+}
+#heading img:hover,.emo:hover, .emo img:hover{
+  cursor: pointer;
+  background-color: yellow;
+}

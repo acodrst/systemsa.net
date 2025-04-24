@@ -1,0 +1,77 @@
+:: level
+Top
+Documentation
+ORNG
+:: agents
+Public
+:: back
+Codeberg
+Permanent
+SourceForge
+GitHub
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+ORNG local NGINX
+:: forward
+Rsync
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+Git
+Node
+Deno
+Rsync
+ORNG local NGINX
+:: href
+http://localhost:4001
+:: processes
+ORNG
+:: subclass_of
+Top
+:: note
+Top
+:: forward
+Public
+:: href
+https://orng.org
+:: back
+Rsync
+:: datastores
+site/orn
+:: forward
+ORNG local NGINX
+Rsync
+:: both
+Deno
+Node
+Git
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/acodrst/orng.org
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/orng.org
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/orng-org/

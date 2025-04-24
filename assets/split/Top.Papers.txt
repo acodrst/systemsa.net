@@ -1,0 +1,10 @@
+:: level
+Top
+Papers
+:: processes
+Logical Map Streaming
+Triple System Analysis
+Adaptive Analysis
+Logical Map How-to Guide
+:: href
+https://adaptiveanalysis.org
