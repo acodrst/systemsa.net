@@ -192,9 +192,11 @@ globalThis.addEventListener("hashchange", () => {
   update_levels('map');
 });
 document.getElementById("home").addEventListener("click", () => {
+    localStorage.setItem('gs_level', 'Top');
     document.getElementById("map").style.display = 'block';
     document.getElementById("key").style.display = 'none';
     document.getElementById("legal_writing").style.display = 'none';
+    update_levels('map');
 });
 document.getElementById("legal").addEventListener("click", () => {
     document.getElementById("key").style.display = 'none';
@@ -203,14 +205,8 @@ document.getElementById("legal").addEventListener("click", () => {
 
 });
 document.getElementById("key_toggle").addEventListener("click", () => {
-  if (document.getElementById("key").style.display == 'none' || document.getElementById("key").style.display == '') {
     document.getElementById("key").style.display = 'block';
     document.getElementById("map").style.display = 'none';
+    document.getElementById("legal_writing").style.display = 'none';
     update_levels('key');
-  }
-  else {
-    document.getElementById("key").style.display = 'none';
-    document.getElementById("map").style.display = 'block';
-    update_levels('map');
-  }
 });
