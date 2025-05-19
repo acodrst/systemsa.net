@@ -1,23 +1,41 @@
+html{
+  padding:0;
+  margin:0;
+}
 body{
-  padding:5px;
-  hyphens: auto;
+  padding:0;
+  margin:0;
   font-family: Arial, Helvetica, sans-serif;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
 }
 a {
   text-decoration: none;
 }
-#level{
-  display:inline-block;
-  font-size:18px;
-}
 #l{
   display:none;
 }
+#pg {
+  display: grid;
+  padding:5px;
+  grid-template-rows:41px calc( 100dvh - 51px );
+  grid-template-columns: calc ( 100dvw - 20px );
+}
+#legal_writing{
+  display:none;
+  grid-row:2;
+  grid-column:1;
+}
 #map{
-  width:100dvw;
-  height:calc( 100dvh - 41px );
-  display:block;
-  overflow: auto;
+  grid-row:2;
+  grid-column:1;
+  overflow:hidden; 
+}
+#map svg{
+  width:100%;
+  height:100%;
 }
 #key td{
   border: 2px solid;
@@ -28,21 +46,23 @@ a {
   border-collapse: collapse;
 }
 #key{
+  grid-row:2;
+  grid-column:1;
   font-size:20px;
   padding:10px;
   display:none;
 }
 #heading {
-  border-right: 1px solid;
-  height:41px;
-  display:inline-block;
-  padding-top:0px;
-  padding-left: 10px;
-  padding-right: 10px;
+  display:flex;
+  grid-row:1;
+  grid-column:1;
+  gap:3px;
+  align-items:flex-start;
+  justify-content: center;
 }
-#heading svg{
-  height: 40px;
-  min-height:40px;
+#heading svg:hover{
+  cursor: pointer;
+  background-color: yellow;
 }
 #heading img:hover,.emo:hover, .emo img:hover{
   cursor: pointer;

@@ -1,7 +1,14 @@
 :: level
 Top
-Documentation
-ORNG
+Papers
+Adaptive Analysis
+:: agents
+Public
+:: back
+Codeberg
+Permanent
+SourceForge
+GitHub
 :: agents
 Scott H.
 :: both
@@ -20,9 +27,6 @@ Codeberg
 SourceForge
 GitHub
 :: processes
-B2
-Neocities
-WebDAV
 Git
 Node
 Deno
@@ -31,17 +35,18 @@ Local NGINX
 :: href
 http://localhost:4001
 :: processes
-ORNG
+ADA
+:: note
+Top
+:: forward
+Public
 :: href
-https://orng.org
+https://adaptiveanalysis.org
 :: back
 Rsync
 :: datastores
-site/orn
+site/ada
 :: forward
-B2
-WebDAV
-Neocities
 Local NGINX
 Rsync
 :: both
@@ -59,36 +64,12 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/acodrst/orng.org
+https://github.com/acodrst/adaptiveanalysis.org
 :: datastores
 Codeberg
 :: href
-https://codeberg.org/acodrst/orng.org
+https://codeberg.org/acodrst/adaptiveanalysis.org
 :: datastores
 SourceForge
 :: href
-https://sourceforge.net/projects/orng-org/
-:: datastores
-Solder
-:: href
-https://solder.neocities.org/
-:: back
-Neocities
-:: datastores
-Backblaze
-:: href
-https://f000.backblazeb2.com/file/triple/index.html
-:: back
-B2
-:: datastores
-Xfig
-:: href
-https://xfig.org
-:: back
-WebDAV
-:: datastores
-Cutup
-:: href
-https://cutup.page
-:: back
-WebDAV
+https://sourceforge.net/projects/adaptiveanalysis-org/

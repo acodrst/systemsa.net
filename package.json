@@ -19,7 +19,7 @@
     "rollup-license-plugin": "^3.0.0"
   },
   "dependencies": {
-    "gsdot-svg": "^1.0.10",
-    "text-model-dot": "^1.0.12"
+    "gsdot-svg": "^1.0.13",
+    "text-model-dot": "^1.0.15"
   }
 }

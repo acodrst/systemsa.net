@@ -1,0 +1,75 @@
+:: level
+Top
+Papers
+Triple System Analysis
+:: agents
+Public
+:: back
+Codeberg
+Permanent
+SourceForge
+GitHub
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Local NGINX
+:: forward
+Rsync
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+Git
+Node
+Deno
+Rsync
+Local NGINX
+:: href
+http://localhost:4999
+:: processes
+TRI
+:: note
+Top
+:: forward
+Public
+:: href
+https://triple.pub
+:: back
+Rsync
+:: datastores
+site/ada
+:: forward
+Local NGINX
+Rsync
+:: both
+Deno
+Node
+Git
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/acodrst/triple.pub
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/triple.pub
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/triple-pub/

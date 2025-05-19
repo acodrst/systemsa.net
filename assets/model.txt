@@ -1,84 +1,7 @@
 :: level
 Top
-:: datastores
-Knowledge Management
-Personal
-Operating Systems
-Programming
-:: processes
-Demonstrations
-:: back
-Knowledge Management
-:: processes
 Papers
-:: back
-Knowledge Management
-:: processes
-Documentation
-:: back
-Personal
-Programming
-Knowledge Management
-Operating Systems
-:: level
-Top
-Documentation
-:: processes
-ORNG
-System SA Net
-N🚫NIC OS Build
-L1G3R OS Build
-Compute Land Local OS
-:: processes
-ORNG
-:: href
-https://orng.org
-:: processes
-N🚫NIC OS Build
-:: href
-https://nonic.org
-:: processes
-L1G3R OS Build
-:: href
-https://l1g3r.com
-:: level
-Top
-Demonstrations
-:: processes
-Logical Map POC
-Logical Map Streaming POC
-Simple Triples Example
-:: href
-https://codrust.com
-:: processes
-Logical Map POC
-:: href
-https://logicalmap.org
-:: processes
-Logical Map Streaming POC
-:: href
-https://noidentity.dev
-:: level
-Top
-Papers
-:: processes
-Logical Map Streaming
 Triple System Analysis
-Adaptive Analysis
-Logical Map How-to Guide
-:: href
-https://adaptiveanalysis.org
-:: level
-Top
-Documentation
-ORNG
-Node
-:: processes
-nodey
-:: level
-Top
-Documentation
-ORNG
 :: agents
 Public
 :: back
@@ -92,7 +15,7 @@ Scott H.
 Git
 Node
 Deno
-ORNG local NGINX
+Local NGINX
 :: forward
 Rsync
 Upload
@@ -108,17 +31,370 @@ Git
 Node
 Deno
 Rsync
-ORNG local NGINX
+Local NGINX
 :: href
-http://localhost:4001
+http://localhost:4999
 :: processes
-ORNG
-:: subclass_of
-Top
+TRI
 :: note
 Top
 :: forward
 Public
+:: href
+https://triple.pub
+:: back
+Rsync
+:: datastores
+site/ada
+:: forward
+Local NGINX
+Rsync
+:: both
+Deno
+Node
+Git
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/acodrst/triple.pub
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/triple.pub
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/triple-pub/
+:: level
+Top
+Documentation
+:: narrative
+Domain documentation not correlated with a paper
+:: processes
+ORNG
+All Work
+N🚫NIC OS Build
+L1G3R OS Build
+Compute Land
+:: href
+https://compute.land
+:: processes
+ORNG
+:: narrative
+Journal and writing
+:: href
+https://orng.org
+:: processes
+N🚫NIC OS Build
+:: href
+https://nonic.org
+:: processes
+L1G3R OS Build
+:: href
+https://l1g3r.com
+:: processes
+Floppy PNG
+:: href
+https://floppypng.com
+:: processes
+All Work
+:: href
+https://systemsa.net
+:: processes
+Ship's Log
+:: href
+https://sysadmintools.com
+:: processes
+Modules
+:: href
+https://tributarysoftware.com
+:: processes
+Tabbed Links
+:: href
+https://ytuaeb.beauty/
+:: level
+Top
+Demonstrations
+:: processes
+Train Stations and Staff 
+Logical Map
+Streaming Logical Map
+Simple Triples Example
+:: href
+https://codrust.com
+:: processes
+Logical Map
+:: narrative
+Live logical map with edit/save
+:: href
+https://logicalmap.org
+:: processes
+Streaming Logical Map
+:: narrative
+Rather than identity, this site leads with a combined material and data flow logical map, using MQTT to stream collaborative updates
+:: href
+https://noidentity.dev
+:: processes
+Train Stations and Staff 
+:: href
+https://arewedown.com
+:: processes
+Collapsible Lists
+:: href
+https://cruftbuster.com
+:: processes
+Single Level Data Flow
+:: href
+https://itdocent.com
+:: processes
+Mountain Climbing Journal
+:: href
+https://mountainclimbingjournal.com
+:: processes
+Metroponus
+:: href
+https://metroponus.com/
+:: processes
+Presentation
+:: href
+https://areweresilient.com/
+:: processes
+Contextual Lists
+:: href
+https://tkitty.com/
+:: subclass_of
+Top.Papers.TripleSystemAnalysis
+:: processes
+Dependency Graph
+:: href
+https://mudhut.club/
+:: subclass_of
+Top.Papers.TripleSystemAnalysis
+:: processes
+3D Data Flow
+:: href
+https://systemcrisismanagement.com/
+:: subclass_of
+Top.Papers.TripleSystemAnalysis
+:: level
+Top
+Papers
+Adaptive Analysis
+:: agents
+Public
+:: back
+Codeberg
+Permanent
+SourceForge
+GitHub
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Local NGINX
+:: forward
+Rsync
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+Git
+Node
+Deno
+Rsync
+Local NGINX
+:: href
+http://localhost:4001
+:: processes
+ADA
+:: note
+Top
+:: forward
+Public
+:: href
+https://adaptiveanalysis.org
+:: back
+Rsync
+:: datastores
+site/ada
+:: forward
+Local NGINX
+Rsync
+:: both
+Deno
+Node
+Git
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/acodrst/adaptiveanalysis.org
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/adaptiveanalysis.org
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/adaptiveanalysis-org/
+:: level
+Top
+:: note
+Includes my work in progress and published.
+:: narrative
+Papers, documentation, and demonstrations of tools and ideas that help people create maps and organize knowledge without servers or admins.
+:: datastores
+Knowledge Management
+Personal
+Operating Systems
+Programming
+:: processes
+Demonstrations
+:: back
+Knowledge Management
+:: processes
+Papers
+:: back
+Knowledge Management
+:: narrative
+Full papers 
+:: processes
+Documentation
+:: back
+Personal
+Programming
+Knowledge Management
+Operating Systems
+:: level
+Top
+Papers
+Logical Map Streaming
+:: narrative
+Collaborative streaming logical map
+:: agents
+Public
+:: back
+Codeberg
+Permanent
+SourceForge
+GitHub
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Local NGINX
+:: forward
+Rsync
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+Git
+Node
+Deno
+Rsync
+Local NGINX
+:: back
+sites-enabled
+:: href
+http://localhost:4004
+:: datastores
+fas/log
+sites-enabled
+:: processes
+LOG
+:: forward
+Public
+:: back
+fas/log
+:: href
+https://logintegrity.com
+:: back
+Rsync
+:: datastores
+site/log
+:: forward
+Local NGINX
+Rsync
+:: both
+Deno
+Node
+Git
+:: datastores
+Permanent
+:: back
+Upload
+:: datastores
+GitHub
+:: href
+https://github.com/acodrst/logintegrity.com
+:: datastores
+Codeberg
+:: datastores
+SourceForge
+:: level
+Top
+Documentation
+ORNG
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Local NGINX
+:: forward
+Rsync
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+B2
+Neocities
+WebDAV
+Git
+Node
+Deno
+Rsync
+Local NGINX
+:: href
+http://localhost:4001
+:: processes
+ORNG
 :: href
 https://orng.org
 :: back
@@ -126,7 +402,10 @@ Rsync
 :: datastores
 site/orn
 :: forward
-ORNG local NGINX
+B2
+WebDAV
+Neocities
+Local NGINX
 Rsync
 :: both
 Deno
@@ -152,3 +431,55 @@ https://codeberg.org/acodrst/orng.org
 SourceForge
 :: href
 https://sourceforge.net/projects/orng-org/
+:: datastores
+Solder
+:: href
+https://solder.neocities.org/
+:: back
+Neocities
+:: datastores
+Backblaze
+:: href
+https://f000.backblazeb2.com/file/triple/index.html
+:: back
+B2
+:: datastores
+Xfig
+:: href
+https://xfig.org
+:: back
+WebDAV
+:: datastores
+Cutup
+:: href
+https://cutup.page
+:: back
+WebDAV
+:: level
+Top
+Papers
+:: processes
+Logical Map Streaming
+Triple System Analysis
+Adaptive Analysis
+Baroque Knowledge Management
+Logical Map How-to Guide
+:: href
+https://adaptiveanalysis.org
+:: processes
+Baroque Knowledge Management
+:: href
+https://orng.org/files/design.pdf
+:: processes
+Logical Map Streaming
+:: href
+https://logintegrity.com/
+:: processes
+Triple System Analysis
+:: href
+https://doi.org/10.5281/zenodo.7826793
+:: processes
+Adaptive Analysis
+:: href
+https://doi.org/10.5281/zenodo.13684896
+

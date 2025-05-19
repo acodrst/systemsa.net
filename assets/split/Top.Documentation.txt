@@ -1,14 +1,20 @@
 :: level
 Top
 Documentation
+:: narrative
+Domain documentation not correlated with a paper
 :: processes
 ORNG
-System SA Net
+All Work
 N🚫NIC OS Build
 L1G3R OS Build
-Compute Land Local OS
+Compute Land
+:: href
+https://compute.land
 :: processes
 ORNG
+:: narrative
+Journal and writing
 :: href
 https://orng.org
 :: processes
@@ -19,3 +25,23 @@ https://nonic.org
 L1G3R OS Build
 :: href
 https://l1g3r.com
+:: processes
+Floppy PNG
+:: href
+https://floppypng.com
+:: processes
+All Work
+:: href
+https://systemsa.net
+:: processes
+Ship's Log
+:: href
+https://sysadmintools.com
+:: processes
+Modules
+:: href
+https://tributarysoftware.com
+:: processes
+Tabbed Links
+:: href
+https://ytuaeb.beauty/

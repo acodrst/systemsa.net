@@ -4,7 +4,7 @@ Top
 Knowledge Management
 Personal
 Operating Systems
-Programming 
+Programming
 :: processes
 Demonstrations
 :: back
@@ -63,8 +63,8 @@ Top
 Papers
 :: processes
 Logical Map Streaming
-Triple System Analysis 
-Adaptive Analysis 
+Triple System Analysis
+Adaptive Analysis
 Logical Map How-to Guide
 :: href
 https://adaptiveanalysis.org
@@ -115,7 +115,7 @@ http://localhost:4001
 ORNG
 :: subclass_of
 Top
-:: note 
+:: note
 Top
 :: forward
 Public

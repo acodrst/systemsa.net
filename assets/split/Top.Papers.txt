@@ -5,6 +5,23 @@ Papers
 Logical Map Streaming
 Triple System Analysis
 Adaptive Analysis
+Baroque Knowledge Management
 Logical Map How-to Guide
 :: href
 https://adaptiveanalysis.org
+:: processes
+Baroque Knowledge Management
+:: href
+https://orng.org/files/design.pdf
+:: processes
+Logical Map Streaming
+:: href
+https://logintegrity.com/
+:: processes
+Triple System Analysis
+:: href
+https://doi.org/10.5281/zenodo.7826793
+:: processes
+Adaptive Analysis
+:: href
+https://doi.org/10.5281/zenodo.13684896

@@ -5326,65 +5326,32 @@ async function create(site,backup) {
   }
   }
 }
-function web_deal(req) {
-  if (req.method == "GET") {
-    const u = new URL(req.url);
-    const page = u.pathname == "/"
-      ? `${Object.keys(metadata)[0]}.page.html`
-      : u.pathname.replace("/", "");
-    let npg;
-    let response;
-    try {
-      console.log(page);
-      npg = Deno.readFileSync(page);
-      const type = page.split(".").slice(-1);
-      response = new Response(npg, {
-        status: 200,
-        headers: {
-          "content-type": types[type],
-        },
-      });
-    } catch {
-      console.log("error 404");
-      response = new Response(npg, {
-        status: 404,
-        headers: {
-          "content-type": "text/plain;charset=utf-8",
-        },
-      });
-    }
-    return response;
-  }
-}
-const types = {
-  "js": "text/javascript;charset=utf-8",
-  "mjs": "text/javascript;charset=utf-8",
-  "css": "text/css",
-  "svg": "image/svg+xml",
-  "html": "text/html",
-  "map": "application/json",
-  "json": "application/json",
-  "xz": "application/gzip",
-  "png": "image/png",
-  "zst": "application/zstd",
-  "txt": "text/plain",
-  "jpg": "image/jpg",
-  "gif": "image/gif",
-  "WebM": "video/webm",
-  "mp4": "video/mp4",
-  "mpg": "video/mp4",
-  "webm": "video/webm",
-  "ico": "image/x-icon",
-};
 
 const backup = Deno.env.get("CL_SYA_BACKUP");
 const site={};
 site.page = Deno.readTextFileSync("assets/page.html");
 site.css= Deno.readTextFileSync("assets/style.css");
+async function refresh(){
+let full_page='';
+for await (const i of Deno.readDir("assets/split")) {
+  if (i.name.slice(-4)=='.txt'){
+  full_page+=Deno.readTextFileSync(`assets/split/${i.name}`).trim()+'\n';
+ }
+}
+Deno.writeTextFileSync('assets/model.txt',full_page+'\n');
 site.model= Deno.readTextFileSync("assets/model.txt");
-create(site,backup);
-Deno.serve({
-  port: 3052,
-  hostname: "0.0.0.0",
-  handler: (req) => web_deal(req),
-});
+await create(site,backup);
+}
+refresh();
+//uncomment below if you want a local web server
+//Deno.serve({
+//  port: 3052,
+//  hostname: "0.0.0.0",
+//  handler: (req) => web_deal(req),
+//});
+const watcher = Deno.watchFs("assets/split/");
+for await (const event of watcher) {
+   console.log(">>>> event", event);
+await refresh();
+   // { kind: "create", paths: [ "/foo.txt" ] }
+}

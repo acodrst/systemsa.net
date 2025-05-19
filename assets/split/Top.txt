@@ -1,5 +1,9 @@
 :: level
 Top
+:: note
+Includes my work in progress and published.
+:: narrative
+Papers, documentation, and demonstrations of tools and ideas that help people create maps and organize knowledge without servers or admins.
 :: datastores
 Knowledge Management
 Personal
@@ -13,6 +17,8 @@ Knowledge Management
 Papers
 :: back
 Knowledge Management
+:: narrative
+Full papers 
 :: processes
 Documentation
 :: back

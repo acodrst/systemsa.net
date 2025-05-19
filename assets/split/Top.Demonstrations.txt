@@ -2,16 +2,63 @@
 Top
 Demonstrations
 :: processes
-Logical Map POC
-Logical Map Streaming POC
+Train Stations and Staff 
+Logical Map
+Streaming Logical Map
 Simple Triples Example
 :: href
 https://codrust.com
 :: processes
-Logical Map POC
+Logical Map
+:: narrative
+Live logical map with edit/save
 :: href
 https://logicalmap.org
 :: processes
-Logical Map Streaming POC
+Streaming Logical Map
+:: narrative
+Rather than identity, this site leads with a combined material and data flow logical map, using MQTT to stream collaborative updates
 :: href
 https://noidentity.dev
+:: processes
+Train Stations and Staff 
+:: href
+https://arewedown.com
+:: processes
+Collapsible Lists
+:: href
+https://cruftbuster.com
+:: processes
+Single Level Data Flow
+:: href
+https://itdocent.com
+:: processes
+Mountain Climbing Journal
+:: href
+https://mountainclimbingjournal.com
+:: processes
+Metroponus
+:: href
+https://metroponus.com/
+:: processes
+Presentation
+:: href
+https://areweresilient.com/
+:: processes
+Contextual Lists
+:: href
+https://tkitty.com/
+:: subclass_of
+Top.Papers.TripleSystemAnalysis
+:: processes
+Dependency Graph
+:: href
+https://mudhut.club/
+:: subclass_of
+Top.Papers.TripleSystemAnalysis
+:: processes
+3D Data Flow
+:: href
+https://systemcrisismanagement.com/
+:: subclass_of
+Top.Papers.TripleSystemAnalysis

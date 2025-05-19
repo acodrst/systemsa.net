@@ -1,0 +1,74 @@
+:: level
+Top
+Papers
+Logical Map Streaming
+:: narrative
+Collaborative streaming logical map
+:: agents
+Public
+:: back
+Codeberg
+Permanent
+SourceForge
+GitHub
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Local NGINX
+:: forward
+Rsync
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+Git
+Node
+Deno
+Rsync
+Local NGINX
+:: back
+sites-enabled
+:: href
+http://localhost:4004
+:: datastores
+fas/log
+sites-enabled
+:: processes
+LOG
+:: forward
+Public
+:: back
+fas/log
+:: href
+https://logintegrity.com
+:: back
+Rsync
+:: datastores
+site/log
+:: forward
+Local NGINX
+Rsync
+:: both
+Deno
+Node
+Git
+:: datastores
+Permanent
+:: back
+Upload
+:: datastores
+GitHub
+:: href
+https://github.com/acodrst/logintegrity.com
+:: datastores
+Codeberg
+:: datastores
+SourceForge
