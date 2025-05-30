@@ -1,23 +1,16 @@
 :: level
 Top
-Papers
-Triple System Analysis
-:: agents
-Public
-:: back
-Codeberg
-Permanent
-SourceForge
-GitHub
+Demonstrations
+Single Level Data Flow
 :: agents
 Scott H.
 :: both
 Git
 Node
 Deno
+Upload
 Local NGINX
 :: forward
-Rsync
 Upload
 :: processes
 Upload
@@ -27,32 +20,108 @@ Codeberg
 SourceForge
 GitHub
 :: processes
+WebDAV
 Git
 Node
 Deno
-Rsync
 Local NGINX
-:: href
-http://localhost:4999
-:: processes
-TRI
 :: note
-Top
-:: forward
-Public
+Add to sites-enabled
+:: subclass_of
+todo
 :: href
-https://triple.pub
+http://localhost:4009
+:: processes
+ITD
+:: href
+https://itdocent.com
 :: back
-Rsync
+WebDAV
 :: datastores
-site/ada
+site/itd
 :: forward
+Upload
+WebDAV
 Local NGINX
-Rsync
 :: both
 Deno
 Node
 Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: datastores
+GitHub
+:: href
+https://github.com/itdocent.com
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/itdocent.com
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/itdocent.com
+:: level
+Top
+Papers
+Triple System Analysis
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4023
+:: processes
+ARE
+:: href
+https://triple.pub
+:: back
+WebDAV
+:: datastores
+site/are
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
 :: datastores
 Permanent
 :: back
@@ -64,7 +133,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/acodrst/triple.pub
+https://github.com/triple.pub
 :: datastores
 Codeberg
 :: href
@@ -72,7 +141,80 @@ https://codeberg.org/acodrst/triple.pub
 :: datastores
 SourceForge
 :: href
-https://sourceforge.net/projects/triple-pub/
+https://sourceforge.net/projects/triple.pub
+:: level
+Top
+Documentation
+Tabbed Links
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4025
+:: processes
+YB
+:: href
+https://ytuaeb.beauty
+:: back
+WebDAV
+:: datastores
+site/yb
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/ytuaeb.beauty
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/ytuaeb.beauty
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/ytuaeb.beauty
 :: level
 Top
 Documentation
@@ -120,6 +262,79 @@ https://tributarysoftware.com
 Tabbed Links
 :: href
 https://ytuaeb.beauty/
+:: level
+Top
+Demonstrations
+Contextual Lists
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4021
+:: processes
+TKT
+:: href
+https://tkitty.com
+:: back
+WebDAV
+:: datastores
+site/tkt
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/tkitty.com
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/tkitty.com
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/tkitty.com
 :: level
 Top
 Demonstrations
@@ -186,24 +401,17 @@ https://systemcrisismanagement.com/
 Top.Papers.TripleSystemAnalysis
 :: level
 Top
-Papers
-Adaptive Analysis
-:: agents
-Public
-:: back
-Codeberg
-Permanent
-SourceForge
-GitHub
+Demonstrations
+Train Stations and Staff 
 :: agents
 Scott H.
 :: both
 Git
 Node
 Deno
+Upload
 Local NGINX
 :: forward
-Rsync
 Upload
 :: processes
 Upload
@@ -213,32 +421,37 @@ Codeberg
 SourceForge
 GitHub
 :: processes
+WebDAV
 Git
 Node
 Deno
-Rsync
 Local NGINX
-:: href
-http://localhost:4001
-:: processes
-ADA
 :: note
-Top
-:: forward
-Public
+Add to sites-enabled
+:: subclass_of
+todo
 :: href
-https://adaptiveanalysis.org
+http://localhost:4002
+:: processes
+ARE
+:: href
+https://arewedown.com
 :: back
-Rsync
+WebDAV
 :: datastores
-site/ada
+site/are
 :: forward
+Upload
+WebDAV
 Local NGINX
-Rsync
 :: both
 Deno
 Node
 Git
+:: processes
+WebDAV
+:: both
+Scott H. 
 :: datastores
 Permanent
 :: back
@@ -250,7 +463,226 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/acodrst/adaptiveanalysis.org
+https://github.com/arewedown.com
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/arewedown.com
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/arewedown.com
+:: level
+Top
+Demonstrations
+Streaming Logical Map
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4016
+:: processes
+NID
+:: href
+https://noidentity.dev
+:: back
+WebDAV
+:: datastores
+site/nid
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/noidentity.dev
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/noidentity.dev
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/noidentity.dev
+:: level
+Top
+Documentation
+Floppy PNG
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4008
+:: processes
+FLP
+:: href
+https://floppypng.com
+:: back
+WebDAV
+:: datastores
+site/flp
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/floppypng.com
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/floppypng.com
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/floppypng.com
+:: level
+Top
+Papers
+Logical Map How-to Guide
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4001
+:: processes
+ADA
+:: href
+https://adaptiveanalysis.org
+:: back
+WebDAV
+:: datastores
+site/ada
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/adaptiveanalysis.org
 :: datastores
 Codeberg
 :: href
@@ -258,7 +690,7 @@ https://codeberg.org/acodrst/adaptiveanalysis.org
 :: datastores
 SourceForge
 :: href
-https://sourceforge.net/projects/adaptiveanalysis-org/
+https://sourceforge.net/projects/adaptiveanalysis.org
 :: level
 Top
 :: note
@@ -289,26 +721,17 @@ Knowledge Management
 Operating Systems
 :: level
 Top
-Papers
-Logical Map Streaming
-:: narrative
-Collaborative streaming logical map
-:: agents
-Public
-:: back
-Codeberg
-Permanent
-SourceForge
-GitHub
+Demonstrations
+3D Data Flow
 :: agents
 Scott H.
 :: both
 Git
 Node
 Deno
+Upload
 Local NGINX
 :: forward
-Rsync
 Upload
 :: processes
 Upload
@@ -318,53 +741,1127 @@ Codeberg
 SourceForge
 GitHub
 :: processes
+WebDAV
 Git
 Node
 Deno
-Rsync
 Local NGINX
-:: back
-sites-enabled
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
 :: href
-http://localhost:4004
-:: datastores
-fas/log
-sites-enabled
+http://localhost:4019
 :: processes
-LOG
-:: forward
-Public
-:: back
-fas/log
+SCM
 :: href
-https://logintegrity.com
+https://systemcrisismanagement.com
 :: back
-Rsync
+WebDAV
 :: datastores
-site/log
+site/scm
 :: forward
+Upload
+WebDAV
 Local NGINX
-Rsync
 :: both
 Deno
 Node
 Git
+:: processes
+WebDAV
+:: both
+Scott H. 
 :: datastores
 Permanent
 :: back
 Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
 :: datastores
 GitHub
 :: href
-https://github.com/acodrst/logintegrity.com
+https://github.com/systemcrisismanagement.com
 :: datastores
 Codeberg
+:: href
+https://codeberg.org/acodrst/systemcrisismanagement.com
 :: datastores
 SourceForge
+:: href
+https://sourceforge.net/projects/systemcrisismanagement.com
 :: level
 Top
 Documentation
-ORNG
+N🚫NIC OS Build
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4015
+:: processes
+NIC
+:: href
+https://nonic.org
+:: back
+WebDAV
+:: datastores
+site/nic
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/nonic.org
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/nonic.org
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/nonic.org
+:: level
+Top
+Demonstrations
+Simple Triples Example
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4004
+:: processes
+COD
+:: href
+https://codrust.com
+:: back
+WebDAV
+:: datastores
+site/cod
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/codrust.com
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/codrust.com
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/codrust.com
+:: level
+Top
+Demonstrations
+Dependency Graph
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4026
+:: processes
+MHC
+:: href
+https://mudhut.club
+:: back
+WebDAV
+:: datastores
+site/are
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/mudhut.club
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/mudhut.club
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/mudhut.club
+:: level
+Top
+Documentation
+Modules
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4022
+:: processes
+TRB
+:: href
+https://tributarysoftware.com
+:: back
+WebDAV
+:: datastores
+site/trb
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/tributarysoftware.com
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/tributarysoftware.com
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/tributarysoftware.com
+:: level
+Top
+Papers
+Baroque Knowledge Management
+:: agents
+Scott H.
+:: both
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+:: processes
+WebDAV
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4003
+:: processes
+ORN
+:: href
+https://orng.org
+:: back
+WebDAV
+:: datastores
+site/orn
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: level
+Top
+Papers
+Adaptive Analysis
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4024
+:: processes
+ARE
+:: href
+https://triples.pub
+:: back
+WebDAV
+:: datastores
+site/are
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/triples.pub
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/triples.pub
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/triples.pub
+:: level
+Top
+Papers
+Logical Map Streaming
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4012
+:: processes
+LOG
+:: href
+https://logintegrity.com
+:: back
+WebDAV
+:: datastores
+site/log
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/logintegrity.com
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/logintegrity.com
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/logintegrity.com
+:: level
+Top
+Documentation
+Compute Land
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4005
+:: processes
+CPL
+:: href
+https://compute.land
+:: back
+WebDAV
+:: datastores
+site/cpl
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/compute.land
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/compute.land
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/compute.land
+:: level
+Top
+Demonstrations
+Presentation
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4018
+:: processes
+RES
+:: href
+https://areweresilient.com
+:: back
+WebDAV
+:: datastores
+site/res
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/areweresilient.com
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/areweresilient.com
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/areweresilient.com
+:: level
+Top
+Documentation
+All Work
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4007
+:: processes
+SYA
+:: href
+https://systemsa.net
+:: back
+WebDAV
+:: datastores
+site/sya
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/systemsa.net
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/systemsa.net
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/systemsa.net
+:: level
+Top
+Demonstrations
+Mountain Climbing Journal
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4013
+:: processes
+MCJ
+:: href
+https://mountainclimbingjournal.com
+:: back
+WebDAV
+:: datastores
+site/mcj
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/mountainclimbingjournal.com
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/mountainclimbingjournal.com
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/mountainclimbingjournal.com
+:: level
+Top
+Documentation
+Ship's Log
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4020
+:: processes
+SYS
+:: href
+https://sysadmintools.com
+:: back
+WebDAV
+:: datastores
+site/sys
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/sysadmintools.com
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/sysadmintools.com
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/sysadmintools.com
+:: level
+Top
+Documentation
+L1G3R OS Build
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:40010
+:: processes
+L1G
+:: href
+https://l1g3r.com
+:: back
+WebDAV
+:: datastores
+site/l1g
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/l1g3r.com
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/l1g3r.com
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/l1g3r.com
+:: level
+Top
+Demonstrations
+Collapsible Lists
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4006
+:: processes
+CRB
+:: href
+https://cruftbuster.com
+:: back
+WebDAV
+:: datastores
+site/crb
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/cruftbuster.com
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/cruftbuster.com
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/cruftbuster.com
+:: level
+Top
+Demonstrations
+Metroponus
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4014
+:: processes
+MET
+:: href
+https://metroponus.com
+:: back
+WebDAV
+:: datastores
+site/met
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/metroponus.com
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/metroponus.com
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/metroponus.com
+:: level
+Top
+Documentation
+ORN
 :: agents
 Scott H.
 :: both
@@ -391,10 +1888,14 @@ Node
 Deno
 Rsync
 Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
 :: href
-http://localhost:4001
+http://localhost:4017
 :: processes
-ORNG
+ORN
 :: href
 https://orng.org
 :: back
@@ -463,7 +1964,7 @@ Logical Map Streaming
 Triple System Analysis
 Adaptive Analysis
 Baroque Knowledge Management
-Logical Map How-to Guide
+Logical Map How-to Guide 
 :: href
 https://adaptiveanalysis.org
 :: processes
@@ -472,6 +1973,8 @@ Baroque Knowledge Management
 https://orng.org/files/design.pdf
 :: processes
 Logical Map Streaming
+:: note
+Uses MQTT and nostr sigs
 :: href
 https://logintegrity.com/
 :: processes
@@ -482,4 +1985,77 @@ https://doi.org/10.5281/zenodo.7826793
 Adaptive Analysis
 :: href
 https://doi.org/10.5281/zenodo.13684896
+:: level
+Top
+Demonstrations
+Logical Map
+:: agents
+Scott H.
+:: both
+Git
+Node
+Deno
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+Git
+:: forward
+Codeberg
+SourceForge
+GitHub
+:: processes
+WebDAV
+Git
+Node
+Deno
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4011
+:: processes
+LMP
+:: href
+https://logicalmap.org
+:: back
+WebDAV
+:: datastores
+site/lmp
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: both
+Deno
+Node
+Git
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
+:: datastores
+GitHub
+:: href
+https://github.com/logicalmap.org
+:: datastores
+Codeberg
+:: href
+https://codeberg.org/acodrst/logicalmap.org
+:: datastores
+SourceForge
+:: href
+https://sourceforge.net/projects/logicalmap.org
 

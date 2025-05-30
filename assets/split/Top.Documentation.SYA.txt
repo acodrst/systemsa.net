@@ -1,7 +1,7 @@
 :: level
 Top
-Papers
-Triple System Analysis
+Documentation
+All Work
 :: agents
 Scott H.
 :: both
@@ -30,15 +30,15 @@ Add to sites-enabled
 :: subclass_of
 todo
 :: href
-http://localhost:4023
+http://localhost:4007
 :: processes
-ARE
+SYA
 :: href
-https://triple.pub
+https://systemsa.net
 :: back
 WebDAV
 :: datastores
-site/are
+site/sya
 :: forward
 Upload
 WebDAV
@@ -62,12 +62,12 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/triple.pub
+https://github.com/systemsa.net
 :: datastores
 Codeberg
 :: href
-https://codeberg.org/acodrst/triple.pub
+https://codeberg.org/acodrst/systemsa.net
 :: datastores
 SourceForge
 :: href
-https://sourceforge.net/projects/triple.pub
+https://sourceforge.net/projects/systemsa.net

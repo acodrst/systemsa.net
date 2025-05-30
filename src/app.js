@@ -10,18 +10,27 @@ localStorage.setItem("gs_map", site.model);
 update_levels("map");
 function update_levels(kind) {
   kind = kind || "map";
-  const path = {};
-  let levs = model_to_dots(localStorage.getItem("gs_map"), false);
   const level = localStorage.getItem("gs_level") || "Top";
   localStorage.setItem("gs_level", level);
   globalThis.location = `#${level}`;
-  levs = model_to_dots(localStorage.getItem("gs_map"), true);
-  //document.getElementById("level").innerHTML =
-    //level.split('.').reduceRight((p, c, x, a) =>
-    //[`<a href="#${a.slice(0, x + 1).join(".").replaceAll(' ', '')}">${c}</a>`, ...p], []).join(' 🔹 ')
-    //gsdot_svg(model_to_dots(localStorage.getItem('gs_map'),true)[level].dots, 'default',
-    //  kind,level,levs).then(svg=>localStorage.setItem('svg_content',svg))
+  const levs = model_to_dots(localStorage.getItem("gs_map"), true,"todo");
+  document.getElementById("todo").innerHTML=''
+  levs.obj_set.forEach(o=>{
+    const atoms=o.split('.') 
+    document.getElementById("todo").insertAdjacentHTML("beforeend", 
+      `<a href="#${atoms.slice(0,-1).join('.')}">${atoms.join('.')}</a>:${levs[atoms.slice(0,-1).join('.')]?.aspects?.[atoms.slice(-1)].note}<br>`)
+  })
+  if (level=='todo') select("todo")
+  else {
+    select(kind)
     gsdot_svg(levs[level].dots, "default", kind, level, levs);
+  }
+}
+function select(d){
+  for (let i of ["map","key","legal_writing","todo"]){
+    if (i==d) document.getElementById(i).style.display="block";
+    else document.getElementById(i).style.display="none";
+  }
 }
 globalThis.addEventListener("hashchange", () => {
   localStorage.setItem("gs_level", globalThis.location.hash.substring(1));
@@ -29,19 +38,13 @@ globalThis.addEventListener("hashchange", () => {
 });
 document.getElementById("home").addEventListener("click", () => {
   localStorage.setItem("gs_level", "Top");
-  document.getElementById("map").style.display = "block";
-  document.getElementById("key").style.display = "none";
-  document.getElementById("legal_writing").style.display = "none";
+  select("map")
   update_levels("map");
 });
 document.getElementById("legal").addEventListener("click", () => {
-  document.getElementById("key").style.display = "none";
-  document.getElementById("map").style.display = "none";
-  document.getElementById("legal_writing").style.display = "block";
+  select("legal_writing")
 });
 document.getElementById("key_select").addEventListener("click", () => {
-  document.getElementById("key").style.display = "block";
-  document.getElementById("map").style.display = "none";
-  document.getElementById("legal_writing").style.display = "none";
+  select("key")
   update_levels("key");
 });

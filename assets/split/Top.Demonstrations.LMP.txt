@@ -1,7 +1,7 @@
 :: level
 Top
-Papers
-Triple System Analysis
+Demonstrations
+Logical Map
 :: agents
 Scott H.
 :: both
@@ -30,15 +30,15 @@ Add to sites-enabled
 :: subclass_of
 todo
 :: href
-http://localhost:4023
+http://localhost:4011
 :: processes
-ARE
+LMP
 :: href
-https://triple.pub
+https://logicalmap.org
 :: back
 WebDAV
 :: datastores
-site/are
+site/lmp
 :: forward
 Upload
 WebDAV
@@ -62,12 +62,12 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/triple.pub
+https://github.com/logicalmap.org
 :: datastores
 Codeberg
 :: href
-https://codeberg.org/acodrst/triple.pub
+https://codeberg.org/acodrst/logicalmap.org
 :: datastores
 SourceForge
 :: href
-https://sourceforge.net/projects/triple.pub
+https://sourceforge.net/projects/logicalmap.org

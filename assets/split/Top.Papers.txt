@@ -6,7 +6,7 @@ Logical Map Streaming
 Triple System Analysis
 Adaptive Analysis
 Baroque Knowledge Management
-Logical Map How-to Guide
+Logical Map How-to Guide 
 :: href
 https://adaptiveanalysis.org
 :: processes
@@ -15,6 +15,8 @@ Baroque Knowledge Management
 https://orng.org/files/design.pdf
 :: processes
 Logical Map Streaming
+:: note
+Uses MQTT and nostr sigs
 :: href
 https://logintegrity.com/
 :: processes

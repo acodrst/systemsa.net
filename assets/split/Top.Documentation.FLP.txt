@@ -1,7 +1,7 @@
 :: level
 Top
-Papers
-Triple System Analysis
+Documentation
+Floppy PNG
 :: agents
 Scott H.
 :: both
@@ -30,15 +30,15 @@ Add to sites-enabled
 :: subclass_of
 todo
 :: href
-http://localhost:4023
+http://localhost:4008
 :: processes
-ARE
+FLP
 :: href
-https://triple.pub
+https://floppypng.com
 :: back
 WebDAV
 :: datastores
-site/are
+site/flp
 :: forward
 Upload
 WebDAV
@@ -62,12 +62,12 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/triple.pub
+https://github.com/floppypng.com
 :: datastores
 Codeberg
 :: href
-https://codeberg.org/acodrst/triple.pub
+https://codeberg.org/acodrst/floppypng.com
 :: datastores
 SourceForge
 :: href
-https://sourceforge.net/projects/triple.pub
+https://sourceforge.net/projects/floppypng.com

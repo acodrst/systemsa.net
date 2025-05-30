@@ -12,10 +12,23 @@ function rn$1() {
 function ws(s) {
   return s.replace(/ /g, "");
 }
-// model:graph stack text, zoom_links:create zoomable links
-function model_to_dots(model, zoom_links) {
+function det_sub(l_nd,level,levels,sub_obj) {
+  for (let i in levels){
+  for (let j in levels[i].aspects){
+    if (levels[i]?.aspects?.[j]?.subclass_of==sub_obj) {
+      levels.obj_set.add(`${i}.${j}`);
+      if (`${i}.${j}`.includes(`${level.join(".")}.${l_nd}`) ) {
+        return "todo"
+    }
+  }
+  }
+  }
+  return ''
+} 
+// model:graph stack text, zoom_links:create zoomable links, sub_obj: object text for child subclass_of
+function model_to_dots(model, zoom_links, sub_obj) {
   const num_ids = { "Top": { "dpath": "Top", "path": "0" } };
-  const levels = {};
+  const levels = {"obj_set":new Set()};
   let last_level, last_command, last_object, last_predicate, last_subject;
   let level = [];
   let last_level_lines = [];
@@ -53,9 +66,7 @@ function model_to_dots(model, zoom_links) {
           // create key for level-subject if it isn't there
           levels[last_level].aspects[ws(last_subject)] =
             levels[last_level].aspects[ws(last_subject)] || {};
-          levels[last_level].aspects[ws(last_subject)][last_command] =
-            levels[last_level].aspects[ws(last_subject)][last_command] || [];
-          levels[last_level].aspects[ws(last_subject)][last_command].push(line);
+            levels[last_level].aspects[ws(last_subject)][last_command]=line;
         }
         if (
           ["processes", "datastores", "transforms", "agents", "locations"]
@@ -110,13 +121,9 @@ function model_to_dots(model, zoom_links) {
               },
               num_ids,
             );
-            const subclass_of_array =
-              levels[level.join(".")].aspects?.[ws(line)]?.subclass_of || [];
-            const subclass_of = subclass_of_array.join("");
-            const narr =
-              levels[level.join(".")].aspects?.[ws(line)]?.narrative || "";
-            const note = levels[level.join(".")].aspects?.[ws(line)]?.note ||
-              "";
+            const subclass_of = det_sub(l_nd,level,levels,sub_obj) ;
+            const narr = levels[level.join(".")].aspects?.[ws(line)]?.narrative || "";
+            const note = levels[level.join(".")].aspects?.[ws(line)]?.note || "";
             const sub_href = subclass_of != "" ? `href="#${subclass_of}"` : "";
             const sub_cl = subclass_of != "" ? "has_subclass " : "";
             const zoom = levels?.[res.dpath] && zoom_links
@@ -132,7 +139,7 @@ function model_to_dots(model, zoom_links) {
               )
               : levels[level.join(".")].dots.push(
                 `"${line}" [id="${rn$1()}" xhref="${href}" tooltip="${narr}\n${note}"
-               color="#33bbee" href="#${res.dpath}" shape="rectangle" style="rounded" class="${last_command} ${zoom} ${note_attached}" label="${res.path}\n${l_lbl}"]`,
+               color="#33bbee" href="#${res.dpath}" shape="rectangle" style="rounded" class="${sub_cl}${last_command} ${zoom} ${note_attached}" label="${res.path}\n${l_lbl}"]`,
               );
           }
           if ("agents" == last_command) {
@@ -180,17 +187,27 @@ localStorage.setItem("gs_map", site.model);
 update_levels("map");
 function update_levels(kind) {
   kind = kind || "map";
-  let levs = model_to_dots(localStorage.getItem("gs_map"), false);
   const level = localStorage.getItem("gs_level") || "Top";
   localStorage.setItem("gs_level", level);
   globalThis.location = `#${level}`;
-  levs = model_to_dots(localStorage.getItem("gs_map"), true);
-  //document.getElementById("level").innerHTML =
-    //level.split('.').reduceRight((p, c, x, a) =>
-    //[`<a href="#${a.slice(0, x + 1).join(".").replaceAll(' ', '')}">${c}</a>`, ...p], []).join(' 🔹 ')
-    //gsdot_svg(model_to_dots(localStorage.getItem('gs_map'),true)[level].dots, 'default',
-    //  kind,level,levs).then(svg=>localStorage.setItem('svg_content',svg))
+  const levs = model_to_dots(localStorage.getItem("gs_map"), true,"todo");
+  document.getElementById("todo").innerHTML='';
+  levs.obj_set.forEach(o=>{
+    const atoms=o.split('.'); 
+    document.getElementById("todo").insertAdjacentHTML("beforeend", 
+      `<a href="#${atoms.slice(0,-1).join('.')}">${atoms.join('.')}</a>:${levs[atoms.slice(0,-1).join('.')]?.aspects?.[atoms.slice(-1)].note}<br>`);
+  });
+  if (level=='todo') select("todo");
+  else {
+    select(kind);
     yn(levs[level].dots, "default", kind, level, levs);
+  }
+}
+function select(d){
+  for (let i of ["map","key","legal_writing","todo"]){
+    if (i==d) document.getElementById(i).style.display="block";
+    else document.getElementById(i).style.display="none";
+  }
 }
 globalThis.addEventListener("hashchange", () => {
   localStorage.setItem("gs_level", globalThis.location.hash.substring(1));
@@ -198,19 +215,13 @@ globalThis.addEventListener("hashchange", () => {
 });
 document.getElementById("home").addEventListener("click", () => {
   localStorage.setItem("gs_level", "Top");
-  document.getElementById("map").style.display = "block";
-  document.getElementById("key").style.display = "none";
-  document.getElementById("legal_writing").style.display = "none";
+  select("map");
   update_levels("map");
 });
 document.getElementById("legal").addEventListener("click", () => {
-  document.getElementById("key").style.display = "none";
-  document.getElementById("map").style.display = "none";
-  document.getElementById("legal_writing").style.display = "block";
+  select("legal_writing");
 });
 document.getElementById("key_select").addEventListener("click", () => {
-  document.getElementById("key").style.display = "block";
-  document.getElementById("map").style.display = "none";
-  document.getElementById("legal_writing").style.display = "none";
+  select("key");
   update_levels("key");
 });

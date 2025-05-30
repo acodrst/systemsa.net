@@ -1,23 +1,16 @@
 :: level
 Top
 Papers
-Adaptive Analysis
-:: agents
-Public
-:: back
-Codeberg
-Permanent
-SourceForge
-GitHub
+Logical Map How-to Guide
 :: agents
 Scott H.
 :: both
 Git
 Node
 Deno
+Upload
 Local NGINX
 :: forward
-Rsync
 Upload
 :: processes
 Upload
@@ -27,32 +20,37 @@ Codeberg
 SourceForge
 GitHub
 :: processes
+WebDAV
 Git
 Node
 Deno
-Rsync
 Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
 :: href
 http://localhost:4001
 :: processes
 ADA
-:: note
-Top
-:: forward
-Public
 :: href
 https://adaptiveanalysis.org
 :: back
-Rsync
+WebDAV
 :: datastores
 site/ada
 :: forward
+Upload
+WebDAV
 Local NGINX
-Rsync
 :: both
 Deno
 Node
 Git
+:: processes
+WebDAV
+:: both
+Scott H. 
 :: datastores
 Permanent
 :: back
@@ -64,7 +62,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/acodrst/adaptiveanalysis.org
+https://github.com/adaptiveanalysis.org
 :: datastores
 Codeberg
 :: href
@@ -72,4 +70,4 @@ https://codeberg.org/acodrst/adaptiveanalysis.org
 :: datastores
 SourceForge
 :: href
-https://sourceforge.net/projects/adaptiveanalysis-org/
+https://sourceforge.net/projects/adaptiveanalysis.org

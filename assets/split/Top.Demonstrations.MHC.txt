@@ -1,7 +1,7 @@
 :: level
 Top
-Papers
-Triple System Analysis
+Demonstrations
+Dependency Graph
 :: agents
 Scott H.
 :: both
@@ -30,11 +30,11 @@ Add to sites-enabled
 :: subclass_of
 todo
 :: href
-http://localhost:4023
+http://localhost:4026
 :: processes
-ARE
+MHC
 :: href
-https://triple.pub
+https://mudhut.club
 :: back
 WebDAV
 :: datastores
@@ -62,12 +62,12 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/triple.pub
+https://github.com/mudhut.club
 :: datastores
 Codeberg
 :: href
-https://codeberg.org/acodrst/triple.pub
+https://codeberg.org/acodrst/mudhut.club
 :: datastores
 SourceForge
 :: href
-https://sourceforge.net/projects/triple.pub
+https://sourceforge.net/projects/mudhut.club

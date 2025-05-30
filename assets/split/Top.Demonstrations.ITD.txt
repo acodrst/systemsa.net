@@ -1,7 +1,7 @@
 :: level
 Top
-Papers
-Triple System Analysis
+Demonstrations
+Single Level Data Flow
 :: agents
 Scott H.
 :: both
@@ -30,15 +30,15 @@ Add to sites-enabled
 :: subclass_of
 todo
 :: href
-http://localhost:4023
+http://localhost:4009
 :: processes
-ARE
+ITD
 :: href
-https://triple.pub
+https://itdocent.com
 :: back
 WebDAV
 :: datastores
-site/are
+site/itd
 :: forward
 Upload
 WebDAV
@@ -57,17 +57,15 @@ Permanent
 Upload
 :: href
 https://www.permanent.org/p/archive/04sh-0000
-:: note
-hola
 :: datastores
 GitHub
 :: href
-https://github.com/triple.pub
+https://github.com/itdocent.com
 :: datastores
 Codeberg
 :: href
-https://codeberg.org/acodrst/triple.pub
+https://codeberg.org/acodrst/itdocent.com
 :: datastores
 SourceForge
 :: href
-https://sourceforge.net/projects/triple.pub
+https://sourceforge.net/projects/itdocent.com

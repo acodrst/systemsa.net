@@ -1,7 +1,7 @@
 :: level
 Top
-Papers
-Triple System Analysis
+Demonstrations
+Train Stations and Staff 
 :: agents
 Scott H.
 :: both
@@ -30,11 +30,11 @@ Add to sites-enabled
 :: subclass_of
 todo
 :: href
-http://localhost:4023
+http://localhost:4002
 :: processes
 ARE
 :: href
-https://triple.pub
+https://arewedown.com
 :: back
 WebDAV
 :: datastores
@@ -62,12 +62,12 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/triple.pub
+https://github.com/arewedown.com
 :: datastores
 Codeberg
 :: href
-https://codeberg.org/acodrst/triple.pub
+https://codeberg.org/acodrst/arewedown.com
 :: datastores
 SourceForge
 :: href
-https://sourceforge.net/projects/triple.pub
+https://sourceforge.net/projects/arewedown.com

@@ -1,7 +1,7 @@
 :: level
 Top
-Papers
-Triple System Analysis
+Demonstrations
+Collapsible Lists
 :: agents
 Scott H.
 :: both
@@ -30,15 +30,15 @@ Add to sites-enabled
 :: subclass_of
 todo
 :: href
-http://localhost:4023
+http://localhost:4006
 :: processes
-ARE
+CRB
 :: href
-https://triple.pub
+https://cruftbuster.com
 :: back
 WebDAV
 :: datastores
-site/are
+site/crb
 :: forward
 Upload
 WebDAV
@@ -62,12 +62,12 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/triple.pub
+https://github.com/cruftbuster.com
 :: datastores
 Codeberg
 :: href
-https://codeberg.org/acodrst/triple.pub
+https://codeberg.org/acodrst/cruftbuster.com
 :: datastores
 SourceForge
 :: href
-https://sourceforge.net/projects/triple.pub
+https://sourceforge.net/projects/cruftbuster.com

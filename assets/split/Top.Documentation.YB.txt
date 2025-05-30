@@ -1,7 +1,7 @@
 :: level
 Top
-Papers
-Triple System Analysis
+Documentation
+Tabbed Links
 :: agents
 Scott H.
 :: both
@@ -30,15 +30,15 @@ Add to sites-enabled
 :: subclass_of
 todo
 :: href
-http://localhost:4023
+http://localhost:4025
 :: processes
-ARE
+YB
 :: href
-https://triple.pub
+https://ytuaeb.beauty
 :: back
 WebDAV
 :: datastores
-site/are
+site/yb
 :: forward
 Upload
 WebDAV
@@ -62,12 +62,12 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/triple.pub
+https://github.com/ytuaeb.beauty
 :: datastores
 Codeberg
 :: href
-https://codeberg.org/acodrst/triple.pub
+https://codeberg.org/acodrst/ytuaeb.beauty
 :: datastores
 SourceForge
 :: href
-https://sourceforge.net/projects/triple.pub
+https://sourceforge.net/projects/ytuaeb.beauty

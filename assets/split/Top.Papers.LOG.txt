@@ -2,24 +2,15 @@
 Top
 Papers
 Logical Map Streaming
-:: narrative
-Collaborative streaming logical map
-:: agents
-Public
-:: back
-Codeberg
-Permanent
-SourceForge
-GitHub
 :: agents
 Scott H.
 :: both
 Git
 Node
 Deno
+Upload
 Local NGINX
 :: forward
-Rsync
 Upload
 :: processes
 Upload
@@ -29,46 +20,54 @@ Codeberg
 SourceForge
 GitHub
 :: processes
+WebDAV
 Git
 Node
 Deno
-Rsync
 Local NGINX
-:: back
-sites-enabled
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
 :: href
-http://localhost:4004
-:: datastores
-fas/log
-sites-enabled
+http://localhost:4012
 :: processes
 LOG
-:: forward
-Public
-:: back
-fas/log
 :: href
 https://logintegrity.com
 :: back
-Rsync
+WebDAV
 :: datastores
 site/log
 :: forward
+Upload
+WebDAV
 Local NGINX
-Rsync
 :: both
 Deno
 Node
 Git
+:: processes
+WebDAV
+:: both
+Scott H. 
 :: datastores
 Permanent
 :: back
 Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
+:: note
+hola
 :: datastores
 GitHub
 :: href
-https://github.com/acodrst/logintegrity.com
+https://github.com/logintegrity.com
 :: datastores
 Codeberg
+:: href
+https://codeberg.org/acodrst/logintegrity.com
 :: datastores
 SourceForge
+:: href
+https://sourceforge.net/projects/logintegrity.com

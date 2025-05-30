@@ -1,0 +1,44 @@
+:: level
+Top
+Papers
+Baroque Knowledge Management
+:: agents
+Scott H.
+:: both
+Upload
+Local NGINX
+:: forward
+Upload
+:: processes
+Upload
+:: processes
+WebDAV
+Local NGINX
+:: note
+Add to sites-enabled
+:: subclass_of
+todo
+:: href
+http://localhost:4003
+:: processes
+ORN
+:: href
+https://orng.org
+:: back
+WebDAV
+:: datastores
+site/orn
+:: forward
+Upload
+WebDAV
+Local NGINX
+:: processes
+WebDAV
+:: both
+Scott H. 
+:: datastores
+Permanent
+:: back
+Upload
+:: href
+https://www.permanent.org/p/archive/04sh-0000
