@@ -1,4 +1,7 @@
 .*
+py/**
+assets/My Library.bib
+svg-inkscape/**
 node_modules/**
 !.gitignore
 *.backup

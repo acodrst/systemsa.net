@@ -1,6 +1,54 @@
 const backup = Deno.env.get("CL_SYA_BACKUP");
 import { create, web_deal } from "fpng-sign-serve";
+import { model_to_dots } from "text-model-dot";
 const site={}
+let p_c = [
+  "--highlight-style=tango",
+  "--pdf-engine=lualatex",
+  "--pdf-engine-opt=-shell-escape",
+  "--embed-resources",
+  "--filter",
+  "pandoc-crossref",
+  "--filter",
+  "src/filt.js",
+  "--citeproc",
+  "-o",
+  "assets/sya.pdf",
+  "sya.md",
+  "assets/metadata.yaml",
+];
+console.log(`running pandoc ${p_c.join(" ")}`);
+new Deno.Command("pandoc", {
+  args: p_c,
+}).outputSync();
+p_c = [
+  "--highlight-style=tango",
+  "--filter",
+  "pandoc-crossref",
+  "--filter",
+  "src/filt.js",
+  "--citeproc",
+  "-s",
+  "-o",
+  "assets/sya_head.html",
+  "--table-of-contents",
+  "-t",
+  "html5",
+  "sya.md",
+  "assets/metadata.yaml",
+];
+console.log(`running pandoc ${p_c.join(" ")}`);
+new Deno.Command("pandoc", {
+  args: p_c,
+}).outputSync();
+
+site.pdf = Array.from(Deno.readFileSync("assets/sya.pdf"));
+site.page = Deno.readTextFileSync("assets/page.html");
+let chompy=Deno.readTextFileSync("assets/sya_head.html").match(
+  /<header id="title-block-header">.+?<h1 class="title">/s,
+)
+site.html = chompy.input.slice(chompy.index+32,-23)
+
 site.page = Deno.readTextFileSync("assets/page.html");
 site.css= Deno.readTextFileSync("assets/style.css");
 async function refresh(){
@@ -12,6 +60,7 @@ for await (const i of Deno.readDir("assets/split")) {
 }
 Deno.writeTextFileSync('assets/model.txt',full_page+'\n')
 site.model= Deno.readTextFileSync("assets/model.txt");
+const levs = model_to_dots(site.model, true,"todo");
 await create(site,backup)
 }
 refresh()

@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Scott H., System Analyst" />
+  <meta name="keywords" content="knowledge graphs, system
+design, material flow, data flow, supply chain, human cognition" />
+  <title>SA High Level Design and Map</title>
+  <style>
+    html {
+      font-size: 12pt;
+      line-height: 1;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: blue;
+    }
+    a:visited {
+      color: blue;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    div.abstract {
+      margin: 2em 2em 2em 2em;
+      text-align: left;
+      font-size: 85%;
+    }
+    div.abstract-title {
+      font-weight: bold;
+      text-align: center;
+      padding: 0;
+      margin-bottom: 0.5em;
+    }
+    code {
+      font-family: LiberationMono-Regular;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {  background-color: #f8f8f8; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ef2929; } /* Alert */
+    code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #204a87; } /* Attribute */
+    code span.bn { color: #0000cf; } /* BaseN */
+    code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4e9a06; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #8f5902; font-style: italic; } /* Comment */
+    code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+    code span.dt { color: #204a87; } /* DataType */
+    code span.dv { color: #0000cf; } /* DecVal */
+    code span.er { color: #a40000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #0000cf; } /* Float */
+    code span.fu { color: #204a87; font-weight: bold; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+    code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+    code span.ot { color: #8f5902; } /* Other */
+    code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+    code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+    code span.ss { color: #4e9a06; } /* SpecialString */
+    code span.st { color: #4e9a06; } /* String */
+    code span.va { color: #000000; } /* Variable */
+    code span.vs { color: #4e9a06; } /* VerbatimString */
+    code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">SA High Level Design and Map</h1>
+<p class="author"><svg id="per_icon" version="1.1" viewBox="0 0 160 160" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-6.237 -3.2309)"><g transform="matrix(.019838 0 0 .024079 10.002 4.3275)" stroke-width="12.106"><path d="m7875.4 3276.9a4032.6 3322.4 0 0 1-4032.6 3322.4 4032.6 3322.4 0 0 1-4032.6-3322.4 4032.6 3322.4 0 0 1 4032.6-3322.4 4032.6 3322.4 0 0 1 4032.6 3322.4z" fill="#73f777" stop-color="#000000" stroke-width="1.8013" style="paint-order:fill markers stroke"/><g><g font-family="'Bitstream Vera Sans'"><text transform="matrix(4.873 0 0 3.1181 3457.7 -973.94)" dominant-baseline="auto" fill="#123456" font-size="21.333px" stop-color="#000000" style="-inkscape-stroke:none;font-variant-alternates:normal;font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-position:normal;line-height:normal;paint-order:fill markers stroke;shape-inside:url(#rect5996);text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-orientation:mixed;text-transform:none;white-space:pre" xml:space="preserve"/><text transform="matrix(4.873 0 0 3.1181 3457.7 -973.94)" dominant-baseline="auto" fill="#ff9e2d" font-size="21.333px" stop-color="#000000" stroke="#000000" stroke-width="3.1055" style="-inkscape-stroke:none;font-variant-alternates:normal;font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-position:normal;line-height:normal;paint-order:fill markers stroke;shape-inside:url(#rect19732);text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-orientation:mixed;text-transform:none;white-space:pre" xml:space="preserve"/><text transform="scale(1.2501 .79992)" x="3650.8823" y="-1097.2936" dominant-baseline="auto" fill="#ff9e2d" font-size="83.158px" stop-color="#000000" stroke="#000000" stroke-width="12.105" style="-inkscape-stroke:none;font-variant-alternates:normal;font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-position:normal;line-height:normal;paint-order:fill markers stroke;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-orientation:mixed;text-transform:none;white-space:normal" xml:space="preserve"><tspan x="3650.8823" y="-1097.2936" stroke-width="12.105"/></text></g><path d="m3842.8 95.044c709.9 0 1291.8 450.58 1291.8 1000.3 0 549.71-581.89 1000.3-1291.8 1000.3-709.9 0-1291.8-450.58-1291.8-1000.3 0-549.71 581.89-1000.3 1291.8-1000.3zm993.69 2231.4c102.47-0.049 203.14 44.028 255.88 112.06l1192.4 1538.9c53.981 69.677 55.458 162.06 3.744 232.76-51.745 70.688-154.67 116.91-259.61 116.85h-496.84c-92.14 0-183.19-35.255-238.48-92.334l-306.79-316.91 147.19 2166.5c4.3201 62.398-25.872 125.82-81.359 171.2-55.477 45.387-135.42 72.092-216.12 72.136h-596.21c-69.148-0.049-138.24-19.492-191.29-53.863-53.03-34.363-89.6-83.39-101.85-136.09l-104.33-444.36-104.34 444.36c-12.259 52.704-48.819 101.73-101.86 136.09-53.031 34.371-122.13 53.818-191.29 53.863h-596.21c-80.708-0.049-160.65-26.749-216.12-72.136-55.484-45.379-85.723-108.8-81.356-171.2l147.18-2166.5-306.79 316.91c-55.295 57.079-146.35 92.334-238.49 92.334h-496.84c-104.93 0.074-207.85-46.167-259.6-116.85-51.736-70.695-50.258-163.08 3.744-232.76l1192.4-1538.9c52.732-68.028 153.4-112.12 255.87-112.06h993.68z" color="#000000" fill="#808080" style="text-decoration-line:none;text-indent:0;text-transform:none"/></g><path d="m5066.4 2790.5c0-77.85-102.62-140.97-229.22-140.97h-1988.8c-126.59 0-229.22 63.12-229.22 140.97v192.36h2446.9v473.23c0.18-2.29 0.28-4.59 0.28-6.91v-658.68z" fill="#f00" stroke-width="2.0012"/><path d="m2848.4 3594.9h1988.8c84.68 0 158.63-29.24 198.32-72.72h-2385.4c39.69 43.48 113.63 72.72 198.31 72.72z" fill="#f00" stroke-width="12.322"/><path d="m2619.2 2966.2v482.73c0 26.68 11.26 51.69 30.91 73.21h2385.4c17.88-19.58 28.8-42.06 30.62-66.06v-489.88z" fill="#fff" stroke-width="12.322"/><g fill="#fff" stroke-width=".26179" aria-label="HELLOMy Name Is"><path d="m3350.3 2823.4v-55.59h-166.81v55.59h-41.81v-119.94h41.81v50.73h166.81v-50.73h41.82v119.94zm115.15 0v-119.94h234.02v13.28h-192.2v38.47h179.07v13.11h-179.07v41.8h201.18v13.28zm299.04 0v-119.94h41.81v106.66h155.87v13.28zm249.35 0v-119.94h41.81v106.66h155.87v13.28zm539.84-60.52c0 12.54-6.2 23.52-18.61 32.94-12.26 9.42-29.92 16.65-52.97 21.7-23.06 5.05-50.28 7.58-81.66 7.58-31.67 0-59.03-2.5-82.09-7.49-22.92-4.99-40.43-12.2-52.54-21.62-12.12-9.48-18.17-20.52-18.17-33.11 0-19.19 13.5-34.17 40.5-44.95 27-10.84 64.58-16.26 112.74-16.26 31.38 0 58.59 2.44 81.65 7.32 23.06 4.83 40.65 11.86 52.76 21.11 12.26 9.25 18.39 20.18 18.39 32.78zm-42.69 0c0-14.93-9.63-26.65-28.89-35.16-19.12-8.51-46.2-12.77-81.22-12.77-35.32 0-62.61 4.2-81.88 12.6-19.26 8.4-28.89 20.17-28.89 35.33 0 15.03 9.7 26.98 29.11 35.83 19.56 8.8 46.63 13.2 81.22 13.2 35.61 0 62.9-4.26 81.87-12.77 19.12-8.57 28.68-20.66 28.68-36.26z"/><path d="m3411.5 2924.8v-38.8c0-4.29 0.32-8.42 0.96-12.38-3.47 4.93-6.58 8.78-9.34 11.56l-38.64 39.62h-14.22l-39.17-39.62-5.94-7.02-3.5-4.54 0.32 4.58 0.42 7.8v38.8h-18.04v-58.15h26.64l39.8 40.32c1.42 1.62 2.76 3.37 4.03 5.24 1.35 1.84 2.23 3.18 2.66 4 0.56-1.1 1.73-2.76 3.5-4.99 1.84-2.26 3.08-3.67 3.71-4.25l39.06-40.32h26.01v58.15zm56.36 17.54c-5.23 0-9.62-0.15-13.16-0.46v-5.57c2.69 0.17 5.66 0.25 8.92 0.25 11.88 0 21.3-3.4 28.23-10.2l1.8-1.77-45.53-44.45h20.38l24.2 24.68c0.35 0.39 0.78 0.85 1.27 1.4 0.5 0.53 2.09 2.32 4.78 5.37s4.14 4.76 4.35 5.12l7.43-8.13 25.16-28.44h20.16l-44.15 44.66c-4.74 4.76-9.17 8.29-13.27 10.6-4.1 2.34-8.67 4.08-13.69 5.2-4.95 1.16-10.58 1.74-16.88 1.74zm263.65-17.54-80.03-49.53 0.53 4 0.54 6.9v38.63h-18.05v-58.15h23.56l80.88 49.85c-0.85-5.39-1.27-9.3-1.27-11.72v-38.13h18.26v58.15zm86.08 0.82c-11.53 0-20.2-1.18-26-3.55-5.8-2.36-8.71-5.61-8.71-9.74 0-4.62 3.9-8.17 11.68-10.65 7.85-2.47 20.49-3.79 37.89-3.96l25.79-0.16v-2.44c0-3.63-1.98-6.23-5.94-7.8s-10.19-2.35-18.68-2.35c-8.56 0-14.79 0.56-18.68 1.69s-6.23 2.93-7.01 5.41l-19.95-0.7c3.25-8.04 18.61-12.05 46.06-12.05 14.44 0 25.3 1.29 32.59 3.87 7.29 2.56 10.93 6.28 10.93 11.15v19.23c0 2.2 0.74 3.87 2.23 4.99 1.49 1.1 4.32 1.66 8.49 1.66 1.84 0 3.93-0.1 6.26-0.29v4.62c-4.81 0.44-9.73 0.66-14.75 0.66-7.08 0-12.24-0.72-15.5-2.15-3.18-1.46-4.98-3.73-5.41-6.81h-0.64c-4.88 3.41-10.57 5.84-17.08 7.27-6.44 1.4-14.3 2.1-23.57 2.1zm4.35-5.57c7.01 0 13.24-0.62 18.68-1.86 5.45-1.24 9.73-2.93 12.85-5.07 3.18-2.18 4.77-4.41 4.77-6.69v-3.67l-20.91 0.16c-8.98 0.06-15.81 0.42-20.48 1.08-4.6 0.66-8.14 1.67-10.61 3.05-2.48 1.38-3.72 3.18-3.72 5.41 0 2.42 1.66 4.29 4.99 5.61 3.4 1.32 8.21 1.98 14.43 1.98zm154.12 4.75v-28.32c0-4.32-1.52-7.3-4.56-8.95-3.05-1.65-8.53-2.48-16.46-2.48-8.13 0-14.57 1.21-19.31 3.63-4.74 2.43-7.12 5.84-7.12 10.24v25.88h-18.99v-35.13c0-5.2-0.22-8.37-0.64-9.53h18.04c0.07 0.14 0.14 0.51 0.22 1.12 0.07 0.6 0.14 1.3 0.21 2.1 0.14 0.77 0.28 2.24 0.42 4.42h0.32c4.1-3.17 8.81-5.37 14.12-6.61 5.3-1.24 11.78-1.85 19.42-1.85 8.7 0 15.57 0.67 20.59 2.02 5.1 1.35 8.63 3.49 10.62 6.44h0.31c3.97-3 8.74-5.16 14.33-6.48 5.66-1.32 12.49-1.98 20.49-1.98 11.6 0 20.02 1.22 25.26 3.67 5.31 2.45 7.96 6.46 7.96 12.05v29.76h-18.89v-28.32c0-4.32-1.52-7.3-4.57-8.95-3.04-1.65-8.52-2.48-16.45-2.48-8.35 0-14.86 1.21-19.53 3.63-4.6 2.4-6.9 5.81-6.9 10.24v25.88zm128.85-20.76c0 5.11 2.73 9.06 8.18 11.84 5.44 2.78 13.4 4.17 23.88 4.17 8.28 0 14.89-0.65 19.85-1.94 5.02-1.29 8.42-2.93 10.18-4.91l16.77 1.86c-6.86 7.04-22.46 10.56-46.8 10.56-16.99 0-29.93-1.97-38.85-5.9-8.84-3.93-13.27-9.78-13.27-17.54 0-7.37 4.43-13.03 13.27-16.96 8.92-3.94 21.62-5.9 38.1-5.9 33.76 0 50.63 7.91 50.63 23.73v0.99zm62.2-5.7c-1.06-4.7-4.14-8.13-9.23-10.28-5.1-2.17-12.42-3.26-21.97-3.26-9.27 0-16.63 1.22-22.08 3.64-5.38 2.39-8.28 5.69-8.7 9.9zm109.86 26.46v-58.15h20.27v58.15zm141.16-12.34c0 4.21-4.1 7.45-12.31 9.74-8.14 2.28-19.57 3.42-34.28 3.42-14.3 0-25.34-0.91-33.12-2.72-7.71-1.85-12.74-4.71-15.07-8.59l16.87-1.28c1.63 2.4 4.99 4.16 10.09 5.29 5.09 1.1 12.17 1.65 21.23 1.65 9.69 0 16.77-0.58 21.22-1.74 4.53-1.15 6.8-2.88 6.8-5.2 0-1.76-1.56-3.19-4.67-4.29-3.12-1.1-8.14-2.01-15.07-2.72l-13.7-1.41c-10.96-1.1-18.78-2.17-23.45-3.21-4.6-1.08-8.21-2.37-10.83-3.88-2.62-1.52-3.93-3.37-3.93-5.58 0-4.07 3.72-7.16 11.15-9.28 7.5-2.15 18.39-3.22 32.69-3.22 12.66 0 22.71 0.87 30.14 2.6 7.5 1.73 12.24 4.51 14.22 8.34l-17.19 0.82c-1.06-1.98-3.93-3.49-8.6-4.54-4.6-1.07-10.79-1.61-18.57-1.61-8.63 0-15 0.51-19.11 1.53-4.1 1.02-6.15 2.56-6.15 4.62 0 1.27 0.85 2.31 2.54 3.14 1.7 0.82 4.21 1.53 7.54 2.1 3.33 0.58 10.33 1.38 21.02 2.4 10.11 0.99 17.4 1.91 21.86 2.76 4.46 0.83 7.96 1.75 10.51 2.77 2.62 1.02 4.63 2.2 6.05 3.55 1.41 1.32 2.12 2.83 2.12 4.54z"/></g><g fill-rule="evenodd"><path d="m3828.9 941.73c64.09 32.105 119.38 78.424 159.59 136.31 40.84 58.42 60.95 122.1 62.21 184.73-60.95 24.74-130.07 38.42-202.96 38.42-84.19 0-162.74-18.42-229.97-50 19.09-74.85 22.62-122.11 62.21-178.42 38.33-55.26 89.85-98.948 148.91-131.05z" fill="#73f777" stroke="#c4e77a" stroke-width="2.7151"/><path d="m4330.5 894.37c-12.69 166.66-118.97 289.27-248.13 356.32-12.66-145.58-89.6-266.48-224.09-339.29 194-100.32 366.98-56.941 472.23-17.039z" fill="#fe8f0d" stroke="#ff9e2d" stroke-width="2.7572"/><path d="m4855.2 1695.1c28.19-380.13-182.3-672.57-483.49-793.32-1.93 202.56-168.62 345.63-261.98 371.26l-1.84 0.96c13.35 151.28-69.55 297.4-237.26 393.62 260.6 143.95 531.84 176.31 984.76 25.53z" fill="#ff0" stroke="#fcd639" stroke-width=".030419"/><path d="m3842.8 1649.7c-160.67-91.39-230.38-230.04-233.02-358.25 152.24 62.33 311.87 65.13 452.09 1.88 11.25 209.16-149.09 303.61-219.07 356.37z" fill="#35b4b7" stroke="#50bec1" stroke-width=".028499"/><path d="m2779.1 1632.9c594.31 222.95 695.73 177.36 1036.6 34.75-202-102.73-262-299.03-241-381.73l-0.04-1.85c-158.25-65.66-254.93-193.33-267.48-366.97-282.04 125.29-447.08 293.9-526.23 716.87z" fill="#00d4ff" stroke="#40abd7" stroke-width=".030419"/><path d="m3831.4 117.98c-379.13 157.62-530.75 438.47-506.73 758.57 203.93-99.84 430.63-46.601 502.99 10.469l1.87 0.902c144.92-85.63 329.02-100.17 509.28-22.744 61.61-313.03-102.88-591.72-509.43-746.3z" fill="#ff4c00" stroke="#f27248" stroke-width=".030419"/><path d="m3330.6 903.47c173.34-73.834 349.31-57.01 481.1 6.13-139.54 82.273-222.2 200.32-227.92 337.39-218.5-97.81-234.46-264.35-253.18-343.53z" fill="#272f9c" stroke="#434aa9" stroke-width=".028721"/></g><path d="m3178.9 3002.3v51.26c-16.14-5.95-31.89-10.44-47.25-13.47-15.36-3.02-29.87-4.54-43.52-4.54-18.11 0-31.5 2.06-40.17 6.17-8.66 4.11-12.99 10.49-12.99 19.14 0 6.49 2.89 11.57 8.66 15.25 5.91 3.57 16.54 6.65 31.9 9.25l32.29 5.35c32.69 5.41 55.92 13.63 69.71 24.66 13.78 11.03 20.67 26.71 20.67 47.04 0 26.72-9.65 46.62-28.94 59.7-19.17 12.98-48.51 19.47-88.02 19.47-18.64 0-37.35-1.46-56.12-4.38s-37.54-7.25-56.31-12.98v-52.72c18.77 8.22 36.88 14.44 54.34 18.65 17.59 4.11 34.53 6.17 50.8 6.17 16.54 0 29.21-2.27 38.01-6.82 8.79-4.54 13.19-11.03 13.19-19.46 0-7.57-3.02-13.41-9.06-17.52-5.9-4.11-17.78-7.79-35.64-11.03l-29.34-5.36c-29.4-5.19-50.93-13.46-64.58-24.82-13.52-11.35-20.28-26.66-20.28-45.91 0-24.12 9.45-42.66 28.35-55.64 18.91-12.98 46.08-19.47 81.52-19.47 16.15 0 32.75 1.03 49.82 3.08 17.06 1.95 34.72 4.92 52.96 8.93zm260.9 58.56v47.37c-9.58-5.41-19.23-9.41-28.94-12.01-9.59-2.59-19.56-3.89-29.93-3.89-19.69 0-35.05 4.76-46.08 14.28-10.89 9.41-16.34 22.6-16.34 39.58s5.45 30.23 16.34 39.75c11.03 9.41 26.39 14.11 46.08 14.11 11.02 0 21.46-1.35 31.31-4.06 9.97-2.7 19.16-6.7 27.56-12v47.53c-11.02 3.35-22.25 5.84-33.67 7.46-11.29 1.73-22.64 2.6-34.06 2.6-39.78 0-70.89-8.38-93.34-25.15-22.44-16.87-33.67-40.28-33.67-70.24s11.23-53.32 33.67-70.08c22.45-16.87 53.56-25.31 93.34-25.31 11.55 0 22.9 0.87 34.06 2.6 11.29 1.62 22.51 4.11 33.67 7.46zm165.8 31.47c-15.63 0-27.57 4.65-35.84 13.95-8.14 9.2-12.21 22.5-12.21 39.91s4.07 30.77 12.21 40.07c8.27 9.19 20.21 13.79 35.84 13.79 15.35 0 27.1-4.6 35.24-13.79 8.14-9.3 12.21-22.66 12.21-40.07s-4.07-30.71-12.21-39.91c-8.14-9.3-19.89-13.95-35.24-13.95zm0-41.53c37.93 0 67.53 8.44 88.8 25.31 21.4 16.87 32.09 40.23 32.09 70.08s-10.69 53.21-32.09 70.08c-21.27 16.87-50.87 25.31-88.8 25.31-38.07 0-67.87-8.44-89.4-25.31-21.4-16.87-32.09-40.23-32.09-70.08s10.69-53.21 32.09-70.08c21.53-16.87 51.33-25.31 89.4-25.31zm249.08-47.21v51.59h72.66v41.53h-72.66v77.06c0 8.43 2.03 14.17 6.1 17.19 4.07 2.93 12.15 4.39 24.22 4.39h36.23v41.53h-60.45c-27.83 0-47.58-4.76-59.27-14.28-11.55-9.63-17.32-25.9-17.32-48.83v-77.06h-35.05v-41.53h35.05v-51.59zm192.77 0v51.59h72.66v41.53h-72.66v77.06c0 8.43 2.03 14.17 6.1 17.19 4.07 2.93 12.14 4.39 24.22 4.39h36.23v41.53h-60.45c-27.83 0-47.58-4.76-59.27-14.28-11.55-9.63-17.32-25.9-17.32-48.83v-77.06h-35.05v-41.53h35.05v-51.59zm259.32-8.92h75.81v92.31h111.84v-92.31h75.81v242.21h-75.81v-102.69h-111.84v102.69h-75.81zm341.63 179.42h70.88v62.79h-70.88z" fill="#00f" stroke-width="172.93" style="paint-order:fill markers stroke;white-space:pre" aria-label="Scott H."/><path d="m2822.2 3287.7v34.17c-10.76-3.96-21.26-6.95-31.5-8.97s-19.91-3.03-29.01-3.03c-12.08 0-21 1.37-26.78 4.11s-8.66 6.99-8.66 12.76c0 4.33 1.92 7.72 5.77 10.17 3.94 2.38 11.03 4.43 21.27 6.16l21.53 3.57c21.79 3.61 37.28 9.09 46.47 16.44 9.18 7.35 13.78 17.81 13.78 31.36 0 17.81-6.43 31.08-19.3 39.8-12.77 8.65-32.33 12.98-58.67 12.98-12.43 0-24.9-0.97-37.42-2.92-12.51-1.95-25.02-4.83-37.54-8.65v-35.15c12.52 5.48 24.59 9.63 36.23 12.44 11.73 2.74 23.02 4.11 33.87 4.11 11.02 0 19.47-1.52 25.33-4.55 5.87-3.02 8.8-7.35 8.8-12.97 0-5.05-2.01-8.94-6.04-11.68-3.94-2.74-11.86-5.2-23.76-7.36l-19.56-3.57c-19.6-3.46-33.95-8.97-43.06-16.54-9.01-7.57-13.52-17.78-13.52-30.61 0-16.08 6.31-28.44 18.91-37.1 12.6-8.65 30.71-12.97 54.34-12.97 10.77 0 21.84 0.68 33.21 2.05 11.38 1.3 23.15 3.28 35.31 5.95zm35.84 35.26h47l39.51 82.19 33.6-82.19h47l-61.83 132.59c-6.21 13.48-13.48 22.89-21.79 28.23-8.23 5.4-19.12 8.11-32.69 8.11h-27.17v-25.42h14.7c7.97 0 13.74-1.04 17.33-3.13 3.68-2.1 6.52-5.84 8.53-11.25l1.31-3.36zm309.4 3.78v29.42c-10.06-3.46-19.78-6.06-29.14-7.79s-18.2-2.59-26.52-2.59c-8.92 0-15.57 0.93-19.95 2.81-4.29 1.8-6.43 4.61-6.43 8.43 0 3.1 1.62 5.48 4.86 7.14 3.33 1.66 9.23 2.89 17.72 3.68l8.27 0.97c24.07 2.53 40.26 6.67 48.57 12.44s12.47 14.82 12.47 27.14c0 12.91-5.78 22.61-17.33 29.1s-28.79 9.73-51.72 9.73c-9.71 0-19.77-0.65-30.19-1.95-10.33-1.22-20.96-3.1-31.9-5.62v-29.42c9.37 3.75 18.95 6.56 28.75 8.44 9.89 1.87 19.91 2.81 30.06 2.81 9.19 0 16.1-1.04 20.74-3.13 4.64-2.1 6.96-5.2 6.96-9.31 0-3.46-1.62-6.02-4.86-7.67-3.15-1.73-9.49-3.07-19.03-4.01l-8.27-0.86c-20.92-2.16-35.58-6.17-43.98-12.01s-12.6-14.7-12.6-26.6c0-12.83 5.34-22.35 16.01-28.55 10.68-6.2 27.04-9.3 49.1-9.3 8.66 0 17.76 0.54 27.3 1.62s19.91 2.77 31.11 5.08zm96.49-38.18v34.4h48.43v27.68h-48.43v51.37c0 5.63 1.35 9.45 4.07 11.47 2.71 1.94 8.09 2.92 16.14 2.92h24.15v27.68h-40.29c-18.56 0-31.73-3.17-39.52-9.51-7.7-6.42-11.55-17.27-11.55-32.56v-51.37h-23.36v-27.68h23.36v-34.4zm223.94 94.64v11.03h-109.87c1.14 9.08 5.12 15.9 11.94 20.44 6.83 4.54 16.37 6.81 28.62 6.81 9.89 0 20-1.19 30.32-3.57 10.42-2.45 21.09-6.13 32.03-11.03v29.85c-11.11 3.46-22.22 6.06-33.34 7.79-11.11 1.8-22.23 2.7-33.34 2.7-26.6 0-47.3-5.55-62.09-16.65-14.7-11.18-22.05-26.83-22.05-46.94 0-19.76 7.22-35.3 21.65-46.62 14.53-11.31 34.48-16.97 59.86-16.97 23.11 0 41.57 5.73 55.4 17.19 13.91 11.47 20.87 26.79 20.87 45.97zm-48.31-12.87c0-7.36-2.62-13.27-7.87-17.74-5.17-4.54-11.95-6.81-20.35-6.81-9.1 0-16.5 2.12-22.18 6.38-5.69 4.18-9.24 10.23-10.64 18.17zm220.14-27.26c5.95-7.5 13-13.19 21.14-17.09 8.22-3.96 17.24-5.94 27.04-5.94 16.89 0 29.75 4.29 38.59 12.87s13.26 21.05 13.26 37.42v73.75h-47.26v-63.16c0.09-0.93 0.13-1.91 0.13-2.92 0.09-1 0.13-2.45 0.13-4.32 0-8.58-1.53-14.78-4.59-18.6-3.06-3.9-8.01-5.84-14.83-5.84-8.93 0-15.84 3.02-20.74 9.08-4.82 6.06-7.31 14.82-7.49 26.28v59.48h-47.25v-63.16c0-13.41-1.4-22.02-4.2-25.84-2.8-3.9-7.79-5.84-14.97-5.84-9.01 0-15.97 3.06-20.87 9.19-4.9 6.06-7.35 14.74-7.35 26.06v59.59h-47.26v-121.12h47.26v17.73c5.77-6.85 12.38-12 19.82-15.46 7.53-3.46 15.8-5.19 24.81-5.19 10.15 0 19.12 2.01 26.91 6.05s13.7 9.7 17.72 16.98zm358.5 71.6h-79.03l-12.47 29.41h-50.8l72.59-161.46h60.26l72.59 161.46h-50.8zm-66.42-29.96h53.69l-26.78-64.24zm301.26-14.38v73.75h-47.26v-12-44.45c0-10.45-0.3-17.66-0.92-21.63-0.52-3.97-1.48-6.89-2.88-8.76-1.84-2.52-4.34-4.47-7.49-5.84-3.15-1.44-6.74-2.16-10.76-2.16-9.8 0-17.5 3.13-23.1 9.41-5.61 6.2-8.41 14.81-8.41 25.84v59.59h-46.99v-121.12h46.99v17.73c7.09-7.06 14.62-12.25 22.58-15.57 7.97-3.39 16.76-5.08 26.39-5.08 16.98 0 29.84 4.29 38.59 12.87 8.84 8.58 13.26 21.05 13.26 37.42zm109.48 19.25c-9.8 0-17.2 1.37-22.19 4.11-4.9 2.74-7.35 6.77-7.35 12.11 0 4.9 1.97 8.76 5.91 11.57 4.02 2.74 9.58 4.11 16.67 4.11 8.84 0 16.28-2.59 22.32-7.79 6.03-5.26 9.05-11.82 9.05-19.68v-4.43zm71.8-14.6v69.1h-47.39v-17.95c-6.3 7.36-13.39 12.73-21.26 16.12-7.88 3.31-17.46 4.97-28.75 4.97-15.23 0-27.61-3.64-37.15-10.92-9.45-7.36-14.18-16.87-14.18-28.55 0-14.21 5.91-24.63 17.73-31.26 11.9-6.63 30.54-9.95 55.92-9.95h27.69v-3.03c0-6.13-2.93-10.6-8.79-13.41-5.86-2.88-15.01-4.32-27.44-4.32-10.06 0-19.42 0.82-28.09 2.48-8.66 1.66-16.71 4.15-24.15 7.47v-29.53c10.06-2.02 20.17-3.53 30.32-4.54 10.15-1.08 20.3-1.62 30.46-1.62 26.51 0 45.63 4.32 57.36 12.97 11.81 8.58 17.72 22.57 17.72 41.97zm43.71-99.18h47v168.28h-47zm72.86 47.16h46.99l39.52 82.19 33.6-82.19h46.99l-61.82 132.59c-6.22 13.48-13.48 22.89-21.79 28.23-8.23 5.4-19.13 8.11-32.69 8.11h-27.17v-25.42h14.7c7.96 0 13.74-1.04 17.33-3.13 3.67-2.1 6.52-5.84 8.53-11.25l1.31-3.35zm309.4 3.78v29.42c-10.06-3.46-19.78-6.06-29.14-7.79-9.37-1.73-18.2-2.59-26.52-2.59-8.92 0-15.58 0.93-19.95 2.81-4.29 1.8-6.43 4.61-6.43 8.43 0 3.1 1.62 5.48 4.85 7.14 3.33 1.66 9.24 2.89 17.73 3.68l8.27 0.97c24.06 2.53 40.25 6.67 48.56 12.44 8.32 5.77 12.48 14.82 12.48 27.15 0 12.9-5.78 22.6-17.33 29.09s-28.79 9.73-51.72 9.73c-9.72 0-19.78-0.65-30.19-1.95-10.33-1.22-20.96-3.1-31.9-5.62v-29.42c9.36 3.75 18.94 6.57 28.75 8.44 9.88 1.87 19.9 2.81 30.06 2.81 9.18 0 16.1-1.04 20.74-3.13 4.63-2.1 6.95-5.2 6.95-9.31 0-3.46-1.62-6.02-4.85-7.67-3.15-1.73-9.5-3.07-19.04-4.01l-8.27-0.86c-20.91-2.16-35.57-6.17-43.97-12.01s-12.6-14.7-12.6-26.6c0-12.83 5.33-22.35 16.01-28.55s27.04-9.3 49.1-9.3c8.66 0 17.76 0.54 27.3 1.62s19.91 2.77 31.11 5.08zm96.48-38.18v34.4h48.44v27.68h-48.44v51.37c0 5.63 1.36 9.45 4.07 11.47 2.72 1.94 8.1 2.92 16.15 2.92h24.15v27.68h-40.3c-18.55 0-31.72-3.17-39.51-9.51-7.7-6.42-11.55-17.27-11.55-32.56v-51.37h-23.37v-27.68h23.37v-34.4z" fill="#00f" stroke-width="172.93" style="paint-order:fill markers stroke;white-space:pre" aria-label="System Analyst"/></g></g></svg>
+Scott H., System
+Analyst<a href="https://orcid.org/0009-0001-4480-7776" title="ORCID"><svg version="1.1" id="oid_icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 256 256" style="enable-background:new 0 0 256 256;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#A6CE39;}
+	.st1{fill:#FFFFFF;}
+</style>
+<path class="st0" d="M256,128c0,70.7-57.3,128-128,128C57.3,256,0,198.7,0,128C0,57.3,57.3,0,128,0C198.7,0,256,57.3,256,128z"/>
+<g>
+	<path class="st1" d="M86.3,186.2H70.9V79.1h15.4v48.4V186.2z"/>
+	<path class="st1" d="M108.9,79.1h41.6c39.6,0,57,28.3,57,53.6c0,27.5-21.5,53.6-56.8,53.6h-41.8V79.1z M124.3,172.4h24.5   c34.9,0,42.9-26.5,42.9-39.7c0-21.5-13.7-39.7-43.7-39.7h-23.7V172.4z"/>
+	<path class="st1" d="M88.7,56.8c0,5.5-4.5,10.1-10.1,10.1c-5.6,0-10.1-4.6-10.1-10.1c0-5.6,4.5-10.1,10.1-10.1   C84.2,46.7,88.7,51.3,88.7,56.8z"/>
+</g>
+</svg>
+</a></p>
+<p class="date">2025-06-12</p>
+<div class="abstract">
+<div class="abstract-title">Overview</div>
+I describe and map the high level design of my various projects. I show
+how they fit together, how I expect they will be used, when, and by who.
+<br />
+<p style="color:red;"><br />
+<b> This document is incomplete. I will work on it over time and remove
+this notice when finished. </b>
+</div>
+</header>
+<h1 id="sa-orientation">SA Orientation</h1>
+<div style="float:right;width:297.3147485pt;">
+          <figure id="fig:top"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   sodipodi:docname="top.svg"
+   id="svg546"
+   version="1.1"
+   viewBox="-42 -54.6 540.57227 484.42759"
+   height="484.42758pt"
+   width="540.57227pt"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs550" />
+  <sodipodi:namedview
+     id="namedview548"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="1"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:document-units="pt"
+     inkscape:zoom="1.0419514"
+     inkscape:cx="299.91802"
+     inkscape:cy="206.82347"
+     inkscape:window-width="1280"
+     inkscape:window-height="661"
+     inkscape:window-x="390"
+     inkscape:window-y="129"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g544"
+     showborder="false" />
+  <g
+     id="g544"
+     transform="translate(11.06794,-1557.7555)">
+    <rect
+       style="fill:#f3f3f3;fill-opacity:1;stroke-width:0.75"
+       id="rect1522"
+       width="540.57227"
+       height="484.42758"
+       x="-53.06794"
+       y="1503.1555" />
+    <polygon
+       fill="#ffffff"
+       stroke="none"
+       points="-8.64,8.64 -8.64,-334.7 493.41,-334.7 493.41,8.64 "
+       id="polygon383"
+       transform="translate(-6.6110731,1885.8459)"
+       style="fill:none" />
+    <g
+       id="y1p"
+       class="node datastores"
+       transform="translate(-6.6110731,1885.8459)">
+      <title
+         id="title385">Knowledge Management</title>
+      <polygon
+         fill="none"
+         stroke="#cc3311"
+         stroke-width="2"
+         points="204.57,-233.08 204.57,-269.08 332.98,-269.08 332.98,-233.08 "
+         id="polygon387" />
+      <text
+         text-anchor="middle"
+         x="220.72"
+         y="-246.88"
+         font-family="Arial"
+         font-size="14px"
+         id="text389">R1</text>
+      <polyline
+         fill="none"
+         stroke="#cc3311"
+         stroke-width="2"
+         points="236.87,-233.08 236.87,-269.08"
+         stroke-dasharray="3, 3"
+         id="polyline391" />
+      <text
+         text-anchor="middle"
+         x="284.92999"
+         y="-255.28"
+         font-family="Arial"
+         font-size="14px"
+         id="text393">Knowledge</text>
+      <text
+         text-anchor="middle"
+         x="284.92999"
+         y="-238.48"
+         font-family="Arial"
+         font-size="14px"
+         id="text395">Management</text>
+    </g>
+    <g
+       id="tsq"
+       class="node datastores"
+       transform="translate(-6.6110731,1885.8459)">
+      <title
+         id="title398">Personal</title>
+      <polygon
+         fill="none"
+         stroke="#cc3311"
+         stroke-width="2"
+         points="369.21,-28.68 369.21,-64.68 471.16,-64.68 471.16,-28.68 "
+         id="polygon400" />
+      <text
+         text-anchor="middle"
+         x="385.35999"
+         y="-42.48"
+         font-family="Arial"
+         font-size="14px"
+         id="text402">R2</text>
+      <polyline
+         fill="none"
+         stroke="#cc3311"
+         stroke-width="2"
+         points="401.51,-28.68 401.51,-64.68"
+         stroke-dasharray="3, 3"
+         id="polyline404" />
+      <text
+         text-anchor="middle"
+         x="436.32999"
+         y="-42.48"
+         font-family="Arial"
+         font-size="14px"
+         id="text406">Personal</text>
+    </g>
+    <g
+       id="jm3"
+       class="node datastores"
+       transform="translate(-6.6110731,1885.8459)">
+      <title
+         id="title409">Operating Systems</title>
+      <polygon
+         fill="none"
+         stroke="#cc3311"
+         stroke-width="2"
+         points="18.55,-0.5 18.55,-36.5 126.73,-36.5 126.73,-0.5 "
+         id="polygon411" />
+      <text
+         text-anchor="middle"
+         x="34.689999"
+         y="-14.3"
+         font-family="Arial"
+         font-size="14px"
+         id="text413">R3</text>
+      <polyline
+         fill="none"
+         stroke="#cc3311"
+         stroke-width="2"
+         points="50.84,-0.5 50.84,-36.5"
+         stroke-dasharray="3, 3"
+         id="polyline415" />
+      <text
+         text-anchor="middle"
+         x="88.779999"
+         y="-22.700001"
+         font-family="Arial"
+         font-size="14px"
+         id="text417">Operating</text>
+      <text
+         text-anchor="middle"
+         x="88.779999"
+         y="-5.9000001"
+         font-family="Arial"
+         font-size="14px"
+         id="text419">Systems</text>
+    </g>
+    <g
+       id="q34"
+       class="node datastores"
+       transform="translate(-6.6110731,1885.8459)">
+      <title
+         id="title422">Programming</title>
+      <polygon
+         fill="none"
+         stroke="#cc3311"
+         stroke-width="2"
+         points="0,-155.97 0,-191.97 130.72,-191.97 130.72,-155.97 "
+         id="polygon424" />
+      <text
+         text-anchor="middle"
+         x="16.15"
+         y="-169.77"
+         font-family="Arial"
+         font-size="14px"
+         id="text426">R4</text>
+      <polyline
+         fill="none"
+         stroke="#cc3311"
+         stroke-width="2"
+         points="32.3,-155.97 32.3,-191.97"
+         stroke-dasharray="3, 3"
+         id="polyline428" />
+      <text
+         text-anchor="middle"
+         x="81.510002"
+         y="-169.77"
+         font-family="Arial"
+         font-size="14px"
+         id="text430">Programming</text>
+    </g>
+    <g
+       id="s5g"
+       class="node has_subclass processes zoomable notenotattached"
+       transform="translate(-6.6110731,1885.8459)">
+      <title
+         id="title433">Demonstrations</title>
+      <g
+         id="a_s5g">
+        <a
+           xlink:href="#Top.Demonstrations"
+           xlink:title=" "
+           id="a441">
+          <path
+             fill="none"
+             stroke="#33bbee"
+             stroke-width="2"
+             d="m 472.77,-283.82 c 0,0 -88.44,0 -88.44,0 -6,0 -12,6 -12,12 0,0 0,12 0,12 0,6 6,12 12,12 0,0 88.44,0 88.44,0 6,0 12,-6 12,-12 0,0 0,-12 0,-12 0,-6 -6,-12 -12,-12"
+             id="path435" />
+          <text
+             text-anchor="middle"
+             x="428.54999"
+             y="-270.01999"
+             font-family="Arial"
+             font-size="14px"
+             id="text437">0.1</text>
+          <text
+             text-anchor="middle"
+             x="428.54999"
+             y="-253.22"
+             font-family="Arial"
+             font-size="14px"
+             id="text439">Demonstrations</text>
+        </a>
+      </g>
+      <line
+         x1="372.32999"
+         y1="-266.82001"
+         x2="484.76999"
+         y2="-266.82001"
+         stroke-dasharray="3, 3"
+         stroke="#33bbee"
+         stroke-width="2px"
+         id="line444" />
+      <circle
+         cx="373.32999"
+         cy="-282.82001"
+         r="3"
+         stroke="#ee3377"
+         fill="#ee3377"
+         id="circle446" />
+      <circle
+         cx="483.76999"
+         cy="-248.82001"
+         r="3"
+         stroke="#0077bb"
+         fill="#0077bb"
+         id="circle448" />
+    </g>
+    <g
+       id="edge1"
+       class="edge"
+       transform="translate(-6.6110731,1885.8459)">
+      <title
+         id="title451">Demonstrations-&gt;Knowledge Management</title>
+      <path
+         fill="none"
+         stroke="#bbbbbb"
+         d="m 363.61,-259.83 c -9.83,0.91 -19.97,1.85 -29.79,2.75"
+         id="path453" />
+      <polygon
+         fill="#bbbbbb"
+         stroke="#bbbbbb"
+         points="368.29,-260.26 363.59,-259.82 368.29,-260.26 363.88,-256.69 370.56,-260.47 363.3,-262.96 "
+         id="polygon455" />
+    </g>
+    <g
+       id="ewj"
+       class="node has_subclass processes zoomable noteattached"
+       transform="translate(-6.6110731,1885.8459)">
+      <title
+         id="title458">Papers</title>
+      <g
+         id="a_ewj">
+        <a
+           xlink:href="#Top.Papers"
+           xlink:title="Full papers "
+           id="a466">
+          <path
+             fill="none"
+             stroke="#33bbee"
+             stroke-width="2"
+             d="m 114.7,-326.06 c 0,0 -34.75,0 -34.75,0 -6,0 -12,6 -12,12 0,0 0,12 0,12 0,6 6,12 12,12 0,0 34.75,0 34.75,0 6,0 12,-6 12,-12 0,0 0,-12 0,-12 0,-6 -6,-12 -12,-12"
+             id="path460" />
+          <text
+             text-anchor="middle"
+             x="97.32"
+             y="-312.26001"
+             font-family="Arial"
+             font-size="14px"
+             id="text462">0.2</text>
+          <text
+             text-anchor="middle"
+             x="97.32"
+             y="-295.45999"
+             font-family="Arial"
+             font-size="14px"
+             id="text464">Papers</text>
+        </a>
+      </g>
+      <line
+         x1="67.949997"
+         y1="-309.06"
+         x2="126.7"
+         y2="-309.06"
+         stroke-dasharray="3, 3"
+         stroke="#33bbee"
+         stroke-width="2px"
+         id="line469" />
+      <circle
+         cx="68.949997"
+         cy="-325.06"
+         r="3"
+         stroke="#ee3377"
+         fill="#ee3377"
+         id="circle471" />
+      <circle
+         cx="125.7"
+         cy="-325.06"
+         r="3"
+         stroke="#ee7733"
+         fill="#ee7733"
+         id="circle473" />
+      <circle
+         cx="125.7"
+         cy="-291.06"
+         r="3"
+         stroke="#0077bb"
+         fill="#0077bb"
+         id="circle475" />
+    </g>
+    <g
+       id="edge2"
+       class="edge"
+       transform="translate(-6.6110731,1885.8459)">
+      <title
+         id="title478">Papers-&gt;Knowledge Management</title>
+      <path
+         fill="none"
+         stroke="#bbbbbb"
+         d="m 135.25,-295.46 c 22.47,7.47 51.38,17.08 76.55,25.45"
+         id="path480" />
+      <polygon
+         fill="#bbbbbb"
+         stroke="#bbbbbb"
+         points="130.9,-296.9 135.38,-295.42 130.9,-296.9 136.37,-298.4 128.74,-297.62 134.39,-292.43 "
+         id="polygon482" />
+    </g>
+    <g
+       id="ssh"
+       class="node has_subclass processes zoomable notenotattached"
+       transform="translate(-6.6110731,1885.8459)">
+      <title
+         id="title485">Documentation</title>
+      <g
+         id="a_ssh">
+        <a
+           xlink:href="#Top.Documentation"
+           xlink:title=" "
+           id="a493">
+          <path
+             fill="none"
+             stroke="#33bbee"
+             stroke-width="2"
+             d="m 288.38,-65.26 c 0,0 -84.57,0 -84.57,0 -6,0 -12,6 -12,12 0,0 0,12 0,12 0,6 6,12 12,12 0,0 84.57,0 84.57,0 6,0 12,-6 12,-12 0,0 0,-12 0,-12 0,-6 -6,-12 -12,-12"
+             id="path487" />
+          <text
+             text-anchor="middle"
+             x="246.09"
+             y="-51.459999"
+             font-family="Arial"
+             font-size="14px"
+             id="text489">0.3</text>
+          <text
+             text-anchor="middle"
+             x="246.09"
+             y="-34.66"
+             font-family="Arial"
+             font-size="14px"
+             id="text491">Documentation</text>
+        </a>
+      </g>
+      <line
+         x1="191.81"
+         y1="-48.260002"
+         x2="300.38"
+         y2="-48.260002"
+         stroke-dasharray="3, 3"
+         stroke="#33bbee"
+         stroke-width="2px"
+         id="line496" />
+      <circle
+         cx="192.81"
+         cy="-64.260002"
+         r="3"
+         stroke="#ee3377"
+         fill="#ee3377"
+         id="circle498" />
+      <circle
+         cx="299.38"
+         cy="-30.260002"
+         r="3"
+         stroke="#0077bb"
+         fill="#0077bb"
+         id="circle500" />
+    </g>
+    <g
+       id="edge5"
+       class="edge"
+       transform="translate(-6.6110731,1885.8459)">
+      <title
+         id="title503">Documentation-&gt;Knowledge Management</title>
+      <path
+         fill="none"
+         stroke="#bbbbbb"
+         d="m 249.09,-74.17 c 4.67,-41.94 13.56,-121.85 17.6,-158.14"
+         id="path505" />
+      <polygon
+         fill="#bbbbbb"
+         stroke="#bbbbbb"
+         points="248.57,-69.54 249.1,-74.23 248.57,-69.54 245.96,-74.58 248.32,-67.28 252.23,-73.89 "
+         id="polygon507" />
+    </g>
+    <g
+       id="edge3"
+       class="edge"
+       transform="translate(-6.6110731,1885.8459)">
+      <title
+         id="title510">Documentation-&gt;Personal</title>
+      <path
+         fill="none"
+         stroke="#bbbbbb"
+         d="m 309.38,-47.05 c 19.4,0.07 40.51,0.14 59.04,0.2"
+         id="path512" />
+      <polygon
+         fill="#bbbbbb"
+         stroke="#bbbbbb"
+         points="304.68,-47.06 309.4,-47.05 304.68,-47.06 309.41,-50.2 302.4,-47.07 309.39,-43.9 "
+         id="polygon514" />
+    </g>
+    <g
+       id="edge6"
+       class="edge"
+       transform="translate(-6.6110731,1885.8459)">
+      <title
+         id="title517">Documentation-&gt;Operating Systems</title>
+      <path
+         fill="none"
+         stroke="#bbbbbb"
+         d="m 183.46,-36.87 c -18.32,3.03 -38.2,6.33 -56,9.28"
+         id="path519" />
+      <polygon
+         fill="#bbbbbb"
+         stroke="#bbbbbb"
+         points="187.76,-37.59 183.1,-36.81 187.76,-37.59 183.62,-33.71 190.01,-37.96 182.59,-39.92 "
+         id="polygon521" />
+    </g>
+    <g
+       id="edge4"
+       class="edge"
+       transform="translate(-6.6110731,1885.8459)">
+      <title
+         id="title524">Documentation-&gt;Programming</title>
+      <path
+         fill="none"
+         stroke="#bbbbbb"
+         d="m 212.36,-70.91 c -34.7,-24.33 -88.07,-61.74 -120.05,-84.17"
+         id="path526" />
+      <polygon
+         fill="#bbbbbb"
+         stroke="#bbbbbb"
+         points="216.17,-68.24 212.31,-70.95 216.17,-68.24 210.5,-68.37 218.04,-66.93 214.11,-73.52 "
+         id="polygon528" />
+    </g>
+    <text
+       x="111.59895"
+       y="1516.2458"
+       dy="2"
+       font-weight="900"
+       font-family="Arial, Helvetica, sans-serif"
+       font-size="14px"
+       id="text532">Top</text>
+    <text
+       x="-46.992645"
+       y="1534.3855"
+       dy="2"
+       font-family="Arial, Helvetica, sans-serif"
+       font-size="14px"
+       id="text534">note: Includes my work in progress and published.</text>
+    <text
+       x="-49.871857"
+       y="1960.0879"
+       dy="2"
+       font-family="Arial, Helvetica, sans-serif"
+       font-size="14px"
+       id="text536">Papers, documentation, and demonstrations of tools and ideas that help people create</text>
+    <text
+       x="-49.152054"
+       y="1974.6887"
+       dy="2"
+       font-family="Arial, Helvetica, sans-serif"
+       font-size="14px"
+       id="text538">maps and organize knowledge without servers or admins.</text>
+    <a
+       font-family="Arial, Helvetica, sans-serif"
+       style="font-size:14px"
+       xlink:href="#Top"
+       xlink:title="Top"
+       id="a542"
+       transform="translate(-13.751073,1551.1458)">
+      <text
+         x="-33.961376"
+         y="18.200001"
+         id="text540">Top</text>
+    </a>
+  </g>
+</svg>
+<figcaption>Fig 1: Top</figcaption></figure></div>
+<p>It is easy to get lost within complicated and interrelated systems.
+There are many parties vying for our attention and resources. When lost
+in new or unfamiliar situations, we orient ourselves with a map and
+compass. Simply reviewing the streams of information passing by does not
+give us enough information. When lost at sea or in the forest, this is
+literal and a 2D map can help. When navigating, fixing, changing, or
+imagining new systems, regular 2D maps are often not sufficient. I’ve
+spent five years developing mapping tools that are flexible, yet easy to
+use. The features include visual indicators, auto-routing, and
+integration with narration. It is a complicated, interrelated system
+used to model the same, but I’ve done my best to make it useful without
+servers or admins.</p>
+<p>We tend to “chunk” as we read; we glob on to bits that catch our eye.
+While it is possible to digest a paragraph in a well-ordered way, having
+inline icons helps our natural instincts. It is knowledge reverse judo.
+<a href="https://adaptiveanalysis.org" title="Logical Map How-to Guide"><svg class="ada_icon" version="1.1" viewBox="0 0 16.576 16.579" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-3.2715 13.815)" fill="none" stroke-miterlimit="10"><path transform="matrix(.18667 0 0 -.18667 3.6266 2.4176)" d="m0 0h85.04m-85.04 28.347h85.04m-85.04 28.347h85.04m-85.04 28.337h85.04m-85.04-85.03v85.04m28.347-85.04v85.04m28.347-85.04v85.04m28.337-85.04v85.04" stroke="#3a3b3c" stroke-linecap="square" stroke-width="3.7178"/><g stroke="#3be" stroke-linecap="round" stroke-width="9.9628"><path d="m4.158-12.928 2.9978 6.4856" stroke-width="1.773"/><path transform="matrix(.18667 0 0 -.18667 3.6266 2.4176)" d="m19.843 48.189 17.008 14.173"/><path d="m10.484-9.2563 8.4362 11.073" stroke-width="1.8041"/></g></g></svg></a><a href="https://doi.org/10.5281/zenodo.13684896" title="Adaptive Analysis"><svg class="trs_icon" version="1.1" viewBox="0 0 20.154 18.479" xmlns="http://www.w3.org/2000/svg"><g transform="translate(21.253 14.48)"><path transform="matrix(.26667 .46187 .46187 -.26667 -4.9244 -10.655)" d="m-8.1341-14.089 1.9467 3.3718" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".99628"/><path transform="matrix(.53331 -1.1904e-5 -1.1904e-5 -.53331 -11.524 -10.655)" d="m5.2006 0c-1.541 0.28891-4.0449 1.1557-5.7784 2.1669v-4.3338c1.7335 1.0112 4.2375 1.878 5.7784 2.1669"/><path transform="matrix(.26667 .46187 .46187 -.26667 -4.9244 -10.655)" d="m3.5872-6.2132 1.9467-3.3718" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".99628"/><path transform="matrix(-.26665 .46186 .46186 .26665 -7.8757 -5.5428)" d="m5.2006 0c-1.541 0.28891-4.0449 1.1557-5.7784 2.1669v-4.3338c1.7335 1.0112 4.2375 1.878 5.7784 2.1669"/><path transform="matrix(.26667 .46187 .46187 -.26667 -4.9244 -10.655)" d="m4.5481-20.302h-3.8956" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".99628"/><g><path transform="matrix(-.26667 -.46187 -.46187 .26667 -14.127 -4.9395)" d="m5.2006 0c-1.541 0.28891-4.0449 1.1557-5.7784 2.1669v-4.3338c1.7335 1.0112 4.2375 1.878 5.7784 2.1669"/><g stroke-miterlimit="10" stroke-width=".3985"><path transform="matrix(.26667 .46187 .46187 -.26667 -4.9244 -10.655)" d="m6.9739 0c0 3.8516-3.1223 6.9739-6.9739 6.9739s-6.9739-3.1223-6.9739-6.9739 3.1223-6.9739 6.9739-6.9739 6.9739 3.1223 6.9739 6.9739z" fill="#ff8000" stroke="#ff8000"/><path transform="matrix(.26667 .46187 .46187 -.26667 -17.427 -10.654)" d="m6.9739 0c0 3.8516-3.1223 6.9739-6.9739 6.9739s-6.9739-3.1223-6.9739-6.9739 3.1223-6.9739 6.9739-6.9739 6.9739 3.1223 6.9739 6.9739z" fill="#008080" stroke="#008080"/><path transform="matrix(.26667 .46187 .46187 -.26667 -11.176 .1727)" d="m6.9739 0c0 3.8516-3.1223 6.9739-6.9739 6.9739s-6.9739-3.1223-6.9739-6.9739 3.1223-6.9739 6.9739-6.9739 6.9739 3.1223 6.9739 6.9739z" fill="#ec008c" stroke="#ec008c"/></g></g></g></svg></a><a href="https://systemsa.net" title="Scott H. related sites and knowledge"><svg class="sya_icon"  version="1.1" viewBox="0 0 33.812 33.814" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(-.094347 -.097881)" stroke-width=".5">
+          <path d="m3.6974 7.0342 13.311-6.6568 13.311 6.6568 3.319 14.974-8.3149 11.654h-16.646l-8.3149-11.654z" fill="#ffc000" stroke="#ffc000"/>
+          <path d="m18.741 6.1796c0.9038 0.13149 1.7749 0.36144 2.5963 0.6901l1.6108-1.627 2.0209 1.1668-0.6078 2.219c0.7066 0.54252 1.3474 1.1837 1.8899 1.8903l2.2181-0.60821 1.167 2.0218-1.6267 1.6109c0.3285 0.8218 0.5586 1.693 0.69 2.597l2.2185 0.5755v2.3339l-2.2185 0.5756c-0.1314 0.9038-0.3615 1.7749-0.69 2.597l1.6267 1.6108-1.167 2.0219-2.2181-0.6083c-0.5425 0.7068-1.1833 1.3479-1.8899 1.8905l0.6078 2.219-2.0209 1.1668-1.6108-1.6271c-0.8214 0.3286-1.6925 0.5587-2.5963 0.6901l-0.5751 2.219h-2.3334l-0.5751-2.219c-0.9038-0.1314-1.7748-0.3615-2.5963-0.6901l-1.6104 1.6271-2.0212-1.1668 0.60777-2.219c-0.70657-0.5426-1.3474-1.1837-1.8894-1.8905l-2.2185 0.6083-1.1667-2.0219 1.6268-1.6108c-0.32869-0.822-0.55893-1.6931-0.69038-2.597l-2.2185-0.5756v-2.3339l2.2185-0.5755c0.13145-0.9039 0.36169-1.7751 0.69038-2.597l-1.6268-1.6109 1.1667-2.0218 2.2185 0.60821c0.54201-0.70658 1.1828-1.3478 1.8894-1.8903l-0.60777-2.219 2.0212-1.1668 1.6104 1.627c0.8215-0.32866 1.6926-0.55861 2.5963-0.6901l0.5751-2.219h2.3334zm-7.9863 11.703c0 3.4519 2.7935 6.2461 6.2446 6.2461 3.4508 0 6.2446-2.7942 6.2446-6.2461 0-3.4514-2.7938-6.2461-6.2446-6.2461-3.4509 0-6.2446 2.7944-6.2446 6.2461z" fill="#ff0" stroke="#ff0"/>
+          
+        </g>
+      </svg></a><a href="https://doi.org/10.5281/zenodo.7826793" title="Triple System Analysis"><svg class="tsa_icon"version="1.1" viewBox="0 0 22.195 13.027" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-.5)"><path transform="matrix(1.3333 0 0 1.3333 0 9.548)" d="m0.375-1.8876 1.3242-0.16406c0.038086 0.33691 0.15234 0.59473 0.33984 0.77344 0.1875 0.18164 0.41016 0.26953 0.66797 0.26953 0.28125 0 0.51855-0.10547 0.71484-0.31641 0.19336-0.2168 0.29297-0.50977 0.29297-0.87891 0-0.34277-0.09375-0.6123-0.28125-0.80859-0.1875-0.20215-0.41602-0.30469-0.67969-0.30469-0.17285 0-0.38086 0.035156-0.62109 0.10547l0.15234-1.1133c0.36621 0.00879 0.64746-0.073242 0.84375-0.24609 0.19336-0.16992 0.29297-0.39844 0.29297-0.67969 0-0.24023-0.076172-0.43359-0.22266-0.57422-0.14062-0.14062-0.32812-0.21094-0.5625-0.21094s-0.43359 0.082031-0.59766 0.24609c-0.16406 0.1582-0.2666 0.39258-0.30469 0.70312l-1.2539-0.21094c0.084961-0.42773 0.21387-0.77344 0.38672-1.0312 0.17871-0.25781 0.4248-0.45996 0.73828-0.60938 0.31934-0.14648 0.67383-0.22266 1.0664-0.22266 0.6709 0 1.21 0.2168 1.6172 0.64453 0.33398 0.35156 0.50391 0.74707 0.50391 1.1836 0 0.62695-0.3457 1.125-1.0312 1.5 0.41309 0.087891 0.74121 0.28125 0.98437 0.58594 0.24023 0.30469 0.36328 0.67383 0.36328 1.1016 0 0.62695-0.23145 1.1602-0.69141 1.6055-0.4541 0.43945-1.0195 0.65625-1.6992 0.65625-0.65039 0-1.1836-0.18164-1.6055-0.55078-0.42187-0.375-0.66797-0.8584-0.73828-1.4531z" fill="#07b" aria-label="3"/><path transform="matrix(1.3333 0 0 1.3333 5.3213 12.855)" d="m0.36252-2.3197 1.3945-0.14062c0.084961 0.47754 0.25781 0.82617 0.51562 1.043 0.25781 0.21973 0.60352 0.32812 1.043 0.32812 0.45996 0 0.80859-0.09668 1.043-0.29297 0.24023-0.19336 0.36328-0.4248 0.36328-0.69141 0-0.16406-0.052734-0.30469-0.15234-0.42188-0.10254-0.12305-0.27539-0.22852-0.51562-0.31641-0.17285-0.052734-0.55957-0.15527-1.1602-0.30469-0.76758-0.19336-1.3066-0.43359-1.6172-0.71484-0.43945-0.38965-0.65625-0.86719-0.65625-1.4297 0-0.36621 0.099609-0.70605 0.30469-1.0195 0.20215-0.31055 0.49805-0.55078 0.89062-0.71484 0.38965-0.16992 0.8584-0.25781 1.4062-0.25781 0.89062 0 1.5615 0.19922 2.0156 0.59766 0.45117 0.39258 0.69141 0.91113 0.71484 1.5586l-1.4414 0.070312c-0.064453-0.36621-0.19629-0.62695-0.39844-0.78516-0.20508-0.16406-0.50391-0.24609-0.90234-0.24609-0.42188 0-0.75 0.087891-0.98438 0.25781-0.1582 0.11133-0.23438 0.25781-0.23438 0.44531 0 0.16406 0.070313 0.31055 0.21094 0.43359 0.1875 0.14941 0.62695 0.30469 1.3242 0.46875 0.70312 0.16406 1.2217 0.33691 1.5586 0.51562 0.33398 0.18164 0.59766 0.42188 0.78516 0.72656s0.28125 0.68555 0.28125 1.1367c0 0.40723-0.11426 0.79102-0.33984 1.1484-0.22852 0.35156-0.54785 0.61816-0.96094 0.79688-0.41602 0.16992-0.93164 0.25781-1.5469 0.25781-0.9082 0-1.6025-0.20508-2.0859-0.62109-0.47754-0.42188-0.76172-1.0312-0.85547-1.8281z" fill="#c31" aria-label="S"/><path transform="matrix(1.3333 0 0 1.3333 13.148 9.548)" d="m7.1605-8.4375e-4h-1.5703l-0.62109-1.6172h-2.8477l-0.59766 1.6172h-1.5234l2.7773-7.125h1.5234zm-2.6602-2.8242-0.98438-2.6484-0.96094 2.6484z" fill="#098" aria-label="A"/></g></svg></a><a href="https://logintegrity.com/" title="Streaming a Logical Map"><svg class="lgi_icon" fill="#33bbee" stroke="#33bbee" stroke-width=".17" version="1.1" viewBox="0 0 47.061 41.045" xmlns="http://www.w3.org/2000/svg">
+ <g aria-label="𓈗">
+  <path d="m9.8557 8.4477-3.072-3.7973-2.9867 3.4987h-3.712l6.784-8.0213 2.944 3.584 2.7307-3.6267 2.816 3.584 2.6027-3.584 2.9013 3.6267 2.688-3.6267 2.688 3.6267 2.8587-3.6267 2.6027 3.6267 2.816-3.6267 2.7307 3.6267 2.944-3.584 6.784 8.0213h-3.6693l-3.0293-3.4987-3.072 3.7973-2.7733-3.7547-2.7307 3.7547-2.688-3.7547-2.7733 3.7547-2.688-3.7547-2.688 3.7547-2.7733-3.7547-2.688 3.7547-2.7733-3.7547zm-8.0213-1.1093h1.5787l3.4133-4.0107 2.9867 3.712 2.816-3.7547 2.7733 3.712 2.688-3.712 2.7733 3.712 2.688-3.712 2.688 3.712 2.7733-3.712 2.688 3.712 2.7307-3.712 2.816 3.7547 2.9867-3.712 3.4133 4.0107h1.536l-4.992-5.888-2.9867 3.584-2.688-3.584-2.8587 3.6267-2.6027-3.6267-2.816 3.6267-2.688-3.6267-2.688 3.6267-2.8587-3.584-2.6027 3.584-2.8587-3.6267-2.688 3.584-2.9867-3.584zm13.568 17.365-2.7733-3.7547-2.7733 3.712-3.072-3.7547-2.9867 3.4987h-3.712l6.784-8.0213 2.944 3.584 2.7307-3.6267 2.816 3.584 2.6027-3.584 2.9013 3.6267 2.688-3.6267 2.688 3.6267 2.8587-3.6267 2.6027 3.6267 2.816-3.6267 2.7307 3.6267 2.944-3.584 6.784 8.0213h-3.6693l-3.0293-3.4987-3.072 3.7547-2.7733-3.712-2.7307 3.7547-2.688-3.7547-2.7733 3.7547-2.688-3.7547-2.688 3.7547-2.7733-3.7547zm-13.568-1.1093h1.5787l3.4133-4.0107 2.9867 3.712 2.816-3.7547 2.7733 3.712 2.688-3.712 2.7733 3.712 2.688-3.712 2.688 3.712 2.7733-3.712 2.688 3.712 2.7307-3.712 2.816 3.7547 2.9867-3.712 3.4133 4.0107h1.536l-4.992-5.9307-2.9867 3.6267-2.688-3.584-2.8587 3.6267-2.6027-3.6267-2.816 3.6267-2.688-3.6267-2.688 3.6267-2.8587-3.584-2.6027 3.584-2.8587-3.6267-2.688 3.584-2.9867-3.6267zm13.568 17.365-2.7733-3.7547-2.7733 3.712-3.072-3.7547-2.9867 3.4987h-3.712l6.784-8.0213 2.944 3.584 2.7307-3.6267 2.816 3.584 2.6027-3.584 2.9013 3.584 2.688-3.584 2.688 3.584 2.8587-3.584 2.6027 3.584 2.816-3.584 2.7307 3.6267 2.944-3.584 6.784 8.0213h-3.6693l-3.0293-3.4987-3.072 3.7547-2.7733-3.712-2.7307 3.7547-2.688-3.7547-2.7733 3.7547-2.688-3.7547-2.688 3.7547-2.7733-3.7547zm-13.568-1.152h1.5787l3.4133-3.968 2.9867 3.712 2.816-3.7547 2.7733 3.712 2.688-3.712 2.7733 3.712 2.688-3.712 2.688 3.712 2.7733-3.712 2.688 3.712 2.7307-3.712 2.816 3.7547 2.9867-3.712 3.4133 3.968h1.536l-4.992-5.888-2.9867 3.6267-2.688-3.584-2.8587 3.6267-2.6027-3.6267-2.816 3.6267-2.688-3.6267-2.688 3.6267-2.8587-3.584-2.6027 3.584-2.8587-3.6267-2.688 3.584-2.9867-3.6267z"/>
+ </g>
+</svg></a><a href="https://logicalmap.org" title="Logical Map"><svg class="lmp_icon"  version="1.1" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <g stroke-width="4.1">
+  <path d="m20 32h-17.6v-15h17.6z" fill="none" stroke="#c31"/>
+  <path d="m32 25v-15h-18v15z" fill="none" stroke="#098"/>
+  <path d="m19 2.3h-9.9c-2 0-3.9 2.7-3.9 5.3v5.3c0 2.7 2 5.3 3.9 5.3h9.9c2 0 3.9-2.7 3.9-5.3v-5.3c0-2.7-2-5.3-3.9-5.3" fill="none" stroke="#3be" stroke-width="4.1"/>
+ </g>
+</svg></a>are the inline icons for this paper. They are the same in the
+PDF and web versions. Clicking
+<a href="https://logicalmap.org" title="Logical Map"><svg class="lmp_icon"  version="1.1" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <g stroke-width="4.1">
+  <path d="m20 32h-17.6v-15h17.6z" fill="none" stroke="#c31"/>
+  <path d="m32 25v-15h-18v15z" fill="none" stroke="#098"/>
+  <path d="m19 2.3h-9.9c-2 0-3.9 2.7-3.9 5.3v5.3c0 2.7 2 5.3 3.9 5.3h9.9c2 0 3.9-2.7 3.9-5.3v-5.3c0-2.7-2-5.3-3.9-5.3" fill="none" stroke="#3be" stroke-width="4.1"/>
+ </g>
+</svg></a>at the top of <a href="https://systemsa.net">systemsa.net</a>
+brings up a logical map like Fig. 1. I use this to move from a narrative
+to map view.
+<a href="https://logicalmap.org" title="Logical Map"><svg class="lmp_icon"  version="1.1" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <g stroke-width="4.1">
+  <path d="m20 32h-17.6v-15h17.6z" fill="none" stroke="#c31"/>
+  <path d="m32 25v-15h-18v15z" fill="none" stroke="#098"/>
+  <path d="m19 2.3h-9.9c-2 0-3.9 2.7-3.9 5.3v5.3c0 2.7 2 5.3 3.9 5.3h9.9c2 0 3.9-2.7 3.9-5.3v-5.3c0-2.7-2-5.3-3.9-5.3" fill="none" stroke="#3be" stroke-width="4.1"/>
+ </g>
+</svg></a>is fully described in
+<a href="https://adaptiveanalysis.org" title="Logical Map How-to Guide"><svg class="ada_icon" version="1.1" viewBox="0 0 16.576 16.579" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-3.2715 13.815)" fill="none" stroke-miterlimit="10"><path transform="matrix(.18667 0 0 -.18667 3.6266 2.4176)" d="m0 0h85.04m-85.04 28.347h85.04m-85.04 28.347h85.04m-85.04 28.337h85.04m-85.04-85.03v85.04m28.347-85.04v85.04m28.347-85.04v85.04m28.337-85.04v85.04" stroke="#3a3b3c" stroke-linecap="square" stroke-width="3.7178"/><g stroke="#3be" stroke-linecap="round" stroke-width="9.9628"><path d="m4.158-12.928 2.9978 6.4856" stroke-width="1.773"/><path transform="matrix(.18667 0 0 -.18667 3.6266 2.4176)" d="m19.843 48.189 17.008 14.173"/><path d="m10.484-9.2563 8.4362 11.073" stroke-width="1.8041"/></g></g></svg></a>,
+the Logical Map How-to Guide. Icons have a URL, and depending on your
+application capabilities, just click for the meaning.
+<a href="https://systemsa.net" title="Scott H. related sites and knowledge"><svg class="sya_icon"  version="1.1" viewBox="0 0 33.812 33.814" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(-.094347 -.097881)" stroke-width=".5">
+          <path d="m3.6974 7.0342 13.311-6.6568 13.311 6.6568 3.319 14.974-8.3149 11.654h-16.646l-8.3149-11.654z" fill="#ffc000" stroke="#ffc000"/>
+          <path d="m18.741 6.1796c0.9038 0.13149 1.7749 0.36144 2.5963 0.6901l1.6108-1.627 2.0209 1.1668-0.6078 2.219c0.7066 0.54252 1.3474 1.1837 1.8899 1.8903l2.2181-0.60821 1.167 2.0218-1.6267 1.6109c0.3285 0.8218 0.5586 1.693 0.69 2.597l2.2185 0.5755v2.3339l-2.2185 0.5756c-0.1314 0.9038-0.3615 1.7749-0.69 2.597l1.6267 1.6108-1.167 2.0219-2.2181-0.6083c-0.5425 0.7068-1.1833 1.3479-1.8899 1.8905l0.6078 2.219-2.0209 1.1668-1.6108-1.6271c-0.8214 0.3286-1.6925 0.5587-2.5963 0.6901l-0.5751 2.219h-2.3334l-0.5751-2.219c-0.9038-0.1314-1.7748-0.3615-2.5963-0.6901l-1.6104 1.6271-2.0212-1.1668 0.60777-2.219c-0.70657-0.5426-1.3474-1.1837-1.8894-1.8905l-2.2185 0.6083-1.1667-2.0219 1.6268-1.6108c-0.32869-0.822-0.55893-1.6931-0.69038-2.597l-2.2185-0.5756v-2.3339l2.2185-0.5755c0.13145-0.9039 0.36169-1.7751 0.69038-2.597l-1.6268-1.6109 1.1667-2.0218 2.2185 0.60821c0.54201-0.70658 1.1828-1.3478 1.8894-1.8903l-0.60777-2.219 2.0212-1.1668 1.6104 1.627c0.8215-0.32866 1.6926-0.55861 2.5963-0.6901l0.5751-2.219h2.3334zm-7.9863 11.703c0 3.4519 2.7935 6.2461 6.2446 6.2461 3.4508 0 6.2446-2.7942 6.2446-6.2461 0-3.4514-2.7938-6.2461-6.2446-6.2461-3.4509 0-6.2446 2.7944-6.2446 6.2461z" fill="#ff0" stroke="#ff0"/>
+          
+        </g>
+      </svg></a>refers to this document, both the narrative and
+<a href="https://logicalmap.org" title="Logical Map"><svg class="lmp_icon"  version="1.1" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <g stroke-width="4.1">
+  <path d="m20 32h-17.6v-15h17.6z" fill="none" stroke="#c31"/>
+  <path d="m32 25v-15h-18v15z" fill="none" stroke="#098"/>
+  <path d="m19 2.3h-9.9c-2 0-3.9 2.7-3.9 5.3v5.3c0 2.7 2 5.3 3.9 5.3h9.9c2 0 3.9-2.7 3.9-5.3v-5.3c0-2.7-2-5.3-3.9-5.3" fill="none" stroke="#3be" stroke-width="4.1"/>
+ </g>
+</svg></a>that combines logical and physical relations of data flow. At
+the top level are broad categories. The second level can be accessed by
+clicking on the body of the node, and lists artifacts and efforts within
+that category. The third level down shows the physical persistence
+information and flow. A 🌐 is a URL associated with the entity. Click on
+it to navigate to it in a web browser.
+<a href="https://doi.org/10.5281/zenodo.7826793" title="Triple System Analysis"><svg class="tsa_icon"version="1.1" viewBox="0 0 22.195 13.027" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-.5)"><path transform="matrix(1.3333 0 0 1.3333 0 9.548)" d="m0.375-1.8876 1.3242-0.16406c0.038086 0.33691 0.15234 0.59473 0.33984 0.77344 0.1875 0.18164 0.41016 0.26953 0.66797 0.26953 0.28125 0 0.51855-0.10547 0.71484-0.31641 0.19336-0.2168 0.29297-0.50977 0.29297-0.87891 0-0.34277-0.09375-0.6123-0.28125-0.80859-0.1875-0.20215-0.41602-0.30469-0.67969-0.30469-0.17285 0-0.38086 0.035156-0.62109 0.10547l0.15234-1.1133c0.36621 0.00879 0.64746-0.073242 0.84375-0.24609 0.19336-0.16992 0.29297-0.39844 0.29297-0.67969 0-0.24023-0.076172-0.43359-0.22266-0.57422-0.14062-0.14062-0.32812-0.21094-0.5625-0.21094s-0.43359 0.082031-0.59766 0.24609c-0.16406 0.1582-0.2666 0.39258-0.30469 0.70312l-1.2539-0.21094c0.084961-0.42773 0.21387-0.77344 0.38672-1.0312 0.17871-0.25781 0.4248-0.45996 0.73828-0.60938 0.31934-0.14648 0.67383-0.22266 1.0664-0.22266 0.6709 0 1.21 0.2168 1.6172 0.64453 0.33398 0.35156 0.50391 0.74707 0.50391 1.1836 0 0.62695-0.3457 1.125-1.0312 1.5 0.41309 0.087891 0.74121 0.28125 0.98437 0.58594 0.24023 0.30469 0.36328 0.67383 0.36328 1.1016 0 0.62695-0.23145 1.1602-0.69141 1.6055-0.4541 0.43945-1.0195 0.65625-1.6992 0.65625-0.65039 0-1.1836-0.18164-1.6055-0.55078-0.42187-0.375-0.66797-0.8584-0.73828-1.4531z" fill="#07b" aria-label="3"/><path transform="matrix(1.3333 0 0 1.3333 5.3213 12.855)" d="m0.36252-2.3197 1.3945-0.14062c0.084961 0.47754 0.25781 0.82617 0.51562 1.043 0.25781 0.21973 0.60352 0.32812 1.043 0.32812 0.45996 0 0.80859-0.09668 1.043-0.29297 0.24023-0.19336 0.36328-0.4248 0.36328-0.69141 0-0.16406-0.052734-0.30469-0.15234-0.42188-0.10254-0.12305-0.27539-0.22852-0.51562-0.31641-0.17285-0.052734-0.55957-0.15527-1.1602-0.30469-0.76758-0.19336-1.3066-0.43359-1.6172-0.71484-0.43945-0.38965-0.65625-0.86719-0.65625-1.4297 0-0.36621 0.099609-0.70605 0.30469-1.0195 0.20215-0.31055 0.49805-0.55078 0.89062-0.71484 0.38965-0.16992 0.8584-0.25781 1.4062-0.25781 0.89062 0 1.5615 0.19922 2.0156 0.59766 0.45117 0.39258 0.69141 0.91113 0.71484 1.5586l-1.4414 0.070312c-0.064453-0.36621-0.19629-0.62695-0.39844-0.78516-0.20508-0.16406-0.50391-0.24609-0.90234-0.24609-0.42188 0-0.75 0.087891-0.98438 0.25781-0.1582 0.11133-0.23438 0.25781-0.23438 0.44531 0 0.16406 0.070313 0.31055 0.21094 0.43359 0.1875 0.14941 0.62695 0.30469 1.3242 0.46875 0.70312 0.16406 1.2217 0.33691 1.5586 0.51562 0.33398 0.18164 0.59766 0.42188 0.78516 0.72656s0.28125 0.68555 0.28125 1.1367c0 0.40723-0.11426 0.79102-0.33984 1.1484-0.22852 0.35156-0.54785 0.61816-0.96094 0.79688-0.41602 0.16992-0.93164 0.25781-1.5469 0.25781-0.9082 0-1.6025-0.20508-2.0859-0.62109-0.47754-0.42188-0.76172-1.0312-0.85547-1.8281z" fill="#c31" aria-label="S"/><path transform="matrix(1.3333 0 0 1.3333 13.148 9.548)" d="m7.1605-8.4375e-4h-1.5703l-0.62109-1.6172h-2.8477l-0.59766 1.6172h-1.5234l2.7773-7.125h1.5234zm-2.6602-2.8242-0.98438-2.6484-0.96094 2.6484z" fill="#098" aria-label="A"/></g></svg></a>means
+the general idea of using triples for system analysis. The letters stand
+for Triple System Analysis, the title of the paper.
+<a href="https://doi.org/10.5281/zenodo.13684896" title="Adaptive Analysis"><svg class="trs_icon" version="1.1" viewBox="0 0 20.154 18.479" xmlns="http://www.w3.org/2000/svg"><g transform="translate(21.253 14.48)"><path transform="matrix(.26667 .46187 .46187 -.26667 -4.9244 -10.655)" d="m-8.1341-14.089 1.9467 3.3718" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".99628"/><path transform="matrix(.53331 -1.1904e-5 -1.1904e-5 -.53331 -11.524 -10.655)" d="m5.2006 0c-1.541 0.28891-4.0449 1.1557-5.7784 2.1669v-4.3338c1.7335 1.0112 4.2375 1.878 5.7784 2.1669"/><path transform="matrix(.26667 .46187 .46187 -.26667 -4.9244 -10.655)" d="m3.5872-6.2132 1.9467-3.3718" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".99628"/><path transform="matrix(-.26665 .46186 .46186 .26665 -7.8757 -5.5428)" d="m5.2006 0c-1.541 0.28891-4.0449 1.1557-5.7784 2.1669v-4.3338c1.7335 1.0112 4.2375 1.878 5.7784 2.1669"/><path transform="matrix(.26667 .46187 .46187 -.26667 -4.9244 -10.655)" d="m4.5481-20.302h-3.8956" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".99628"/><g><path transform="matrix(-.26667 -.46187 -.46187 .26667 -14.127 -4.9395)" d="m5.2006 0c-1.541 0.28891-4.0449 1.1557-5.7784 2.1669v-4.3338c1.7335 1.0112 4.2375 1.878 5.7784 2.1669"/><g stroke-miterlimit="10" stroke-width=".3985"><path transform="matrix(.26667 .46187 .46187 -.26667 -4.9244 -10.655)" d="m6.9739 0c0 3.8516-3.1223 6.9739-6.9739 6.9739s-6.9739-3.1223-6.9739-6.9739 3.1223-6.9739 6.9739-6.9739 6.9739 3.1223 6.9739 6.9739z" fill="#ff8000" stroke="#ff8000"/><path transform="matrix(.26667 .46187 .46187 -.26667 -17.427 -10.654)" d="m6.9739 0c0 3.8516-3.1223 6.9739-6.9739 6.9739s-6.9739-3.1223-6.9739-6.9739 3.1223-6.9739 6.9739-6.9739 6.9739 3.1223 6.9739 6.9739z" fill="#008080" stroke="#008080"/><path transform="matrix(.26667 .46187 .46187 -.26667 -11.176 .1727)" d="m6.9739 0c0 3.8516-3.1223 6.9739-6.9739 6.9739s-6.9739-3.1223-6.9739-6.9739 3.1223-6.9739 6.9739-6.9739 6.9739 3.1223 6.9739 6.9739z" fill="#ec008c" stroke="#ec008c"/></g></g></g></svg></a>means
+the idea of using combined data and material flow.
+<a href="https://logintegrity.com/" title="Streaming a Logical Map"><svg class="lgi_icon" fill="#33bbee" stroke="#33bbee" stroke-width=".17" version="1.1" viewBox="0 0 47.061 41.045" xmlns="http://www.w3.org/2000/svg">
+ <g aria-label="𓈗">
+  <path d="m9.8557 8.4477-3.072-3.7973-2.9867 3.4987h-3.712l6.784-8.0213 2.944 3.584 2.7307-3.6267 2.816 3.584 2.6027-3.584 2.9013 3.6267 2.688-3.6267 2.688 3.6267 2.8587-3.6267 2.6027 3.6267 2.816-3.6267 2.7307 3.6267 2.944-3.584 6.784 8.0213h-3.6693l-3.0293-3.4987-3.072 3.7973-2.7733-3.7547-2.7307 3.7547-2.688-3.7547-2.7733 3.7547-2.688-3.7547-2.688 3.7547-2.7733-3.7547-2.688 3.7547-2.7733-3.7547zm-8.0213-1.1093h1.5787l3.4133-4.0107 2.9867 3.712 2.816-3.7547 2.7733 3.712 2.688-3.712 2.7733 3.712 2.688-3.712 2.688 3.712 2.7733-3.712 2.688 3.712 2.7307-3.712 2.816 3.7547 2.9867-3.712 3.4133 4.0107h1.536l-4.992-5.888-2.9867 3.584-2.688-3.584-2.8587 3.6267-2.6027-3.6267-2.816 3.6267-2.688-3.6267-2.688 3.6267-2.8587-3.584-2.6027 3.584-2.8587-3.6267-2.688 3.584-2.9867-3.584zm13.568 17.365-2.7733-3.7547-2.7733 3.712-3.072-3.7547-2.9867 3.4987h-3.712l6.784-8.0213 2.944 3.584 2.7307-3.6267 2.816 3.584 2.6027-3.584 2.9013 3.6267 2.688-3.6267 2.688 3.6267 2.8587-3.6267 2.6027 3.6267 2.816-3.6267 2.7307 3.6267 2.944-3.584 6.784 8.0213h-3.6693l-3.0293-3.4987-3.072 3.7547-2.7733-3.712-2.7307 3.7547-2.688-3.7547-2.7733 3.7547-2.688-3.7547-2.688 3.7547-2.7733-3.7547zm-13.568-1.1093h1.5787l3.4133-4.0107 2.9867 3.712 2.816-3.7547 2.7733 3.712 2.688-3.712 2.7733 3.712 2.688-3.712 2.688 3.712 2.7733-3.712 2.688 3.712 2.7307-3.712 2.816 3.7547 2.9867-3.712 3.4133 4.0107h1.536l-4.992-5.9307-2.9867 3.6267-2.688-3.584-2.8587 3.6267-2.6027-3.6267-2.816 3.6267-2.688-3.6267-2.688 3.6267-2.8587-3.584-2.6027 3.584-2.8587-3.6267-2.688 3.584-2.9867-3.6267zm13.568 17.365-2.7733-3.7547-2.7733 3.712-3.072-3.7547-2.9867 3.4987h-3.712l6.784-8.0213 2.944 3.584 2.7307-3.6267 2.816 3.584 2.6027-3.584 2.9013 3.584 2.688-3.584 2.688 3.584 2.8587-3.584 2.6027 3.584 2.816-3.584 2.7307 3.6267 2.944-3.584 6.784 8.0213h-3.6693l-3.0293-3.4987-3.072 3.7547-2.7733-3.712-2.7307 3.7547-2.688-3.7547-2.7733 3.7547-2.688-3.7547-2.688 3.7547-2.7733-3.7547zm-13.568-1.152h1.5787l3.4133-3.968 2.9867 3.712 2.816-3.7547 2.7733 3.712 2.688-3.712 2.7733 3.712 2.688-3.712 2.688 3.712 2.7733-3.712 2.688 3.712 2.7307-3.712 2.816 3.7547 2.9867-3.712 3.4133 3.968h1.536l-4.992-5.888-2.9867 3.6267-2.688-3.584-2.8587 3.6267-2.6027-3.6267-2.816 3.6267-2.688-3.6267-2.688 3.6267-2.8587-3.584-2.6027 3.584-2.8587-3.6267-2.688 3.584-2.9867-3.6267z"/>
+ </g>
+</svg></a>means collaborative streaming of logical maps using nostr
+event objects over MQTT. I will asume in this paper that the reader has
+reviewed the target URL behind the icons. Notice that I used a much more
+sophisticated version of icons and navigation in
+<a href="https://doi.org/10.5281/zenodo.7826793" title="Triple System Analysis"><svg class="tsa_icon"version="1.1" viewBox="0 0 22.195 13.027" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-.5)"><path transform="matrix(1.3333 0 0 1.3333 0 9.548)" d="m0.375-1.8876 1.3242-0.16406c0.038086 0.33691 0.15234 0.59473 0.33984 0.77344 0.1875 0.18164 0.41016 0.26953 0.66797 0.26953 0.28125 0 0.51855-0.10547 0.71484-0.31641 0.19336-0.2168 0.29297-0.50977 0.29297-0.87891 0-0.34277-0.09375-0.6123-0.28125-0.80859-0.1875-0.20215-0.41602-0.30469-0.67969-0.30469-0.17285 0-0.38086 0.035156-0.62109 0.10547l0.15234-1.1133c0.36621 0.00879 0.64746-0.073242 0.84375-0.24609 0.19336-0.16992 0.29297-0.39844 0.29297-0.67969 0-0.24023-0.076172-0.43359-0.22266-0.57422-0.14062-0.14062-0.32812-0.21094-0.5625-0.21094s-0.43359 0.082031-0.59766 0.24609c-0.16406 0.1582-0.2666 0.39258-0.30469 0.70312l-1.2539-0.21094c0.084961-0.42773 0.21387-0.77344 0.38672-1.0312 0.17871-0.25781 0.4248-0.45996 0.73828-0.60938 0.31934-0.14648 0.67383-0.22266 1.0664-0.22266 0.6709 0 1.21 0.2168 1.6172 0.64453 0.33398 0.35156 0.50391 0.74707 0.50391 1.1836 0 0.62695-0.3457 1.125-1.0312 1.5 0.41309 0.087891 0.74121 0.28125 0.98437 0.58594 0.24023 0.30469 0.36328 0.67383 0.36328 1.1016 0 0.62695-0.23145 1.1602-0.69141 1.6055-0.4541 0.43945-1.0195 0.65625-1.6992 0.65625-0.65039 0-1.1836-0.18164-1.6055-0.55078-0.42187-0.375-0.66797-0.8584-0.73828-1.4531z" fill="#07b" aria-label="3"/><path transform="matrix(1.3333 0 0 1.3333 5.3213 12.855)" d="m0.36252-2.3197 1.3945-0.14062c0.084961 0.47754 0.25781 0.82617 0.51562 1.043 0.25781 0.21973 0.60352 0.32812 1.043 0.32812 0.45996 0 0.80859-0.09668 1.043-0.29297 0.24023-0.19336 0.36328-0.4248 0.36328-0.69141 0-0.16406-0.052734-0.30469-0.15234-0.42188-0.10254-0.12305-0.27539-0.22852-0.51562-0.31641-0.17285-0.052734-0.55957-0.15527-1.1602-0.30469-0.76758-0.19336-1.3066-0.43359-1.6172-0.71484-0.43945-0.38965-0.65625-0.86719-0.65625-1.4297 0-0.36621 0.099609-0.70605 0.30469-1.0195 0.20215-0.31055 0.49805-0.55078 0.89062-0.71484 0.38965-0.16992 0.8584-0.25781 1.4062-0.25781 0.89062 0 1.5615 0.19922 2.0156 0.59766 0.45117 0.39258 0.69141 0.91113 0.71484 1.5586l-1.4414 0.070312c-0.064453-0.36621-0.19629-0.62695-0.39844-0.78516-0.20508-0.16406-0.50391-0.24609-0.90234-0.24609-0.42188 0-0.75 0.087891-0.98438 0.25781-0.1582 0.11133-0.23438 0.25781-0.23438 0.44531 0 0.16406 0.070313 0.31055 0.21094 0.43359 0.1875 0.14941 0.62695 0.30469 1.3242 0.46875 0.70312 0.16406 1.2217 0.33691 1.5586 0.51562 0.33398 0.18164 0.59766 0.42188 0.78516 0.72656s0.28125 0.68555 0.28125 1.1367c0 0.40723-0.11426 0.79102-0.33984 1.1484-0.22852 0.35156-0.54785 0.61816-0.96094 0.79688-0.41602 0.16992-0.93164 0.25781-1.5469 0.25781-0.9082 0-1.6025-0.20508-2.0859-0.62109-0.47754-0.42188-0.76172-1.0312-0.85547-1.8281z" fill="#c31" aria-label="S"/><path transform="matrix(1.3333 0 0 1.3333 13.148 9.548)" d="m7.1605-8.4375e-4h-1.5703l-0.62109-1.6172h-2.8477l-0.59766 1.6172h-1.5234l2.7773-7.125h1.5234zm-2.6602-2.8242-0.98438-2.6484-0.96094 2.6484z" fill="#098" aria-label="A"/></g></svg></a>.</p>
+<h1 id="technical-design">Technical Design</h1>
+<p>There are design decisions for
+<a href="https://adaptiveanalysis.org" title="Logical Map How-to Guide"><svg class="ada_icon" version="1.1" viewBox="0 0 16.576 16.579" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-3.2715 13.815)" fill="none" stroke-miterlimit="10"><path transform="matrix(.18667 0 0 -.18667 3.6266 2.4176)" d="m0 0h85.04m-85.04 28.347h85.04m-85.04 28.347h85.04m-85.04 28.337h85.04m-85.04-85.03v85.04m28.347-85.04v85.04m28.347-85.04v85.04m28.337-85.04v85.04" stroke="#3a3b3c" stroke-linecap="square" stroke-width="3.7178"/><g stroke="#3be" stroke-linecap="round" stroke-width="9.9628"><path d="m4.158-12.928 2.9978 6.4856" stroke-width="1.773"/><path transform="matrix(.18667 0 0 -.18667 3.6266 2.4176)" d="m19.843 48.189 17.008 14.173"/><path d="m10.484-9.2563 8.4362 11.073" stroke-width="1.8041"/></g></g></svg></a><a href="https://doi.org/10.5281/zenodo.13684896" title="Adaptive Analysis"><svg class="trs_icon" version="1.1" viewBox="0 0 20.154 18.479" xmlns="http://www.w3.org/2000/svg"><g transform="translate(21.253 14.48)"><path transform="matrix(.26667 .46187 .46187 -.26667 -4.9244 -10.655)" d="m-8.1341-14.089 1.9467 3.3718" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".99628"/><path transform="matrix(.53331 -1.1904e-5 -1.1904e-5 -.53331 -11.524 -10.655)" d="m5.2006 0c-1.541 0.28891-4.0449 1.1557-5.7784 2.1669v-4.3338c1.7335 1.0112 4.2375 1.878 5.7784 2.1669"/><path transform="matrix(.26667 .46187 .46187 -.26667 -4.9244 -10.655)" d="m3.5872-6.2132 1.9467-3.3718" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".99628"/><path transform="matrix(-.26665 .46186 .46186 .26665 -7.8757 -5.5428)" d="m5.2006 0c-1.541 0.28891-4.0449 1.1557-5.7784 2.1669v-4.3338c1.7335 1.0112 4.2375 1.878 5.7784 2.1669"/><path transform="matrix(.26667 .46187 .46187 -.26667 -4.9244 -10.655)" d="m4.5481-20.302h-3.8956" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".99628"/><g><path transform="matrix(-.26667 -.46187 -.46187 .26667 -14.127 -4.9395)" d="m5.2006 0c-1.541 0.28891-4.0449 1.1557-5.7784 2.1669v-4.3338c1.7335 1.0112 4.2375 1.878 5.7784 2.1669"/><g stroke-miterlimit="10" stroke-width=".3985"><path transform="matrix(.26667 .46187 .46187 -.26667 -4.9244 -10.655)" d="m6.9739 0c0 3.8516-3.1223 6.9739-6.9739 6.9739s-6.9739-3.1223-6.9739-6.9739 3.1223-6.9739 6.9739-6.9739 6.9739 3.1223 6.9739 6.9739z" fill="#ff8000" stroke="#ff8000"/><path transform="matrix(.26667 .46187 .46187 -.26667 -17.427 -10.654)" d="m6.9739 0c0 3.8516-3.1223 6.9739-6.9739 6.9739s-6.9739-3.1223-6.9739-6.9739 3.1223-6.9739 6.9739-6.9739 6.9739 3.1223 6.9739 6.9739z" fill="#008080" stroke="#008080"/><path transform="matrix(.26667 .46187 .46187 -.26667 -11.176 .1727)" d="m6.9739 0c0 3.8516-3.1223 6.9739-6.9739 6.9739s-6.9739-3.1223-6.9739-6.9739 3.1223-6.9739 6.9739-6.9739 6.9739 3.1223 6.9739 6.9739z" fill="#ec008c" stroke="#ec008c"/></g></g></g></svg></a><a href="https://doi.org/10.5281/zenodo.7826793" title="Triple System Analysis"><svg class="tsa_icon"version="1.1" viewBox="0 0 22.195 13.027" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-.5)"><path transform="matrix(1.3333 0 0 1.3333 0 9.548)" d="m0.375-1.8876 1.3242-0.16406c0.038086 0.33691 0.15234 0.59473 0.33984 0.77344 0.1875 0.18164 0.41016 0.26953 0.66797 0.26953 0.28125 0 0.51855-0.10547 0.71484-0.31641 0.19336-0.2168 0.29297-0.50977 0.29297-0.87891 0-0.34277-0.09375-0.6123-0.28125-0.80859-0.1875-0.20215-0.41602-0.30469-0.67969-0.30469-0.17285 0-0.38086 0.035156-0.62109 0.10547l0.15234-1.1133c0.36621 0.00879 0.64746-0.073242 0.84375-0.24609 0.19336-0.16992 0.29297-0.39844 0.29297-0.67969 0-0.24023-0.076172-0.43359-0.22266-0.57422-0.14062-0.14062-0.32812-0.21094-0.5625-0.21094s-0.43359 0.082031-0.59766 0.24609c-0.16406 0.1582-0.2666 0.39258-0.30469 0.70312l-1.2539-0.21094c0.084961-0.42773 0.21387-0.77344 0.38672-1.0312 0.17871-0.25781 0.4248-0.45996 0.73828-0.60938 0.31934-0.14648 0.67383-0.22266 1.0664-0.22266 0.6709 0 1.21 0.2168 1.6172 0.64453 0.33398 0.35156 0.50391 0.74707 0.50391 1.1836 0 0.62695-0.3457 1.125-1.0312 1.5 0.41309 0.087891 0.74121 0.28125 0.98437 0.58594 0.24023 0.30469 0.36328 0.67383 0.36328 1.1016 0 0.62695-0.23145 1.1602-0.69141 1.6055-0.4541 0.43945-1.0195 0.65625-1.6992 0.65625-0.65039 0-1.1836-0.18164-1.6055-0.55078-0.42187-0.375-0.66797-0.8584-0.73828-1.4531z" fill="#07b" aria-label="3"/><path transform="matrix(1.3333 0 0 1.3333 5.3213 12.855)" d="m0.36252-2.3197 1.3945-0.14062c0.084961 0.47754 0.25781 0.82617 0.51562 1.043 0.25781 0.21973 0.60352 0.32812 1.043 0.32812 0.45996 0 0.80859-0.09668 1.043-0.29297 0.24023-0.19336 0.36328-0.4248 0.36328-0.69141 0-0.16406-0.052734-0.30469-0.15234-0.42188-0.10254-0.12305-0.27539-0.22852-0.51562-0.31641-0.17285-0.052734-0.55957-0.15527-1.1602-0.30469-0.76758-0.19336-1.3066-0.43359-1.6172-0.71484-0.43945-0.38965-0.65625-0.86719-0.65625-1.4297 0-0.36621 0.099609-0.70605 0.30469-1.0195 0.20215-0.31055 0.49805-0.55078 0.89062-0.71484 0.38965-0.16992 0.8584-0.25781 1.4062-0.25781 0.89062 0 1.5615 0.19922 2.0156 0.59766 0.45117 0.39258 0.69141 0.91113 0.71484 1.5586l-1.4414 0.070312c-0.064453-0.36621-0.19629-0.62695-0.39844-0.78516-0.20508-0.16406-0.50391-0.24609-0.90234-0.24609-0.42188 0-0.75 0.087891-0.98438 0.25781-0.1582 0.11133-0.23438 0.25781-0.23438 0.44531 0 0.16406 0.070313 0.31055 0.21094 0.43359 0.1875 0.14941 0.62695 0.30469 1.3242 0.46875 0.70312 0.16406 1.2217 0.33691 1.5586 0.51562 0.33398 0.18164 0.59766 0.42188 0.78516 0.72656s0.28125 0.68555 0.28125 1.1367c0 0.40723-0.11426 0.79102-0.33984 1.1484-0.22852 0.35156-0.54785 0.61816-0.96094 0.79688-0.41602 0.16992-0.93164 0.25781-1.5469 0.25781-0.9082 0-1.6025-0.20508-2.0859-0.62109-0.47754-0.42188-0.76172-1.0312-0.85547-1.8281z" fill="#c31" aria-label="S"/><path transform="matrix(1.3333 0 0 1.3333 13.148 9.548)" d="m7.1605-8.4375e-4h-1.5703l-0.62109-1.6172h-2.8477l-0.59766 1.6172h-1.5234l2.7773-7.125h1.5234zm-2.6602-2.8242-0.98438-2.6484-0.96094 2.6484z" fill="#098" aria-label="A"/></g></svg></a><a href="https://logintegrity.com/" title="Streaming a Logical Map"><svg class="lgi_icon" fill="#33bbee" stroke="#33bbee" stroke-width=".17" version="1.1" viewBox="0 0 47.061 41.045" xmlns="http://www.w3.org/2000/svg">
+ <g aria-label="𓈗">
+  <path d="m9.8557 8.4477-3.072-3.7973-2.9867 3.4987h-3.712l6.784-8.0213 2.944 3.584 2.7307-3.6267 2.816 3.584 2.6027-3.584 2.9013 3.6267 2.688-3.6267 2.688 3.6267 2.8587-3.6267 2.6027 3.6267 2.816-3.6267 2.7307 3.6267 2.944-3.584 6.784 8.0213h-3.6693l-3.0293-3.4987-3.072 3.7973-2.7733-3.7547-2.7307 3.7547-2.688-3.7547-2.7733 3.7547-2.688-3.7547-2.688 3.7547-2.7733-3.7547-2.688 3.7547-2.7733-3.7547zm-8.0213-1.1093h1.5787l3.4133-4.0107 2.9867 3.712 2.816-3.7547 2.7733 3.712 2.688-3.712 2.7733 3.712 2.688-3.712 2.688 3.712 2.7733-3.712 2.688 3.712 2.7307-3.712 2.816 3.7547 2.9867-3.712 3.4133 4.0107h1.536l-4.992-5.888-2.9867 3.584-2.688-3.584-2.8587 3.6267-2.6027-3.6267-2.816 3.6267-2.688-3.6267-2.688 3.6267-2.8587-3.584-2.6027 3.584-2.8587-3.6267-2.688 3.584-2.9867-3.584zm13.568 17.365-2.7733-3.7547-2.7733 3.712-3.072-3.7547-2.9867 3.4987h-3.712l6.784-8.0213 2.944 3.584 2.7307-3.6267 2.816 3.584 2.6027-3.584 2.9013 3.6267 2.688-3.6267 2.688 3.6267 2.8587-3.6267 2.6027 3.6267 2.816-3.6267 2.7307 3.6267 2.944-3.584 6.784 8.0213h-3.6693l-3.0293-3.4987-3.072 3.7547-2.7733-3.712-2.7307 3.7547-2.688-3.7547-2.7733 3.7547-2.688-3.7547-2.688 3.7547-2.7733-3.7547zm-13.568-1.1093h1.5787l3.4133-4.0107 2.9867 3.712 2.816-3.7547 2.7733 3.712 2.688-3.712 2.7733 3.712 2.688-3.712 2.688 3.712 2.7733-3.712 2.688 3.712 2.7307-3.712 2.816 3.7547 2.9867-3.712 3.4133 4.0107h1.536l-4.992-5.9307-2.9867 3.6267-2.688-3.584-2.8587 3.6267-2.6027-3.6267-2.816 3.6267-2.688-3.6267-2.688 3.6267-2.8587-3.584-2.6027 3.584-2.8587-3.6267-2.688 3.584-2.9867-3.6267zm13.568 17.365-2.7733-3.7547-2.7733 3.712-3.072-3.7547-2.9867 3.4987h-3.712l6.784-8.0213 2.944 3.584 2.7307-3.6267 2.816 3.584 2.6027-3.584 2.9013 3.584 2.688-3.584 2.688 3.584 2.8587-3.584 2.6027 3.584 2.816-3.584 2.7307 3.6267 2.944-3.584 6.784 8.0213h-3.6693l-3.0293-3.4987-3.072 3.7547-2.7733-3.712-2.7307 3.7547-2.688-3.7547-2.7733 3.7547-2.688-3.7547-2.688 3.7547-2.7733-3.7547zm-13.568-1.152h1.5787l3.4133-3.968 2.9867 3.712 2.816-3.7547 2.7733 3.712 2.688-3.712 2.7733 3.712 2.688-3.712 2.688 3.712 2.7733-3.712 2.688 3.712 2.7307-3.712 2.816 3.7547 2.9867-3.712 3.4133 3.968h1.536l-4.992-5.888-2.9867 3.6267-2.688-3.584-2.8587 3.6267-2.6027-3.6267-2.816 3.6267-2.688-3.6267-2.688 3.6267-2.8587-3.584-2.6027 3.584-2.8587-3.6267-2.688 3.584-2.9867-3.6267z"/>
+ </g>
+</svg></a>that are absent, not fully covered, or have changed slightly.
+I will discuss these in this section. My overall goal is to provide the
+reader everything they need to continue this work without my ongoing
+guidance.</p>
+<h2 id="floppy-png">Floppy PNG</h2>
+<p>I experimented quite a bit with both performance and running live
+websites to come up with the final format of Floppy PNG.</p>
+<div style="float:right;width:344.40189999999996pt;">
+          <figure id="fig:flp"><?xml version="1.0" encoding="UTF-8"?>
+<svg width="732.77pt" height="562.86pt" version="1.1" viewBox="-210 -54.6 732.77 562.86" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <rect x="-210" y="-54.6" width="732.77" height="562.86" fill="#f3f3f3"/>
+ <g id="tte" class="node agents" transform="translate(12.466 357.69)">
+  <title>Scott H.</title>
+  <polygon points="207.9 -241.22 153.9 -241.22 153.9 -205.22 207.9 -205.22" fill="none" stroke="#098" stroke-width="2"/>
+  <text x="180.89999" y="-227.42" font-family="Arial" font-size="14px" text-anchor="middle">Scott</text>
+  <text x="180.89999" y="-210.62" font-family="Arial" font-size="14px" text-anchor="middle">H.</text>
+ </g>
+ <g id="x4e" class="node processes zoomnotable notenotattached" transform="translate(12.466 357.69)">
+  <title>Git</title>
+  <g id="a_x4e">
+   <a xlink:title=" ">
+    <path d="m238.76-139.5h-33.22c-6 0-12 6-12 12v12c0 6 6 12 12 12h33.22c6 0 12-6 12-12v-12c0-6-6-12-12-12" fill="none" stroke="#3be" stroke-width="2"/>
+    <text x="222.14999" y="-125.7" font-family="Arial" font-size="14px" text-anchor="middle">0.1.5.2</text>
+    <text x="222.14999" y="-108.9" font-family="Arial" font-size="14px" text-anchor="middle">Git</text>
+   </a>
+  </g>
+  <line x1="193.54" x2="250.76" y1="-122.5" y2="-122.5" stroke="#3be" stroke-dasharray="3, 3" stroke-width="2px"/>
+ </g>
+ <g class="edge" transform="translate(12.466 357.69)">
+  <title>Scott H.-&gt;Git</title>
+  <g stroke="#bbb">
+   <path d="m191.4-197.32c6.14 15.12 13.85 34.15 20.02 49.37" fill="none"/>
+   <polygon points="189.78 -201.32 194.48 -198.13 188.93 -203.44 188.64 -195.77 189.78 -201.32 191.56 -196.95" fill="#bbb"/>
+   <polygon points="213.18 -143.63 208.49 -146.82 214.03 -141.52 214.32 -149.19 213.18 -143.63 211.4 -148" fill="#bbb"/>
+  </g>
+ </g>
+ <g id="ntq" class="node processes zoomnotable notenotattached" transform="translate(12.466 357.69)">
+  <title>Node</title>
+  <g id="a_ntq">
+   <a xlink:title=" ">
+    <path d="m73.21-229.54h-33.22c-6 0-12 6-12 12v12c0 6 6 12 12 12h33.22c6 0 12-6 12-12v-12c0-6-6-12-12-12" fill="none" stroke="#3be" stroke-width="2"/>
+    <text x="56.599998" y="-215.74001" font-family="Arial" font-size="14px" text-anchor="middle">0.1.5.4</text>
+    <text x="56.599998" y="-198.94" font-family="Arial" font-size="14px" text-anchor="middle">Node</text>
+   </a>
+  </g>
+  <line x1="27.99" x2="85.21" y1="-212.54" y2="-212.54" stroke="#3be" stroke-dasharray="3, 3" stroke-width="2px"/>
+ </g>
+ <g class="edge" transform="translate(12.466 357.69)">
+  <title>Scott H.-&gt;Node</title>
+  <g stroke="#bbb">
+   <path d="m145-219.85c-15.9 1.49-34.61 3.25-50.71 4.77" fill="none"/>
+   <polygon points="149.52 -220.27 145.12 -216.7 151.79 -220.49 144.53 -222.97 149.52 -220.27 144.82 -219.83" fill="#bbb"/>
+   <polygon points="89.62 -214.64 94.02 -218.22 87.35 -214.43 94.61 -211.95 89.62 -214.64 94.32 -215.09" fill="#bbb"/>
+  </g>
+ </g>
+ <g id="ygg" class="node processes zoomnotable notenotattached" transform="translate(12.466 357.69)">
+  <title>Deno</title>
+  <g id="a_ygg">
+   <a xlink:title=" ">
+    <path d="m91.86-374.81h-33.21c-6 0-12 6-12 12v12c0 6 6 12 12 12h33.21c6 0 12-6 12-12v-12c0-6-6-12-12-12" fill="none" stroke="#3be" stroke-width="2"/>
+    <text x="75.260002" y="-361.01001" font-family="Arial" font-size="14px" text-anchor="middle">0.1.5.5</text>
+    <text x="75.260002" y="-344.20999" font-family="Arial" font-size="14px" text-anchor="middle">Deno</text>
+   </a>
+  </g>
+  <line x1="46.65" x2="103.86" y1="-357.81" y2="-357.81" stroke="#3be" stroke-dasharray="3, 3" stroke-width="2px"/>
+ </g>
+ <g class="edge" transform="translate(12.466 357.69)">
+  <title>Scott H.-&gt;Deno</title>
+  <g stroke="#bbb">
+   <path d="m161-248.39c-18.85-23.83-47.01-59.43-65.85-83.27" fill="none"/>
+   <polygon points="163.82 -244.83 158.42 -246.57 165.23 -243.04 163.36 -250.48 163.82 -244.83 160.89 -248.53" fill="#bbb"/>
+   <polygon points="92.26 -335.3 97.66 -333.56 90.85 -337.09 92.72 -329.65 92.26 -335.3 95.19 -331.6" fill="#bbb"/>
+  </g>
+ </g>
+ <g id="n7a" class="node processes zoomnotable notenotattached" transform="translate(12.466 357.69)">
+  <title>Upload</title>
+  <g id="a_n7a">
+   <a xlink:title=" ">
+    <path d="m448.98-257.52h-34.77c-6 0-12 6-12 12v12c0 6 6 12 12 12h34.77c6 0 12-6 12-12v-12c0-6-6-12-12-12" fill="none" stroke="#3be" stroke-width="2"/>
+    <text x="431.60001" y="-243.72" font-family="Arial" font-size="14px" text-anchor="middle">0.1.5.1</text>
+    <text x="431.60001" y="-226.92" font-family="Arial" font-size="14px" text-anchor="middle">Upload</text>
+   </a>
+  </g>
+  <line x1="402.21" x2="460.98" y1="-240.52" y2="-240.52" stroke="#3be" stroke-dasharray="3, 3" stroke-width="2px"/>
+ </g>
+ <g class="edge" transform="translate(12.466 357.69)">
+  <title>Scott H.-&gt;Upload</title>
+  <g stroke="#bbb">
+   <path d="m216.58-225.54c46.84-3.05 128.71-8.37 176.78-11.5" fill="none"/>
+   <polygon points="212.18 -225.26 216.69 -228.71 209.9 -225.11 217.09 -222.42 212.18 -225.26 216.89 -225.56" fill="#bbb"/>
+   <polygon points="397.86 -237.33 393.35 -233.88 400.13 -237.48 392.94 -240.17 397.86 -237.33 393.15 -237.02" fill="#bbb"/>
+  </g>
+ </g>
+ <g class="edge" transform="translate(12.466 357.69)">
+  <title>Scott H.-&gt;Upload</title>
+  <path d="m208.69-225.03c44.92-2.92 133.6-8.69 184.52-12" fill="none" stroke="#bbb"/>
+  <polygon points="397.86 -237.33 393.35 -233.88 400.13 -237.48 392.94 -240.17 397.86 -237.33 393.15 -237.02" fill="#bbb" stroke="#bbb"/>
+ </g>
+ <g id="qyj" class="node has_subclass processes zoomnotable noteattached" transform="translate(12.466 357.69)">
+  <title>Local NGINX</title>
+  <g id="a_qyj">
+   <a xlink:href="#todo" xlink:title=" Add to sites-enabled">
+    <path d="m265.77-394.72h-34.74c-6 0-12 6-12 12v26.4c0 6 6 12 12 12h34.74c6 0 12-6 12-12v-26.4c0-6-6-12-12-12" fill="none" stroke="#3be" stroke-width="2"/>
+    <g font-family="Arial" font-size="14px" text-anchor="middle">
+     <text x="248.39999" y="-382.12">0.1.5.6</text>
+     <text x="248.39999" y="-365.32001">Local</text>
+     <text x="248.39999" y="-348.51999">NGINX</text>
+    </g>
+   </a>
+  </g>
+  <a xlink:href="http://localhost:4016" xlink:title="http://localhost:4016">
+   <text x="211.03" y="-340.32001" font-size="14px"></text>
+  </a>
+  <line x1="219.03" x2="277.77" y1="-378.03" y2="-378.03" stroke="#3be" stroke-dasharray="3, 3" stroke-width="2px"/>
+  <circle cx="276.77" cy="-394.03" r="3" fill="#e73" stroke="#e73"/>
+  <circle cx="276.77" cy="-345.32" r="3" fill="#07b" stroke="#07b"/>
+ </g>
+ <g class="edge" transform="translate(12.466 357.69)">
+  <title>Scott H.-&gt;Local NGINX</title>
+  <g stroke="#bbb">
+   <path d="m193.01-249.47c11.2-24.27 27.9-60.45 40.03-86.75" fill="none"/>
+   <polygon points="191.05 -245.23 190.17 -250.83 190.1 -243.16 195.89 -248.19 191.05 -245.23 193.03 -249.51" fill="#bbb"/>
+   <polygon points="234.86 -340.18 235.75 -334.57 235.82 -342.25 230.03 -337.21 234.86 -340.18 232.89 -335.89" fill="#bbb"/>
+  </g>
+ </g>
+ <g id="ihq" class="node datastores" transform="translate(12.466 357.69)">
+  <title>Codeberg</title>
+  <polygon points="0 -39.53 0 -75.53 108.19 -75.53 108.19 -39.53" fill="none" stroke="#c31" stroke-width="2"/>
+  <text x="16.15" y="-53.330002" font-family="Arial" font-size="14px" text-anchor="middle">R4</text>
+  <polyline points="32.3 -39.53 32.3 -75.53" fill="none" stroke="#c31" stroke-dasharray="3, 3" stroke-width="2"/>
+  <text x="70.239998" y="-53.330002" font-family="Arial" font-size="14px" text-anchor="middle">Codeberg</text>
+  <a xlink:href="https://codeberg.org/acodrst/noidentity.dev" xlink:title="https://codeberg.org/acodrst/noidentity.dev">
+   <text x="-8" y="-35.529999" font-size="14px"></text>
+  </a>
+ </g>
+ <g class="edge" transform="translate(12.466 357.69)">
+  <title>Git-&gt;Codeberg</title>
+  <path d="m192.88-110.36c-22.44 8.54-54.1 20.59-81.52 31.03" fill="none" stroke="#bbb"/>
+  <polygon points="107.03 -77.68 110.32 -82.3 104.89 -76.87 112.56 -76.42 107.03 -77.68 111.44 -79.36" fill="#bbb" stroke="#bbb"/>
+ </g>
+ <g id="alr" class="node datastores" transform="translate(12.466 357.69)">
+  <title>SourceForge</title>
+  <polygon points="276.51 -5.58 276.51 -41.58 404.13 -41.58 404.13 -5.58" fill="none" stroke="#c31" stroke-width="2"/>
+  <text x="292.64999" y="-19.379999" font-family="Arial" font-size="14px" text-anchor="middle">R5</text>
+  <polyline points="308.8 -5.58 308.8 -41.58" fill="none" stroke="#c31" stroke-dasharray="3, 3" stroke-width="2"/>
+  <text x="356.47" y="-19.379999" font-family="Arial" font-size="14px" text-anchor="middle">SourceForge</text>
+  <a xlink:href="https://sourceforge.net/projects/noidentity.dev" xlink:title="https://sourceforge.net/projects/noidentity.dev">
+   <text x="268.51001" y="-1.5800018" font-size="14px"></text>
+  </a>
+ </g>
+ <g class="edge" transform="translate(12.466 357.69)">
+  <title>Git-&gt;SourceForge</title>
+  <path d="m244.93-102.62c18.97 15.71 46.08 38.18 66.55 55.15" fill="none" stroke="#bbb"/>
+  <polygon points="314.91 -44.63 309.27 -45.22 316.67 -43.18 313.29 -50.07 314.91 -44.63 311.28 -47.64" fill="#bbb" stroke="#bbb"/>
+ </g>
+ <g id="plc" class="node datastores" transform="translate(12.466 357.69)">
+  <title>GitHub</title>
+  <polygon points="140.34 -0.5 140.34 -36.5 230.61 -36.5 230.61 -0.5" fill="none" stroke="#c31" stroke-width="2"/>
+  <text x="156.49001" y="-14.3" font-family="Arial" font-size="14px" text-anchor="middle">R3</text>
+  <polyline points="172.64 -0.5 172.64 -36.5" fill="none" stroke="#c31" stroke-dasharray="3, 3" stroke-width="2"/>
+  <text x="201.62" y="-14.3" font-family="Arial" font-size="14px" text-anchor="middle">GitHub</text>
+  <a xlink:href="https://github.com/noidentity.dev" xlink:title="https://github.com/noidentity.dev">
+   <text x="132.34" y="3.5" font-size="14px"></text>
+  </a>
+ </g>
+ <g class="edge" transform="translate(12.466 357.69)">
+  <title>Git-&gt;GitHub</title>
+  <path d="m215.42-102.61c-5.79 16.26-14.2 39.89-20.64 57.97" fill="none" stroke="#bbb"/>
+  <polygon points="193.33 -40.57 191.95 -46.07 192.57 -38.42 197.88 -43.96 193.33 -40.57 194.92 -45.01" fill="#bbb" stroke="#bbb"/>
+ </g>
+ <g id="i7b" class="node processes zoomnotable notenotattached" transform="translate(12.466 357.69)">
+  <title>WebDAV</title>
+  <g id="a_i7b">
+   <a xlink:title=" ">
+    <path d="m360.3-175.37h-47.97c-6 0-12 6-12 12v12c0 6 6 12 12 12h47.97c6 0 12-6 12-12v-12c0-6-6-12-12-12" fill="none" stroke="#3be" stroke-width="2"/>
+    <text x="336.32001" y="-161.57001" font-family="Arial" font-size="14px" text-anchor="middle">0.1.5.3</text>
+    <text x="336.32001" y="-144.77" font-family="Arial" font-size="14px" text-anchor="middle">WebDAV</text>
+   </a>
+  </g>
+  <line x1="300.33" x2="372.3" y1="-158.37" y2="-158.37" stroke="#3be" stroke-dasharray="3, 3" stroke-width="2px"/>
+ </g>
+ <g class="edge" transform="translate(12.466 357.69)">
+  <title>WebDAV-&gt;Scott H.</title>
+  <g stroke="#bbb">
+   <path d="m292.11-176.1c-24.1-10.21-53.51-22.68-76.04-32.22" fill="none"/>
+   <polygon points="296.26 -174.34 290.69 -173.28 298.36 -173.45 293.15 -179.08 296.26 -174.34 291.92 -176.18" fill="#bbb"/>
+   <polygon points="211.94 -210.07 217.51 -211.13 209.84 -210.96 215.06 -205.33 211.94 -210.07 216.29 -208.23" fill="#bbb"/>
+  </g>
+ </g>
+ <g id="zbr" class="node processes zoomnotable notenotattached" transform="translate(12.466 357.69)">
+  <title>NID</title>
+  <g id="a_zbr">
+   <a xlink:title=" ">
+    <path d="m482.51-96.77h-33.22c-6 0-12 6-12 12v12c0 6 6 12 12 12h33.22c6 0 12-6 12-12v-12c0-6-6-12-12-12" fill="none" stroke="#3be" stroke-width="2"/>
+    <text x="465.89999" y="-82.970001" font-family="Arial" font-size="14px" text-anchor="middle">0.1.5.7</text>
+    <text x="465.89999" y="-66.169998" font-family="Arial" font-size="14px" text-anchor="middle">NID</text>
+   </a>
+  </g>
+  <a xlink:href="https://noidentity.dev" xlink:title="https://noidentity.dev">
+   <text x="429.29001" y="-56.77" font-size="14px"></text>
+  </a>
+  <line x1="437.29" x2="494.51" y1="-79.77" y2="-79.77" stroke="#3be" stroke-dasharray="3, 3" stroke-width="2px"/>
+ </g>
+ <g class="edge" transform="translate(12.466 357.69)">
+  <title>NID-&gt;WebDAV</title>
+  <path d="m429.5-100.85c-19.55-11.86-43.41-26.33-62.09-37.66" fill="none" stroke="#bbb"/>
+  <polygon points="433.5 -98.42 427.84 -98.18 435.45 -97.24 431.1 -103.56 433.5 -98.42 429.47 -100.87" fill="#bbb" stroke="#bbb"/>
+ </g>
+ <g class="node datastores" transform="translate(12.466 357.69)">
+  <title>site/nid</title>
+  <polygon points="238.6 -240.93 238.6 -276.93 329.65 -276.93 329.65 -240.93" fill="none" stroke="#c31" stroke-width="2"/>
+  <text x="254.74001" y="-254.73" font-family="Arial" font-size="14px" text-anchor="middle">R1</text>
+  <polyline points="270.89 -240.93 270.89 -276.93" fill="none" stroke="#c31" stroke-dasharray="3, 3" stroke-width="2"/>
+  <text x="300.26999" y="-254.73" font-family="Arial" font-size="14px" text-anchor="middle">site/nid</text>
+ </g>
+ <g class="edge" transform="translate(12.466 357.69)">
+  <title>site/nid-&gt;Git</title>
+  <g stroke="#bbb">
+   <path d="m272.38-232.89c-11.08 24.56-27.58 61.15-38.61 85.62" fill="none"/>
+   <polygon points="274.2 -236.92 275.13 -231.33 275.14 -239 269.39 -233.92 274.2 -236.92 272.26 -232.62" fill="#bbb"/>
+   <polygon points="231.97 -143.29 231.04 -148.88 231.04 -141.21 236.78 -146.29 231.97 -143.29 233.91 -147.59" fill="#bbb"/>
+  </g>
+ </g>
+ <g class="edge" transform="translate(12.466 357.69)">
+  <title>site/nid-&gt;Node</title>
+  <g stroke="#bbb">
+   <path d="m229.68-257.16c-25.3 1.68-55.64 4.91-82.38 11.14-18.21 4.24-37.68 11.28-53.9 17.9" fill="none"/>
+   <polygon points="234.21 -257.44 229.7 -254.01 236.49 -257.58 229.31 -260.3 234.21 -257.44 229.5 -257.15" fill="#bbb"/>
+   <polygon points="89.43 -226.46 92.58 -231.18 87.32 -225.58 95 -225.37 89.43 -226.46 93.79 -228.28" fill="#bbb"/>
+  </g>
+ </g>
+ <g class="edge" transform="translate(12.466 357.69)">
+  <title>site/nid-&gt;Deno</title>
+  <g stroke="#bbb">
+   <path d="m236.47-281.26c-37.89-17.76-90.12-42.23-124.73-58.45" fill="none"/>
+   <polygon points="240.68 -279.29 235.07 -278.44 242.75 -278.32 237.75 -284.14 240.68 -279.29 236.41 -281.29" fill="#bbb"/>
+   <polygon points="107.8 -341.56 113.41 -342.41 105.73 -342.53 110.73 -336.7 107.8 -341.56 112.07 -339.56" fill="#bbb"/>
+  </g>
+ </g>
+ <g class="edge" transform="translate(12.466 357.69)">
+  <title>site/nid-&gt;Upload</title>
+  <path d="m330.38-252.85c20.25 2.67 43.73 5.76 62.97 8.29" fill="none" stroke="#bbb"/>
+  <polygon points="397.85 -243.96 392.76 -241.46 400.11 -243.67 393.58 -247.7 397.85 -243.96 393.17 -244.58" fill="#bbb" stroke="#bbb"/>
+ </g>
+ <g class="edge" transform="translate(12.466 357.69)">
+  <title>site/nid-&gt;Local NGINX</title>
+  <path d="m278.06-277.69c-5.14-15.93-12.65-39.16-18.82-58.28" fill="none" stroke="#bbb"/>
+  <polygon points="257.85 -340.28 262.3 -336.75 257.15 -342.45 256.3 -334.82 257.85 -340.28 259.3 -335.79" fill="#bbb" stroke="#bbb"/>
+ </g>
+ <g class="edge" transform="translate(12.466 357.69)">
+  <title>site/nid-&gt;WebDAV</title>
+  <path d="m293.7-240.31c8.19 15.94 20.06 39.05 29.2 56.83" fill="none" stroke="#bbb"/>
+  <polygon points="325.03 -179.34 320.07 -182.09 326.07 -177.31 325.67 -184.97 325.03 -179.34 322.87 -183.53" fill="#bbb" stroke="#bbb"/>
+ </g>
+ <g id="l3x" class="node datastores" transform="translate(12.466 357.69)">
+  <title>Permanent</title>
+  <polygon points="377.49 -344.71 377.49 -380.71 492.67 -380.71 492.67 -344.71" fill="none" stroke="#c31" stroke-width="2"/>
+  <text x="393.64001" y="-358.51001" font-family="Arial" font-size="14px" text-anchor="middle">R2</text>
+  <polyline points="409.79 -344.71 409.79 -380.71" fill="none" stroke="#c31" stroke-dasharray="3, 3" stroke-width="2"/>
+  <text x="451.23001" y="-358.51001" font-family="Arial" font-size="14px" text-anchor="middle">Permanent</text>
+  <a xlink:href="https://www.permanent.org/p/archive/04sh-0000" xlink:title="https://www.permanent.org/p/archive/04sh-0000">
+   <text x="369.48999" y="-340.70999" font-size="14px"></text>
+  </a>
+ </g>
+ <g class="edge" transform="translate(12.466 357.69)">
+  <title>Permanent-&gt;Upload</title>
+  <path d="m434.31-335.58c-0.66 23.42-1.6 56.66-2.18 77.26" fill="none" stroke="#bbb"/>
+  <polygon points="434.44 -340.23 437.46 -335.43 434.51 -342.51 431.16 -335.6 434.44 -340.23 434.31 -335.51" fill="#bbb" stroke="#bbb"/>
+ </g>
+ <g transform="translate(4.5256 -3.7146)" font-family="Arial, Helvetica, sans-serif" font-size="14px">
+  <text x="-39.403332" y="-36.400002" dy="2" font-weight="900">Streaming Logical Map</text>
+  <text x="-207" y="484.79999" dy="2">Rather than identity, this site leads with a combined material and data flow logical map, using MQTT to stream</text>
+  <text x="-207" y="503" dy="2">collaborative updates</text>
+  <a xlink:href="#Top" xlink:title="Top">
+   <text x="-207" y="18.200001">Top</text>
+  </a>
+  <a xlink:href="#Top.Demonstrations" xlink:title="Demonstrations">
+   <text x="-207" y="36.400002">⇥ Demonstrations</text>
+  </a>
+  <a xlink:href="#Top.Demonstrations.StreamingLogicalMap" xlink:title="StreamingLogicalMap">
+   <text x="-207" y="54.599998">⇥ ⇥ StreamingLogicalMap</text>
+  </a>
+ </g>
+</svg>
+<figcaption>Fig 2: FloppyPNG</figcaption></figure></div>
+<p>I introduce the idea in
+<a href="https://doi.org/10.5281/zenodo.13684896" title="Adaptive Analysis"><svg class="trs_icon" version="1.1" viewBox="0 0 20.154 18.479" xmlns="http://www.w3.org/2000/svg"><g transform="translate(21.253 14.48)"><path transform="matrix(.26667 .46187 .46187 -.26667 -4.9244 -10.655)" d="m-8.1341-14.089 1.9467 3.3718" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".99628"/><path transform="matrix(.53331 -1.1904e-5 -1.1904e-5 -.53331 -11.524 -10.655)" d="m5.2006 0c-1.541 0.28891-4.0449 1.1557-5.7784 2.1669v-4.3338c1.7335 1.0112 4.2375 1.878 5.7784 2.1669"/><path transform="matrix(.26667 .46187 .46187 -.26667 -4.9244 -10.655)" d="m3.5872-6.2132 1.9467-3.3718" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".99628"/><path transform="matrix(-.26665 .46186 .46186 .26665 -7.8757 -5.5428)" d="m5.2006 0c-1.541 0.28891-4.0449 1.1557-5.7784 2.1669v-4.3338c1.7335 1.0112 4.2375 1.878 5.7784 2.1669"/><path transform="matrix(.26667 .46187 .46187 -.26667 -4.9244 -10.655)" d="m4.5481-20.302h-3.8956" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".99628"/><g><path transform="matrix(-.26667 -.46187 -.46187 .26667 -14.127 -4.9395)" d="m5.2006 0c-1.541 0.28891-4.0449 1.1557-5.7784 2.1669v-4.3338c1.7335 1.0112 4.2375 1.878 5.7784 2.1669"/><g stroke-miterlimit="10" stroke-width=".3985"><path transform="matrix(.26667 .46187 .46187 -.26667 -4.9244 -10.655)" d="m6.9739 0c0 3.8516-3.1223 6.9739-6.9739 6.9739s-6.9739-3.1223-6.9739-6.9739 3.1223-6.9739 6.9739-6.9739 6.9739 3.1223 6.9739 6.9739z" fill="#ff8000" stroke="#ff8000"/><path transform="matrix(.26667 .46187 .46187 -.26667 -17.427 -10.654)" d="m6.9739 0c0 3.8516-3.1223 6.9739-6.9739 6.9739s-6.9739-3.1223-6.9739-6.9739 3.1223-6.9739 6.9739-6.9739 6.9739 3.1223 6.9739 6.9739z" fill="#008080" stroke="#008080"/><path transform="matrix(.26667 .46187 .46187 -.26667 -11.176 .1727)" d="m6.9739 0c0 3.8516-3.1223 6.9739-6.9739 6.9739s-6.9739-3.1223-6.9739-6.9739 3.1223-6.9739 6.9739-6.9739 6.9739 3.1223 6.9739 6.9739z" fill="#ec008c" stroke="#ec008c"/></g></g></g></svg></a>,
+and the Floppy PNG website serves as the technical description and
+validation <span class="citation" data-cites="h_floppy_2025">(<a
+href="#ref-h_floppy_2025" role="doc-biblioref">H. 2025a</a>)</span> <a
+href="https://floppypng.com/"
+title="Floppy {PNG"><svg class="link_icon" width="57.259mm" height="60.469mm" version="1.1" viewBox="0 0 57.259 60.469" xmlns="http://www.w3.org/2000/svg"><defs><marker id="Triangle" overflow="visible" markerHeight="1" markerWidth="1" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1"><path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/></marker></defs><g transform="translate(-79.374 -82.221)"><rect x="81.358" y="97.581" width="36.375" height="43.125" fill="none" stroke="#07b" stroke-linecap="square" stroke-linejoin="round" stroke-width="3.9688"/><rect x="97.947" y="96.621" width="21.276" height="26.049" fill="#fff" stroke="#fff" stroke-linecap="square" stroke-width="4.1186"/><path d="m90.962 127.73 33.026-32.908" fill="none" marker-end="url(#Triangle)" stroke="#07b" stroke-width="5.0271"/></g></svg></a>.
+As I write this, most sites I run have different versions, and some have
+none at all. Fig. 2 shows a typical
+<a href="https://logicalmap.org" title="Logical Map"><svg class="lmp_icon"  version="1.1" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <g stroke-width="4.1">
+  <path d="m20 32h-17.6v-15h17.6z" fill="none" stroke="#c31"/>
+  <path d="m32 25v-15h-18v15z" fill="none" stroke="#098"/>
+  <path d="m19 2.3h-9.9c-2 0-3.9 2.7-3.9 5.3v5.3c0 2.7 2 5.3 3.9 5.3h9.9c2 0 3.9-2.7 3.9-5.3v-5.3c0-2.7-2-5.3-3.9-5.3" fill="none" stroke="#3be" stroke-width="4.1"/>
+ </g>
+</svg></a>at detail. The Upload process uploads a Floppy PNG image to
+Permanent <span class="citation" data-cites="h_permanent_2025">(<a
+href="#ref-h_permanent_2025" role="doc-biblioref">H. 2025b</a>)</span>
+<a href="https://www.permanent.org/p/archive/04sh-0000"
+title="Permanent Archive of Scott H."><svg class="link_icon" width="57.259mm" height="60.469mm" version="1.1" viewBox="0 0 57.259 60.469" xmlns="http://www.w3.org/2000/svg"><defs><marker id="Triangle" overflow="visible" markerHeight="1" markerWidth="1" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1"><path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/></marker></defs><g transform="translate(-79.374 -82.221)"><rect x="81.358" y="97.581" width="36.375" height="43.125" fill="none" stroke="#07b" stroke-linecap="square" stroke-linejoin="round" stroke-width="3.9688"/><rect x="97.947" y="96.621" width="21.276" height="26.049" fill="#fff" stroke="#fff" stroke-linecap="square" stroke-width="4.1186"/><path d="m90.962 127.73 33.026-32.908" fill="none" marker-end="url(#Triangle)" stroke="#07b" stroke-width="5.0271"/></g></svg></a>.
+In this case, this is a demonstration of
+<a href="https://logintegrity.com/" title="Streaming a Logical Map"><svg class="lgi_icon" fill="#33bbee" stroke="#33bbee" stroke-width=".17" version="1.1" viewBox="0 0 47.061 41.045" xmlns="http://www.w3.org/2000/svg">
+ <g aria-label="𓈗">
+  <path d="m9.8557 8.4477-3.072-3.7973-2.9867 3.4987h-3.712l6.784-8.0213 2.944 3.584 2.7307-3.6267 2.816 3.584 2.6027-3.584 2.9013 3.6267 2.688-3.6267 2.688 3.6267 2.8587-3.6267 2.6027 3.6267 2.816-3.6267 2.7307 3.6267 2.944-3.584 6.784 8.0213h-3.6693l-3.0293-3.4987-3.072 3.7973-2.7733-3.7547-2.7307 3.7547-2.688-3.7547-2.7733 3.7547-2.688-3.7547-2.688 3.7547-2.7733-3.7547-2.688 3.7547-2.7733-3.7547zm-8.0213-1.1093h1.5787l3.4133-4.0107 2.9867 3.712 2.816-3.7547 2.7733 3.712 2.688-3.712 2.7733 3.712 2.688-3.712 2.688 3.712 2.7733-3.712 2.688 3.712 2.7307-3.712 2.816 3.7547 2.9867-3.712 3.4133 4.0107h1.536l-4.992-5.888-2.9867 3.584-2.688-3.584-2.8587 3.6267-2.6027-3.6267-2.816 3.6267-2.688-3.6267-2.688 3.6267-2.8587-3.584-2.6027 3.584-2.8587-3.6267-2.688 3.584-2.9867-3.584zm13.568 17.365-2.7733-3.7547-2.7733 3.712-3.072-3.7547-2.9867 3.4987h-3.712l6.784-8.0213 2.944 3.584 2.7307-3.6267 2.816 3.584 2.6027-3.584 2.9013 3.6267 2.688-3.6267 2.688 3.6267 2.8587-3.6267 2.6027 3.6267 2.816-3.6267 2.7307 3.6267 2.944-3.584 6.784 8.0213h-3.6693l-3.0293-3.4987-3.072 3.7547-2.7733-3.712-2.7307 3.7547-2.688-3.7547-2.7733 3.7547-2.688-3.7547-2.688 3.7547-2.7733-3.7547zm-13.568-1.1093h1.5787l3.4133-4.0107 2.9867 3.712 2.816-3.7547 2.7733 3.712 2.688-3.712 2.7733 3.712 2.688-3.712 2.688 3.712 2.7733-3.712 2.688 3.712 2.7307-3.712 2.816 3.7547 2.9867-3.712 3.4133 4.0107h1.536l-4.992-5.9307-2.9867 3.6267-2.688-3.584-2.8587 3.6267-2.6027-3.6267-2.816 3.6267-2.688-3.6267-2.688 3.6267-2.8587-3.584-2.6027 3.584-2.8587-3.6267-2.688 3.584-2.9867-3.6267zm13.568 17.365-2.7733-3.7547-2.7733 3.712-3.072-3.7547-2.9867 3.4987h-3.712l6.784-8.0213 2.944 3.584 2.7307-3.6267 2.816 3.584 2.6027-3.584 2.9013 3.584 2.688-3.584 2.688 3.584 2.8587-3.584 2.6027 3.584 2.816-3.584 2.7307 3.6267 2.944-3.584 6.784 8.0213h-3.6693l-3.0293-3.4987-3.072 3.7547-2.7733-3.712-2.7307 3.7547-2.688-3.7547-2.7733 3.7547-2.688-3.7547-2.688 3.7547-2.7733-3.7547zm-13.568-1.152h1.5787l3.4133-3.968 2.9867 3.712 2.816-3.7547 2.7733 3.712 2.688-3.712 2.7733 3.712 2.688-3.712 2.688 3.712 2.7733-3.712 2.688 3.712 2.7307-3.712 2.816 3.7547 2.9867-3.712 3.4133 3.968h1.536l-4.992-5.888-2.9867 3.6267-2.688-3.584-2.8587 3.6267-2.6027-3.6267-2.816 3.6267-2.688-3.6267-2.688 3.6267-2.8587-3.584-2.6027 3.584-2.8587-3.6267-2.688 3.584-2.9867-3.6267z"/>
+ </g>
+</svg></a>. When viewing in a web browser, there are 🌐 icons that when
+clicked will lead you directory to the referenced resource. The entire
+demonstration is contained in the Floppy PNG file on Permanent.
+Likewise, this document and the associated
+<a href="https://logicalmap.org" title="Logical Map"><svg class="lmp_icon"  version="1.1" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <g stroke-width="4.1">
+  <path d="m20 32h-17.6v-15h17.6z" fill="none" stroke="#c31"/>
+  <path d="m32 25v-15h-18v15z" fill="none" stroke="#098"/>
+  <path d="m19 2.3h-9.9c-2 0-3.9 2.7-3.9 5.3v5.3c0 2.7 2 5.3 3.9 5.3h9.9c2 0 3.9-2.7 3.9-5.3v-5.3c0-2.7-2-5.3-3.9-5.3" fill="none" stroke="#3be" stroke-width="4.1"/>
+ </g>
+</svg></a>is uploaded to Permanent as a Floppy PNG.</p>
+<p>The Local NGINX entries point at the correct localhost HTTP TCP port.
+Lst. 1 shows what I have put in my own local configuration in
+/etc/nginx/sites-available.</p>
+<div id="lst:nginxconf" class="listing json numberLines">
+<p>Listing 1: Streaming Logical Map NGINX config</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode numberSource json numberLines"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1"></a><span class="er">server</span> <span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="er">listen</span> <span class="er">4016;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>  <span class="er">server_name</span> <span class="er">localhost;</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="er">root</span> <span class="er">/home/divine/websites/site/nid;</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="er">index</span> <span class="er">noidentity.dev.page.html;</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="er">location</span> <span class="er">/</span> <span class="er">{</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="er">try_files</span> <span class="er">$uri</span> <span class="er">$uri/</span> <span class="er">=404;</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>  <span class="fu">}</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="er">}</span></span></code></pre></div>
+</div>
+<h1 class="unnumbered" id="bibliography">Bibliography</h1>
+<div id="refs" class="references csl-bib-body hanging-indent"
+data-entry-spacing="0" role="list">
+<div id="ref-h_floppy_2025" class="csl-entry" role="listitem">
+H., Scott. 2025a. <span>“Floppy <span>PNG</span>.”</span> 2025. <a
+href="https://floppypng.com/">https://floppypng.com/</a>.
+</div>
+<div id="ref-h_permanent_2025" class="csl-entry" role="listitem">
+———. 2025b. <span>“Permanent Archive of Scott h.”</span> 2025. <a
+href="https://www.permanent.org/p/archive/04sh-0000">https://www.permanent.org/p/archive/04sh-0000</a>.
+</div>
+</div>
+</body>
+</html>
