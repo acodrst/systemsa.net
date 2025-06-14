@@ -180,6 +180,17 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+
+
+.listing p {
+  border-style:solid;
+  border-width:1px;
+  border-left-style:none;
+  border-right-style:none;
+}
+.listing { background-color: #f8f8f8; text-decoration:none; } 
+
+
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #204a87; } /* Attribute */
