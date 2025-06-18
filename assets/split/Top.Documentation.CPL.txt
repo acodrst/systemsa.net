@@ -62,7 +62,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/compute.land
+https://github.com/acodrst/compute.land
 :: datastores
 Codeberg
 :: href

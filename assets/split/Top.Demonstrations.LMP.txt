@@ -62,7 +62,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/logicalmap.org
+https://github.com/acodrst/logicalmap.org
 :: datastores
 Codeberg
 :: href

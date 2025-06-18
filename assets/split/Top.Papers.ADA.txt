@@ -62,7 +62,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/adaptiveanalysis.org
+https://github.com/acodrst/adaptiveanalysis.org
 :: datastores
 Codeberg
 :: href

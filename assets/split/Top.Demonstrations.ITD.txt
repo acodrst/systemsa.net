@@ -60,7 +60,7 @@ https://www.permanent.org/p/archive/04sh-0000
 :: datastores
 GitHub
 :: href
-https://github.com/itdocent.com
+https://github.com/acodrst/itdocent.com
 :: datastores
 Codeberg
 :: href

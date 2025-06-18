@@ -62,7 +62,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/ytuaeb.beauty
+https://github.com/acodrst/ytuaeb.beauty
 :: datastores
 Codeberg
 :: href

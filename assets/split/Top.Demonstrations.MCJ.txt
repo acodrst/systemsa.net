@@ -62,7 +62,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/mountainclimbingjournal.com
+https://github.com/acodrst/mountainclimbingjournal.com
 :: datastores
 Codeberg
 :: href

@@ -62,7 +62,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/mudhut.club
+https://github.com/acodrst/mudhut.club
 :: datastores
 Codeberg
 :: href

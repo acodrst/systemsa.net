@@ -111,7 +111,7 @@ monofont: LiberationMono-Regular
 monofontoptions: Scale=0.64
 codeBlockCaptions: true
 linkcolor: blue
-abstract: \noindent \normalsize I describe and map the high level design of my various projects that form System SA.  I show where the pieces can be found, how they fit together, how I expect they will be used, when, and by who.\vspace{-200pt} \color{red} \small <p style="color:red;"><b> This document is incomplete. I will work on it over time and remove this notice when finished.\vspace{170pt} \thispagestyle{empty} </b> 
+abstract: \noindent \normalsize I describe and map the high level design of my various projects that form System SA.  I show where the pieces can be found, how they fit together, how I expect they will be used, when, and by who. This is a living document. It will never be finished. \thispagestyle{empty} </b> 
 bibliography: /home/divine/websites/site/sya/assets/My Library.bib
 geometry:
 - top=.5in

@@ -62,7 +62,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/tkitty.com
+https://github.com/acodrst/tkitty.com
 :: datastores
 Codeberg
 :: href

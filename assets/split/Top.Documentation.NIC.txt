@@ -62,7 +62,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/nonic.org
+https://github.com/acodrst/nonic.org
 :: datastores
 Codeberg
 :: href

@@ -60,7 +60,7 @@ https://www.permanent.org/p/archive/04sh-0000
 :: datastores
 GitHub
 :: href
-https://github.com/itdocent.com
+https://github.com/acodrst/itdocent.com
 :: datastores
 Codeberg
 :: href
@@ -133,7 +133,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/triple.pub
+https://github.com/acodrst/triple.pub
 :: datastores
 Codeberg
 :: href
@@ -206,7 +206,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/ytuaeb.beauty
+https://github.com/acodrst/ytuaeb.beauty
 :: datastores
 Codeberg
 :: href
@@ -326,7 +326,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/tkitty.com
+https://github.com/acodrst/tkitty.com
 :: datastores
 Codeberg
 :: href
@@ -463,7 +463,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/arewedown.com
+https://github.com/acodrst/arewedown.com
 :: datastores
 Codeberg
 :: href
@@ -536,7 +536,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/noidentity.dev
+https://github.com/acodrst/noidentity.dev
 :: datastores
 Codeberg
 :: href
@@ -609,7 +609,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/floppypng.com
+https://github.com/acodrst/floppypng.com
 :: datastores
 Codeberg
 :: href
@@ -682,7 +682,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/adaptiveanalysis.org
+https://github.com/acodrst/adaptiveanalysis.org
 :: datastores
 Codeberg
 :: href
@@ -783,7 +783,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/systemcrisismanagement.com
+https://github.com/acodrst/systemcrisismanagement.com
 :: datastores
 Codeberg
 :: href
@@ -856,7 +856,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/nonic.org
+https://github.com/acodrst/nonic.org
 :: datastores
 Codeberg
 :: href
@@ -929,7 +929,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/codrust.com
+https://github.com/acodrst/codrust.com
 :: datastores
 Codeberg
 :: href
@@ -1002,7 +1002,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/mudhut.club
+https://github.com/acodrst/mudhut.club
 :: datastores
 Codeberg
 :: href
@@ -1075,7 +1075,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/tributarysoftware.com
+https://github.com/acodrst/tributarysoftware.com
 :: datastores
 Codeberg
 :: href
@@ -1192,7 +1192,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/triples.pub
+https://github.com/acodrst/triples.pub
 :: datastores
 Codeberg
 :: href
@@ -1265,7 +1265,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/logintegrity.com
+https://github.com/acodrst/logintegrity.com
 :: datastores
 Codeberg
 :: href
@@ -1338,7 +1338,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/compute.land
+https://github.com/acodrst/compute.land
 :: datastores
 Codeberg
 :: href
@@ -1411,7 +1411,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/areweresilient.com
+https://github.com/acodrst/areweresilient.com
 :: datastores
 Codeberg
 :: href
@@ -1484,7 +1484,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/systemsa.net
+https://github.com/acodrst/systemsa.net
 :: datastores
 Codeberg
 :: href
@@ -1557,7 +1557,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/mountainclimbingjournal.com
+https://github.com/acodrst/mountainclimbingjournal.com
 :: datastores
 Codeberg
 :: href
@@ -1630,7 +1630,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/sysadmintools.com
+https://github.com/acodrst/sysadmintools.com
 :: datastores
 Codeberg
 :: href
@@ -1703,7 +1703,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/l1g3r.com
+https://github.com/acodrst/l1g3r.com
 :: datastores
 Codeberg
 :: href
@@ -1776,7 +1776,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/cruftbuster.com
+https://github.com/acodrst/cruftbuster.com
 :: datastores
 Codeberg
 :: href
@@ -1849,7 +1849,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/metroponus.com
+https://github.com/acodrst/metroponus.com
 :: datastores
 Codeberg
 :: href
@@ -2049,7 +2049,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/logicalmap.org
+https://github.com/acodrst/logicalmap.org
 :: datastores
 Codeberg
 :: href

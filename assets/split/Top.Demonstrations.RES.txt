@@ -62,7 +62,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/areweresilient.com
+https://github.com/acodrst/areweresilient.com
 :: datastores
 Codeberg
 :: href

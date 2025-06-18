@@ -62,7 +62,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/floppypng.com
+https://github.com/acodrst/floppypng.com
 :: datastores
 Codeberg
 :: href

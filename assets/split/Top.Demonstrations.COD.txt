@@ -62,7 +62,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/codrust.com
+https://github.com/acodrst/codrust.com
 :: datastores
 Codeberg
 :: href

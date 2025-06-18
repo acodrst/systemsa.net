@@ -62,7 +62,7 @@ hola
 :: datastores
 GitHub
 :: href
-https://github.com/triple.pub
+https://github.com/acodrst/triple.pub
 :: datastores
 Codeberg
 :: href
