@@ -5505,6 +5505,9 @@ function model_to_dots(model, zoom_links, sub_obj) {
 }
 
 const backup = Deno.env.get("CL_SYA_BACKUP");
+Deno.copyFileSync("/home/divine/websites/site/ada/assets/std_template.tex","./assets/std_template.tex");
+Deno.copyFileSync("/home/divine/websites/site/ada/assets/std_graph.tex","./assets/std_graph.tex");
+Deno.copyFileSync("/home/divine/websites/site/ada/assets/inline_icons.tex","./assets/inline_icons.tex");
 const site={};
 let p_c = [
   "--highlight-style=tango",
